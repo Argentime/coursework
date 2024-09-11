@@ -28,5 +28,5 @@ int main(){
     H.printMessage();
     std::cout << "\n";
     D.printMessage();
-	h; // change for commit
+	h;
 }
