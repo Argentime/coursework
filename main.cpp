@@ -16,9 +16,8 @@ public:
 class DoubleHello : public Message {
 public:
     void printMessage() override {
-        for (int i = 0; i < 2; ++i) {
             std::cout << "Hello world\n";
-        }
+            std::cout << "Hello world\n";
     }
 };
 
@@ -29,5 +28,4 @@ int main(){
     std::cout << "\n";
     D.printMessage();
 	h;
-    printf
 }
