@@ -36,5 +36,5 @@ Element selectElement() {
     cout << "Ваш выбор: ";
     cin >> choice;
 
-    return static_cast<Element>(choice);
+    return Element(choice);
 }

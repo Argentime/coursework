@@ -56,7 +56,6 @@ public:
         }
     }
 
-    // Обновление заклинания по имени
     void updateSpell(string_view oldName, string_view newName, int newDamage) const {
         for (int i = 0; i < spellCount; ++i) {
             if (spells[i]->name == oldName) {
@@ -69,7 +68,6 @@ public:
         cout << "Заклинание с таким именем не найдено.\n";
     }
 
-    // Удаление заклинания
     void removeSpell(string const &name) {
         const Spell* spellToRemove = findSpellByName(name);
         if (spellToRemove == nullptr) {
