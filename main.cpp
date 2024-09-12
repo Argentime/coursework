@@ -3,7 +3,7 @@
 
 class Message {
 public:
-    virtual void printMessage() = 0; // Чисто виртуальная функция
+    virtual void printMessage() = 0;
 };
 
 class HelloWorld : public Message {
@@ -29,4 +29,5 @@ int main(){
     std::cout << "\n";
     D.printMessage();
 	h;
+    printf_s
 }
