@@ -22,7 +22,7 @@ public:
 
 class SpellBook {
 private:
-    Spell** spells = NULL;
+    Spell** spells = nullptr;
     int spellCount=0;
 
 public:
@@ -71,31 +71,36 @@ public:
 
     // Удаление заклинания
     void removeSpell(string const &name) {
-        int index = -1;
-        for (int i = 0; i < spellCount; ++i) {
-            if (spells[i]->name == name) {
-                index = i;
-                break;
-            }
-        }
-
-        if (index == -1) {
+        Spell* spellToRemove = findSpellByName(name);
+        if (spellToRemove == nullptr) {
             cout << "Заклинание с таким именем не найдено.\n";
             return;
         }
 
-        auto newSpells = new Spell * [spellCount - 1];
-        for (int i = 0, j = 0; i < spellCount; ++i) {
-            if (i != index) {
-                newSpells[j++] = spells[i];
+        for (int i = 0; i < spellCount; ++i) {
+            if (spells[i] == spellToRemove) {
+                delete spells[i]; 
+                for (int j = i; j < spellCount - 1; ++j) {
+                    spells[j] = spells[j + 1];
+                }
+                spellCount--; 
+                spells[spellCount] = nullptr;
+                cout << "Заклинание удалено.\n";
+                return;
+            }
+        } 
+    }
+
+    Spell* findSpellByName(string const& name) const {
+        for (int i = 0; i < spellCount; ++i) {
+            if (spells[i]->name == name) {
+                return spells[i];
+                break;
             }
         }
-        delete spells[index];
-        delete[] spells;
-        spells = newSpells;
-        spellCount--;
-        cout << "Заклинание удалено.\n";
+        return nullptr;
     }
+
 };
 
 int main() {
