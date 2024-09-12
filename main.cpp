@@ -13,7 +13,7 @@ public:
 
     Spell(string n, string e1, string e2, int d) : name(n), element1(e1), element2(e2), damage(d) {}
 
-    void display() {
+    void display() const{
         cout << "Заклинание: " << name << ", Элементы: " << element1 << " + " << element2 << ", Урон: " << damage << endl;
     }
 };
