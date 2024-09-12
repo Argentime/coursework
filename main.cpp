@@ -1,151 +1,162 @@
-#include <iostream>
-#include <string>
-#include <windows.h>
+#include "functions.h"
 
 using namespace std;
+
+// Функция для вывода названия стихии
+
 
 class Spell {
 public:
     string name;
-    string element1;
-    string element2;
+    Element element1;
+    Element element2;
     int damage;
 
-    Spell(string n, string e1, string e2, int d) : name(n), element1(e1), element2(e2), damage(d) {}
+    // Конструктор заклинания
+    Spell(string n, Element el1, Element el2, int dmg)
+        : name(n), element1(el1), element2(el2), damage(dmg) {}
 
-    void display() const{
-        cout << "Заклинание: " << name << ", Элементы: " << element1 << " + " << element2 << ", Урон: " << damage << endl;
+    // Вывод информации о заклинании
+    void display() const {
+        cout << name
+             << ": " << elementToString(element1)
+             << " + " << elementToString(element2)
+             << ", Урон: " << damage << endl;
     }
 };
 
 class SpellBook {
 private:
-    Spell** spells;   // Двумерный указатель для динамического массива заклинаний
-    int spellCount;   // Количество заклинаний
+    Spell** spells;
+    int spellCount;
 
 public:
     SpellBook() : spells(nullptr), spellCount(0) {}
 
-    // Добавление заклинания
-    void addSpell(string name, string element1, string element2, int damage) {
-        // Создание нового массива размером на 1 больше
-        Spell** newSpells = new Spell * [spellCount + 1];
-
-        // Копирование существующих заклинаний в новый массив
-        for (int i = 0; i < spellCount; ++i) {
-            newSpells[i] = spells[i];
-        }
-
-        // Создание нового заклинания
-        newSpells[spellCount] = new Spell(name, element1, element2, damage);
-
-        // Удаление старого массива
-        delete[] spells;
-
-        // Присваиваем новый массив
-        spells = newSpells;
-
-        // Увеличиваем количество заклинаний
-        spellCount++;
-    }
-
-    // Вывод всех заклинаний
-    void displaySpells() const {
-        if (spellCount == 0) {
-            cout << "Заклинаний нет." << endl;
-            return;
-        }
-
-        for (int i = 0; i < spellCount; ++i) {
-            spells[i]->display();
-        }
-    }
-
-    // Обновление заклинания
-    void updateSpell(string oldName, string newName, int newDamage) {
-        for (int i = 0; i < spellCount; ++i) {
-            if (spells[i]->name == oldName) {
-                spells[i]->name = newName;
-                spells[i]->damage = newDamage;
-                cout << "Заклинание обновлено." << endl;
-                return;
-            }
-        }
-        cout << "Заклинание не найдено." << endl;
-    }
-
-    // Удаление заклинания
-    void removeSpell(string name) {
-        bool found = false;
-        for (int i = 0; i < spellCount; ++i) {
-            if (spells[i]->name == name) {
-                found = true;
-                // Удаляем заклинание
-                delete spells[i];
-
-                // Сдвигаем все элементы массива на одну позицию влево
-                for (int j = i; j < spellCount - 1; ++j) {
-                    spells[j] = spells[j + 1];
-                }
-
-                // Уменьшаем размер массива
-                spellCount--;
-                break;
-            }
-        }
-
-        if (found) {
-            // Создаем новый массив размером на 1 меньше
-            Spell** newSpells = new Spell * [spellCount];
-
-            // Копируем оставшиеся заклинания
-            for (int i = 0; i < spellCount; ++i) {
-                newSpells[i] = spells[i];
-            }
-
-            // Удаляем старый массив
-            delete[] spells;
-
-            // Присваиваем новый массив
-            spells = newSpells;
-
-            cout << "Заклинание удалено." << endl;
-        }
-        else {
-            cout << "Заклинание не найдено." << endl;
-        }
-    }
-
-    // Деструктор для освобождения памяти
     ~SpellBook() {
         for (int i = 0; i < spellCount; ++i) {
             delete spells[i];
         }
         delete[] spells;
     }
+
+    // Добавление заклинания
+    void addSpell(string name, Element el1, Element el2, int damage) {
+        Spell** newSpells = new Spell * [spellCount + 1];
+        for (int i = 0; i < spellCount; ++i) {
+            newSpells[i] = spells[i];
+        }
+        newSpells[spellCount] = new Spell(name, el1, el2, damage);
+        delete[] spells;
+        spells = newSpells;
+        spellCount++;
+    }
+
+    // Отображение всех заклинаний
+    void displaySpells() const {
+        for (int i = 0; i < spellCount; ++i) {
+            spells[i]->display();
+        }
+    }
+
+    // Обновление заклинания по имени
+    void updateSpell(string oldName, string newName, int newDamage) {
+        for (int i = 0; i < spellCount; ++i) {
+            if (spells[i]->name == oldName) {
+                spells[i]->name = newName;
+                spells[i]->damage = newDamage;
+                cout << "Заклинание обновлено.\n";
+                return;
+            }
+        }
+        cout << "Заклинание с таким именем не найдено.\n";
+    }
+
+    // Удаление заклинания
+    void removeSpell(string name) {
+        int index = -1;
+        for (int i = 0; i < spellCount; ++i) {
+            if (spells[i]->name == name) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            cout << "Заклинание с таким именем не найдено.\n";
+            return;
+        }
+
+        Spell** newSpells = new Spell * [spellCount - 1];
+        for (int i = 0, j = 0; i < spellCount; ++i) {
+            if (i != index) {
+                newSpells[j++] = spells[i];
+            }
+        }
+        delete spells[index];
+        delete[] spells;
+        spells = newSpells;
+        spellCount--;
+        cout << "Заклинание удалено.\n";
+    }
 };
 
 int main() {
-    
+    SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
     SpellBook mySpellBook;
+    int choice;
 
-    // Пример добавления заклинаний
-    mySpellBook.addSpell("Метеор", "Огонь", "Земля", 50);
-    mySpellBook.addSpell("Гейзер", "Вода", "Земля", 40);
+    do {
+        printMenu();
+        cin >> choice;
+        cin.ignore();
 
-    cout << "Список заклинаний:" << endl;
-    mySpellBook.displaySpells();
+        if (choice == 1) {
+            string name;
+            int damage;
 
-    // Обновление заклинания
-    mySpellBook.updateSpell("Гейзер", "Сильный Гейзер", 60);
+            cout << "Введите название заклинания: ";
+            cin >> name;
+            Element el1 = selectElement();
+            Element el2 = selectElement();
+            cout << "Введите урон заклинания: ";
+            cin >> damage;
 
-    // Удаление заклинания
-    mySpellBook.removeSpell("Метеор");
+            mySpellBook.addSpell(name, el1, el2, damage);
+            cout << "Заклинание добавлено.\n";
 
-    cout << "Обновленный список заклинаний:" << endl;
-    mySpellBook.displaySpells();
+        }
+        else if (choice == 2) {
+            mySpellBook.displaySpells();
 
+        }
+        else if (choice == 3) {
+            string oldName, newName;
+            int newDamage;
+
+            cout << "Введите название заклинания для обновления: ";
+            cin >> oldName;
+            cout << "Введите новое название заклинания: ";
+            cin >> newName;
+            cout << "Введите новый урон заклинания: ";
+            cin >> newDamage;
+
+            mySpellBook.updateSpell(oldName, newName, newDamage);
+
+        }
+        else if (choice == 4) {
+            string name;
+
+            cout << "Введите название заклинания для удаления: ";
+            cin >> name;
+
+            mySpellBook.removeSpell(name);
+        }
+
+    } while (choice != 0);
+
+    cout << "Выход из программы.\n";
     return 0;
 }
