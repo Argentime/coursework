@@ -5,7 +5,7 @@
 
 enum class Element {
     Fire,   
-    Earth,  
+    Earth,  //r
     Water,   
     Air,    
     Spirit  
