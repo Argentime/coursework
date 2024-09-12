@@ -29,5 +29,5 @@ int main(){
     std::cout << "\n";
     D.printMessage();
 	h;
-    printf_s
+    printf
 }
