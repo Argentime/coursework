@@ -6,11 +6,11 @@
 enum class Element {
     Fire,   
     Earth,  
-    Water,   
+    Water,  
     Air,    
     Spirit  
 };
 
 void printMenu();
 std::string elementToString(Element el);
-Element selectElement(); 
+Element selectElement();
