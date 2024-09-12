@@ -95,7 +95,6 @@ public:
         for (int i = 0; i < spellCount; ++i) {
             if (spells[i]->name == name) {
                 return spells[i];
-                break;
             }
         }
         return nullptr;
