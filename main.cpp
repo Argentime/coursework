@@ -1,7 +1,5 @@
 #include "functions.h"
 
-using namespace std;
-
 // Функция для вывода названия стихии
 
 
