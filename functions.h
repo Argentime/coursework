@@ -4,11 +4,11 @@
 #include <Windows.h>
 
 enum class Element {
-    Fire,   // Огонь
-    Earth,  // Земля
-    Water,  // Вода
-    Air,    // Воздух
-    Spirit  // Дух
+    Fire,   
+    Earth,  
+    Water,  
+    Air,    
+    Spirit  
 };
 
 void printMenu();
