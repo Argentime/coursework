@@ -22,7 +22,7 @@ jobs:
           build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild 31Lw24a.vcxproj /t:Rebuild /nodeReuse:false
       - name: Run sonar-scanner
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{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}}
+          SONAR_TOKEN: ${{14a26fb153dab236d0ef2d98b6411d687922f81d}}
         run: |
           sonar-scanner --define sonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
