@@ -12,5 +12,5 @@ enum Element {
 };
 
 void printMenu();
-string elementToString(Element el);
+std::string elementToString(Element el);
 Element selectElement();

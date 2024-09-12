@@ -115,7 +115,7 @@ int main() {
             int damage;
 
             cout << "¬ведите название заклинани€: ";
-            cin >> name;
+            getline(cin, name);
             Element el1 = selectElement();
             Element el2 = selectElement();
             cout << "¬ведите урон заклинани€: ";
@@ -132,11 +132,12 @@ int main() {
         else if (choice == 3) {
             string oldName, newName;
             int newDamage;
+            cin.ignore();
 
             cout << "¬ведите название заклинани€ дл€ обновлени€: ";
-            cin >> oldName;
+            getline(cin, oldName);
             cout << "¬ведите новое название заклинани€: ";
-            cin >> newName;
+            getline(cin, newName);
             cout << "¬ведите новый урон заклинани€: ";
             cin >> newDamage;
 
@@ -147,7 +148,7 @@ int main() {
             string name;
 
             cout << "¬ведите название заклинани€ дл€ удалени€: ";
-            cin >> name;
+            getline(cin, name);
 
             mySpellBook.removeSpell(name);
         }
