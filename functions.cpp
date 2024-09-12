@@ -1,6 +1,6 @@
 #include "functions.h"
 
-
+using namespace std;
 
 void printMenu() {
     cout << "\nΜενώ:\n";

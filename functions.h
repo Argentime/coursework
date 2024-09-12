@@ -3,8 +3,6 @@
 #include <iostream>
 #include <Windows.h>
 
-using namespace std;
-
 enum Element {
     Fire,   // Огонь
     Earth,  // Земля

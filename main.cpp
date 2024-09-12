@@ -1,7 +1,6 @@
 #include "functions.h"
 
-// Функция для вывода названия стихии
-
+using namespace std;
 
 class Spell {
 public:
