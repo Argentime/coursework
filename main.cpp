@@ -9,11 +9,9 @@ public:
     Element element2;
     int damage;
 
-    // Конструктор заклинания
-    Spell(string n, Element el1, Element el2, int dmg)
+    Spell(string const &n, Element el1, Element el2, int dmg)
         : name(n), element1(el1), element2(el2), damage(dmg) {}
 
-    // Вывод информации о заклинании
     void display() const {
         cout << name
              << ": " << elementToString(element1)
@@ -24,22 +22,13 @@ public:
 
 class SpellBook {
 private:
-    Spell** spells;
-    int spellCount;
+    Spell** spells = NULL;
+    int spellCount=0;
 
 public:
-    SpellBook() : spells(nullptr), spellCount(0) {}
 
-    ~SpellBook() {
-        for (int i = 0; i < spellCount; ++i) {
-            delete spells[i];
-        }
-        delete[] spells;
-    }
-
-    // Добавление заклинания
-    void addSpell(string name, Element el1, Element el2, int damage) {
-        Spell** newSpells = new Spell * [spellCount + 1];
+    void addSpell(string const &name, Element el1, Element el2, int damage) {
+        auto newSpells = new Spell * [spellCount + 1];
         for (int i = 0; i < spellCount; ++i) {
             newSpells[i] = spells[i];
         }
@@ -49,15 +38,19 @@ public:
         spellCount++;
     }
 
-    // Отображение всех заклинаний
     void displaySpells() const {
-        for (int i = 0; i < spellCount; ++i) {
-            spells[i]->display();
+        if (spellCount == 0) {
+            cout << "Заклинаний нет. \n";
+        }
+        else {
+            for (int i = 0; i < spellCount; ++i) {
+                spells[i]->display();
+            }
         }
     }
 
     // Обновление заклинания по имени
-    void updateSpell(string oldName, string newName, int newDamage) {
+    void updateSpell(string const &oldName, string const &newName, int newDamage) {
         for (int i = 0; i < spellCount; ++i) {
             if (spells[i]->name == oldName) {
                 spells[i]->name = newName;
@@ -70,7 +63,7 @@ public:
     }
 
     // Удаление заклинания
-    void removeSpell(string name) {
+    void removeSpell(string const &name) {
         int index = -1;
         for (int i = 0; i < spellCount; ++i) {
             if (spells[i]->name == name) {
@@ -84,7 +77,7 @@ public:
             return;
         }
 
-        Spell** newSpells = new Spell * [spellCount - 1];
+        auto newSpells = new Spell * [spellCount - 1];
         for (int i = 0, j = 0; i < spellCount; ++i) {
             if (i != index) {
                 newSpells[j++] = spells[i];
@@ -130,7 +123,8 @@ int main() {
 
         }
         else if (choice == 3) {
-            string oldName, newName;
+            string oldName;
+            string newName;
             int newDamage;
             cin.ignore();
 
