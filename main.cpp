@@ -71,7 +71,7 @@ public:
 
     // Удаление заклинания
     void removeSpell(string const &name) {
-        Spell* const spellToRemove = findSpellByName(name);
+        const Spell* spellToRemove = findSpellByName(name);
         if (spellToRemove == nullptr) {
             cout << "Заклинание с таким именем не найдено.\n";
             return;
