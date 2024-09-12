@@ -6,7 +6,7 @@
 enum class Element {
     Fire,   
     Earth,  
-    Water,  
+    Water,   
     Air,    
     Spirit  
 };
