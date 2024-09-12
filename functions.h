@@ -3,7 +3,7 @@
 #include <iostream>
 #include <Windows.h>
 
-enum Element {
+enum class Element {
     Fire,   // Огонь
     Earth,  // Земля
     Water,  // Вода

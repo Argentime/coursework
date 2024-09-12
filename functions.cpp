@@ -14,11 +14,11 @@ void printMenu() {
 
 string elementToString(Element el) {
     switch (el) {
-    case Fire: return "Огонь";
-    case Earth: return "Земля";
-    case Water: return "Вода";
-    case Air: return "Воздух";
-    case Spirit: return "Дух";
+    case Element::Fire: return "Огонь";
+    case Element::Earth: return "Земля";
+    case Element::Water: return "Вода";
+    case Element::Air: return "Воздух";
+    case Element::Spirit: return "Дух";
     default: return "Неизвестная стихия";
     }
 }
