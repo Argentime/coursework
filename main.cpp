@@ -109,7 +109,7 @@ int main() {
 
     do {
         printMenu();
-        ;       cin >> choice;
+        cin >> choice;
 
         if (choice == 1) {
             string name;
