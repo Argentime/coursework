@@ -110,10 +110,6 @@ int main() {
     do {
         printMenu();
         ;       cin >> choice;
-        if (!cin.ignore(INT_MAX, '\n')) {
-            puts("");
-
-     }
 
         if (choice == 1) {
             string name;
@@ -145,7 +141,6 @@ int main() {
             getline(cin, newName);
             cout << "¬ведите новый урон заклинани€: ";
             cin >> newDamage;
-
             mySpellBook.updateSpell(oldName, newName, newDamage);
 
         }
