@@ -8,7 +8,7 @@ void printMenu() {
     cout << "2. Показать все заклинания\n";
     cout << "3. Обновить заклинание\n";
     cout << "4. Удалить заклинание\n";
-    cout << "0. Выход\n";d
+    cout << "0. Выход\n";
     cout << "Ваш выбор: ";
 }
 
@@ -35,6 +35,7 @@ Element selectElement() {
     cout << "4 - Дух\n";
     cout << "Ваш выбор: ";
     cin >> choice;
+    
 
     return Element(choice);
 }

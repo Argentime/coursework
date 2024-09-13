@@ -109,8 +109,11 @@ int main() {
 
     do {
         printMenu();
-        cin >> choice;
-        cin.ignore();
+        ;       cin >> choice;
+        if (!cin.ignore(INT_MAX, '\n')) {
+            puts("");
+
+     }
 
         if (choice == 1) {
             string name;
@@ -135,7 +138,6 @@ int main() {
             string oldName;
             string newName;
             int newDamage;
-            cin.ignore();
 
             cout << "¬ведите название заклинани€ дл€ обновлени€: ";
             getline(cin, oldName);
