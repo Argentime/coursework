@@ -28,7 +28,7 @@ public:
 
 private:
     void evolve() {
-        if (uses % 8 == 0) {
+        if (uses % 2 == 0) {
             damage += 5;
             cout <<"Заклинание " << name
                 << " эволюционировало, новый урон: " 
@@ -115,7 +115,7 @@ public:
         return nullptr;
     }
 
-    void castSpell(string_view name) {
+    void castSpell (string_view name) const{
         Spell* spellToCast = findSpellByName(name);
         if (spellToCast == nullptr) {
             cout << "Данного заклинания не найденно\n";
