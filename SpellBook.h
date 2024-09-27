@@ -22,4 +22,4 @@ public:
 
         void castSpell(std::string_view name) const;
 
-};
+}; //awd
