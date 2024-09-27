@@ -11,6 +11,8 @@ int main() {
     SpellBook mySpellBook;
     int choice;
 
+    check();
+
     do {
         printMenu();
         cin >> choice;
@@ -26,6 +28,12 @@ int main() {
             Element el2 = selectElement();
             cout << "Введите урон заклинания: ";
             cin >> damage;
+            if (std::cin.fail()) {
+                std::cin.clear();  // Сброс состояния ошибки
+                std::cin.ignore('\n');  // Очистка буфера
+            }
+
+
 
             mySpellBook.addSpell(name, el1, el2, damage);
             cout << "Заклинание добавлено.\n";
