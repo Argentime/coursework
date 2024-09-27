@@ -8,6 +8,7 @@ public:
     Element element1;
     Element element2;
     int damage;
+    int uses = 0;
 
     Spell(string const &n, Element el1, Element el2, int dmg)
         : name(n), element1(el1), element2(el2), damage(dmg) {}
@@ -17,6 +18,22 @@ public:
              << ": " << elementToString(element1)
              << " + " << elementToString(element2)
              << ", Урон: " << damage << endl;
+    }
+
+    void useSpell() {
+        uses++;
+        cout << "Заклинание " << name << " успешно применено\n";
+        evolve();
+    }
+
+private:
+    void evolve() {
+        if (uses % 2 == 0) {
+            damage += 5;
+            cout <<"Заклинание " << name
+                << " эволюционировало, новый урон: " 
+                << damage << endl;
+        }
     }
 };
 
@@ -98,6 +115,15 @@ public:
         return nullptr;
     }
 
+    void castSpell (string_view name) const{
+        Spell* spellToCast = findSpellByName(name);
+        if (spellToCast == nullptr) {
+            cout << "Данного заклинания не найденно\n";
+            return;
+        }
+        spellToCast->useSpell();
+    }
+
 };
 
 int main() {
@@ -142,7 +168,6 @@ int main() {
             getline(cin, newName);
             cout << "Введите новый урон заклинания: ";
             cin >> newDamage;
-
             mySpellBook.updateSpell(oldName, newName, newDamage);
 
         }
@@ -153,6 +178,14 @@ int main() {
             getline(cin, name);
 
             mySpellBook.removeSpell(name);
+        }
+        else if (choice == 5) {
+            string name;
+
+            cout << "Введите название заклинания для использования: ";
+            getline(cin, name);
+
+            mySpellBook.castSpell(name);
         }
 
     } while (choice != 0);
