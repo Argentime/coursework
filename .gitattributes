@@ -2,9 +2,9 @@
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 * text=auto
-*.txt text working-tree-encoding=UTF-8
-*.cpp text working-tree-encoding=UTF-8
-*.h text working-tree-encoding=UTF-8
+*.txt text working-tree-encoding=Windows-1251
+*.cpp text working-tree-encoding=Windows-1251
+*.h text working-tree-encoding=Windows-1251
 
 ###############################################################################
 # Set default behavior for command prompt diff.
