@@ -20,15 +20,15 @@ int main() {
             string name;
             int damage;
 
-            cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ñ: ";
+            cout << "Ââåäèòå íàçâàíèå çàêëèíàíèÿ: ";
             getline(cin, name);
             Element el1 = selectElement();
             Element el2 = selectElement();
-            cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑƒÑ€Ð¾Ð½ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ñ: ";
+            cout << "Ââåäèòå óðîí çàêëèíàíèÿ: ";
             cin >> damage;
 
             mySpellBook.addSpell(name, el1, el2, damage);
-            cout << "Ð—Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ðµ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¾.\n";
+            cout << "Çàêëèíàíèå äîáàâëåíî.\n";
 
         }
         else if (choice == 2) {
@@ -40,11 +40,11 @@ int main() {
             string newName;
             int newDamage;
 
-            cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ñ Ð´Ð»Ñ Ð¾Ð±Ð½Ð¾Ð²Ð»ÐµÐ½Ð¸Ñ: ";
+            cout << "Ââåäèòå íàçâàíèå çàêëèíàíèÿ äëÿ îáíîâëåíèÿ: ";
             getline(cin, oldName);
-            cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ð¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ñ: ";
+            cout << "Ââåäèòå íîâîå íàçâàíèå çàêëèíàíèÿ: ";
             getline(cin, newName);
-            cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð²Ñ‹Ð¹ ÑƒÑ€Ð¾Ð½ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ñ: ";
+            cout << "Ââåäèòå íîâûé óðîí çàêëèíàíèÿ: ";
             cin >> newDamage;
             mySpellBook.updateSpell(oldName, newName, newDamage);
 
@@ -52,7 +52,7 @@ int main() {
         else if (choice == 4) {
             string name;
 
-            cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ñ Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ: ";
+            cout << "Ââåäèòå íàçâàíèå çàêëèíàíèÿ äëÿ óäàëåíèÿ: ";
             getline(cin, name);
 
             mySpellBook.removeSpell(name);
@@ -60,7 +60,7 @@ int main() {
         else if (choice == 5) {
             string name;
 
-            cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ñ Ð´Ð»Ñ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ð½Ð¸Ñ: ";
+            cout << "Ââåäèòå íàçâàíèå çàêëèíàíèÿ äëÿ èñïîëüçîâàíèÿ: ";
             getline(cin, name);
 
             mySpellBook.castSpell(name);
@@ -68,7 +68,6 @@ int main() {
 
     } while (choice != 0);
 
-    cout << "Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹.\n";
+    cout << "Âûõîä èç ïðîãðàììû.\n";
     return 0;
 }
-//dwÐ²
