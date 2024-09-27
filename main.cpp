@@ -135,7 +135,6 @@ int main() {
             string oldName;
             string newName;
             int newDamage;
-            cin.ignore();
 
             cout << "¬ведите название заклинани€ дл€ обновлени€: ";
             getline(cin, oldName);
