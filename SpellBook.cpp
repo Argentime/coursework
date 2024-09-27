@@ -1,5 +1,7 @@
 #include "SpellBook.h"
 
+using namespace std;
+
 SpellBook::~SpellBook() {
     for (int i = 0; i < spellCount; ++i) {
         delete spells[i];

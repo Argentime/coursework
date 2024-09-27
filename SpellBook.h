@@ -1,8 +1,6 @@
 #pragma once
 #include "Spell.h"
 
-using namespace std;
-
 class SpellBook {
 private:
     Spell** spells;
@@ -12,16 +10,16 @@ public:
 
     ~SpellBook();
 
-        void addSpell(string const& name, Element el1, Element el2, int damage);
+        void addSpell(std::string const& name, Element el1, Element el2, int damage);
 
         void displaySpells() const;
 
-        void updateSpell(string_view oldName, string_view newName, int newDamage) const;
+        void updateSpell(std::string_view oldName, std::string_view newName, int newDamage) const;
 
-        void removeSpell(string const& name);
+        void removeSpell(std::string const& name);
 
-        Spell* findSpellByName(string_view name) const;
+        Spell* findSpellByName(std::string_view name) const;
 
-        void castSpell(string_view name) const;
+        void castSpell(std::string_view name) const;
 
 };
