@@ -1,0 +1,26 @@
+#include "Spell.h"
+
+Spell::Spell(string const& n, Element el1, Element el2, int dmg)
+        : name(n), element1(el1), element2(el2), damage(dmg) {}
+
+void Spell::display() const {
+    cout << name
+        << ": " << elementToString(element1)
+        << " + " << elementToString(element2)
+        << ", Урон: " << damage << endl;
+}
+
+void Spell::useSpell() {
+    uses++;
+    cout << "Заклинание " << name << " успешно применено\n";
+    evolve();
+}
+
+void Spell::evolve() {
+    if (uses % 2 == 0) {
+        damage += 5;
+        cout << "Заклинание " << name
+            << " эволюционировало, новый урон: "
+            << damage << endl;
+    }
+}

@@ -132,9 +132,13 @@
     <ClCompile Include="main.cpp">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
     </ClCompile>
+    <ClCompile Include="Spell.cpp" />
+    <ClCompile Include="SpellBook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
+    <ClInclude Include="Spell.h" />
+    <ClInclude Include="SpellBook.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
