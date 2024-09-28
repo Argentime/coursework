@@ -41,30 +41,3 @@ Element selectElement() {
 
     return Element(choice);
 }
-
-void check() {
-    char key;
-    
-    std::cout << "Нажимайте клавиши. Для выхода нажмите 'q'.\n";
-
-    while (true) {
-        if (_kbhit()) {  // Проверяем, была ли нажата клавиша
-            key = _getch();  // Получаем символ нажатой клавиши
-
-            switch (key) {
-            case 'a':
-                std::cout << "Вы нажали 'a'. Выполняется действие A.\n";
-                break;
-            case 'b':
-                std::cout << "Вы нажали 'b'. Выполняется действие B.\n";
-                break;
-            case 'q':
-                std::cout << "Вы нажали 'q'. Выход из программы.\n";
-                return;
-            default:
-                std::cout << "Нажата клавиша: " << key << "\n";
-                break;
-            }
-        }
-    }
-}
