@@ -73,9 +73,7 @@ int main() {
             mySpellBook.castSpell(name);
             break;
         }
-        default: {
-            cout << "Введите символ от 1 до 5 либо 0 пожалуйста";
-        }
+        default:
         }
     } while (choice != 0);
 
