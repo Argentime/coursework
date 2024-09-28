@@ -16,7 +16,9 @@ int main() {
         cin >> choice;
         cin.ignore();
 
-        if (choice == 1) {
+        switch (choice) {
+
+        case 1: {
             string name;
             int damage;
 
@@ -29,13 +31,15 @@ int main() {
 
             mySpellBook.addSpell(name, el1, el2, damage);
             cout << "Заклинание добавлено.\n";
-
+            break;
         }
-        else if (choice == 2) {
+
+        case 2: {
             mySpellBook.displaySpells();
-
+            break;
         }
-        else if (choice == 3) {
+
+        case 3: {
             string oldName;
             string newName;
             int newDamage;
@@ -47,27 +51,32 @@ int main() {
             cout << "Введите новый урон заклинания: ";
             cin >> newDamage;
             mySpellBook.updateSpell(oldName, newName, newDamage);
-
+            break;
         }
-        else if (choice == 4) {
+
+        case 4: {
             string name;
 
             cout << "Введите название заклинания для удаления: ";
             getline(cin, name);
 
             mySpellBook.removeSpell(name);
+            break;
         }
-        else if (choice == 5) {
+
+        case 5: {
             string name;
 
             cout << "Введите название заклинания для использования: ";
             getline(cin, name);
 
             mySpellBook.castSpell(name);
+            break;
         }
-
+        default: {}
+        }
     } while (choice != 0);
 
     cout << "Выход из программы.\n";
     return 0;
-}  
+} //d
