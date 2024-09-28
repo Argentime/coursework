@@ -1,5 +1,7 @@
 #include "SpellBook.h"
 
+using namespace std;
+
 SpellBook::SpellBook() : spells(nullptr), spellCount(0) {};
 
 SpellBook::SpellBook(Spell** initialSpells, int count) : spellCount(count) {
