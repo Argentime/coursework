@@ -18,5 +18,7 @@ public:
     void useSpell();
 
 private:
+    
     void evolve();
+
 };

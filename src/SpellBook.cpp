@@ -1,5 +1,14 @@
 #include "SpellBook.h"
 
+SpellBook::SpellBook() : spells(nullptr), spellCount(0) {};
+
+SpellBook::SpellBook(Spell** initialSpells, int count) : spellCount(count) {
+    spells = new Spell * [spellCount];
+    for (int i = 0; i < spellCount; ++i) {
+        spells[i] = new Spell(*initialSpells[i]); 
+    }
+}
+
 SpellBook::~SpellBook() {
     for (int i = 0; i < spellCount; ++i) {
         delete spells[i];
