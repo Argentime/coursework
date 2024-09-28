@@ -17,7 +17,7 @@ int main() {
         cin.ignore();
 
         switch (choice) {
-        
+
         case 1: {
             string name;
             int damage;
@@ -73,7 +73,7 @@ int main() {
             mySpellBook.castSpell(name);
             break;
         }
-        default:
+        default: {}
         }
     } while (choice != 0);
 
