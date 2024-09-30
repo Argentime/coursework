@@ -4,10 +4,10 @@ using namespace std;
 
 SpellBook::SpellBook() : spells(nullptr), spellCount(0) {};
 
-SpellBook::SpellBook(Spell** initialSpells, int count) : spellCount(count) {
+SpellBook::SpellBook(const SpellBook& another) : spellCount(another.spellCount) {
     spells = new Spell * [spellCount];
     for (int i = 0; i < spellCount; ++i) {
-        spells[i] = new Spell(*initialSpells[i]); 
+        spells[i] = new Spell(*another.spells[i]); 
     }
 }
 

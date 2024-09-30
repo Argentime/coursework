@@ -11,7 +11,7 @@ public:
 
     SpellBook();
 
-    SpellBook(Spell** initialSpells, int count);
+    SpellBook(const SpellBook& another);
 
     ~SpellBook();
 
