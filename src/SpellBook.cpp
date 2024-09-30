@@ -5,8 +5,11 @@ using namespace std;
 SpellBook::SpellBook() : spells(nullptr), spellCount(0) {};
 
 SpellBook::SpellBook(const SpellBook& another) {
-    spells = new Spell * [another.spellCount];
-    for (int i = 0; i < another.spellCount; ++i) {
+    spellCount = another.spellCount;
+
+    spells = new Spell * [spellCount];
+
+    for (int i = 0; i < spellCount; ++i) {
         spells[i] = new Spell(*another.spells[i]); 
     }
 }
