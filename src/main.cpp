@@ -1,6 +1,6 @@
-#include "functions.h"
-#include "Spell.h"
-#include "SpellBook.h"
+#include "header/functions.h"
+#include "header/Spell.h"
+#include "header/SpellBook.h"
 
 using namespace std;
 

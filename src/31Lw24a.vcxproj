@@ -136,12 +136,13 @@
     <ClCompile Include="SpellBook.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="functions.h" />
-    <ClInclude Include="Spell.h" />
-    <ClInclude Include="SpellBook.h" />
+    <None Include="31Lw24a.vcxproj" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <ClInclude Include="header\functions.h" />
+    <ClInclude Include="header\Spell.h" />
+    <ClInclude Include="header\SpellBook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
