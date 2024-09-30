@@ -73,10 +73,13 @@ int main() {
             mySpellBook.castSpell(name);
             break;
         }
-        default: {}
+        case 0: {
+            cout << "Выход из программы.\n";
+            return 0;
         }
-    } while (choice != 0);
-
-    cout << "Выход из программы.\n";
-    return 0;
-} //d
+        default: {
+            cout << "Введите число от 1 до 5 либо 0.\n";
+        }
+        }
+    } while (!choice);
+}

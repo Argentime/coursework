@@ -14,5 +14,3 @@ enum class Element {
 void printMenu();
 std::string elementToString(Element el);
 Element selectElement();
-
-void check();

@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="SpellBook">
-    <Position X="5.25" Y="1" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAUAgAAAIAAAAAABCAAAMAAAA=</HashCode>
-      <FileName>SpellBook.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Spell">
-    <Position X="7" Y="1" Width="1.5" />
+    <Position X="5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAChAIAAAAAAAAAAAEEAIAAAAAAACCAAAA=</HashCode>
       <FileName>Spell.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="SpellBook">
+    <Position X="6.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAiAAAUAgAAAIAAAAAABCAAAMAAAA=</HashCode>
+      <FileName>SpellBook.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="Element">
-    <Position X="8.75" Y="1" Width="1.5" />
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABAAAAAAAAAAAAAQAAAAAAAAAkAAAAAAABAAAAAAA=</HashCode>
       <FileName>functions.h</FileName>
