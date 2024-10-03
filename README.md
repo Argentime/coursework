@@ -21,7 +21,7 @@ _В будущем данный раздел будет увеличиватьс
 │   ├── SpellBook.cpp
 │   ├── 31Lw24a.sln
 │   ├── 31Lw24a.vcxproj
-│   └── 31Lw24a.vcxproj.filters
+│   └── 31Lw24a.vcxproj.filters 
 ├── .gitattributes
 ├── .gitignore
 ├── README.md
