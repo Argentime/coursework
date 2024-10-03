@@ -6,9 +6,34 @@ _В будущем данный раздел будет увеличиватьс
 * Система заклинаний, включающая добавление, обновление, удаление, отображение, поиск и использование заклинаний.
 * Возможность настройки книги заклинаний через меню.
 ## Структура проекта:
+Этот проект организован следующим образом:
+<pre><b>├── .github</b>
+│   └── <b>workflows</b>
+│       └── build.yml 
+├── <b>src</b>
+│   ├── <b>header</b>
+│   │   ├── functions.h
+│   │   ├── Spell.h
+│   │   └── SpellBook.h
+│   ├── main.cpp
+│   ├── functions.cpp
+│   ├── Spell.cpp
+│   ├── SpellBook.cpp
+│   ├── 31Lw24a.sln
+│   ├── 31Lw24a.vcxproj
+│   └── 31Lw24a.vcxproj.filters 
+├── .gitattributes
+├── .gitignore
+├── README.md
+└── sonar-project.properties
+</pre>
 - ```functions.h``` — заголовочный файл, содержащий определения перечислений, прототипы функций и объявления функций для работы с заклинаниями.
-- ```functions.cpp``` — реализация функций, таких как выбор стихий и отображение меню.
+- ```Spell.h``` — объявление класса Spell, а также прототипирование методов класса.
+- ```SpellBook.h``` — объявление класса SpellBook, аналогично классу Spell.
 - ```main.cpp``` — основной файл программы, где реализован интерфейс взаимодействия с пользователем и работа с классами Spell и SpellBook.
+- ```functions.cpp``` — реализация функций, таких как выбор стихий и отображение меню.
+- ```Spell.cpp``` — файл, в котором описываются все методы класса Spell.
+- ```SpellBook.cpp``` — файл, в котором описываются все методы данного класса.
 ___
-[sonarcloud](https://sonarcloud.io/project/overview?id=Argentime_coursework)
+## [sonarcloud](https://sonarcloud.io/project/overview?id=Argentime_coursework)
 
