@@ -18,7 +18,10 @@ _В будущем данный раздел будет увеличиватьс
 │   ├── main.cpp
 │   ├── functions.cpp
 │   ├── Spell.cpp
-│   └── SpellBook.cpp
+│   ├── SpellBook.cpp
+│   ├── 31Lw24a.sln
+│   ├── 31Lw24a.vcxproj
+│   └── 31Lw24a.vcxproj.filters
 ├── .gitattributes
 ├── .gitignore
 ├── README.md
