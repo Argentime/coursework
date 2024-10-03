@@ -81,5 +81,5 @@ int main() {
             cout << "¬ведите число от 1 до 5 либо 0.\n";
         }
         }
-    } while (!choice);
+    } while (choice);
 }

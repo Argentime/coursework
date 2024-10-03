@@ -41,15 +41,15 @@ void SpellBook::displaySpells() const {
 }
 
 void SpellBook::updateSpell(string_view oldName, string_view newName, int newDamage) const {
-    for (int i = 0; i < spellCount; ++i) {
-        if (spells[i]->name == oldName) {
-            spells[i]->name = newName;
-            spells[i]->damage = newDamage;
-            cout << "Заклинание обновлено.\n";
-            return;
-        }
+    Spell* spellToUpdate = findSpellByName(oldName);
+
+    if (spellToUpdate == nullptr) {
+        cout << "Заклинание с таким именем не найдено.\n";
+        return;
     }
-    cout << "Заклинание с таким именем не найдено.\n";
+    spellToUpdate->name = newName;
+    spellToUpdate->damage = newDamage;
+    cout << "Заклинание обновлено.\n";
 }
 
 void SpellBook::removeSpell(string const& name) {
