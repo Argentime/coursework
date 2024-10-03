@@ -11,6 +11,8 @@ public:
 
     Spell(std::string const& n, Element el1, Element el2, int dmg);
 
+    Spell(const Spell& other);
+
     void display() const;
 
     void useSpell();
