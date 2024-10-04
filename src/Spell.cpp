@@ -26,6 +26,9 @@ Spell& Spell::operator=(const Spell& other) {
 	return *this;
 }
 
+Spell::~Spell() {
+}
+
 void Spell::display() const {
     cout << name
         << ": " << elementToString(element1)

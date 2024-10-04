@@ -15,6 +15,8 @@ public:
 
 	Spell& operator=(const Spell& other);
 
+    ~Spell();
+
     void display() const;
 
     void useSpell();
