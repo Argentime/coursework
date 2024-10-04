@@ -13,6 +13,8 @@ public:
 
     Spell(const Spell& other);
 
+	Spell& operator=(const Spell& other);
+
     void display() const;
 
     void useSpell();
