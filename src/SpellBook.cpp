@@ -18,6 +18,8 @@ SpellBook::~SpellBook() {
     delete[] spells;
 }
 
+SpellBook& SpellBook::operator=(const SpellBook& another) = default;
+
 void SpellBook::addSpell(string const& name, Element el1, Element el2, int damage) {
     auto newSpells = new Spell * [spellCount + 1];
     for (int i = 0; i < spellCount; ++i) {
