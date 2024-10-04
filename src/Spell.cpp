@@ -15,6 +15,17 @@ Spell::Spell(const Spell& other) {
     }
 }
 
+Spell& Spell::operator=(const Spell& other) {
+	if (this != &other) {
+		name = other.name;
+		element1 = other.element1;
+		element2 = other.element2;
+		damage = other.damage;
+		uses = other.uses;
+	}
+	return *this;
+}
+
 void Spell::display() const {
     cout << name
         << ": " << elementToString(element1)
