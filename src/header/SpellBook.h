@@ -13,6 +13,8 @@ public:
 
     SpellBook(const SpellBook& another);
 
+	SpellBook& operator=(const SpellBook& another);
+
     ~SpellBook();
 
     void addSpell(std::string const& name, Element el1, Element el2, int damage);
