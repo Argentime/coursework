@@ -4,25 +4,22 @@
 class Character {
 protected:
     std::string name;
-    int health;
+    HealthStats hp;
     int focus;
-    int money;
 
 public:
-    Character(std::string name, int hp, int foc, int cash)
-        : name(name), health(hp), focus(foc), money(cash) {}
 
-    ~Character() = default;
+    Character(std::string name, int health, int focus);
 
-    virtual void displayStats() const {
-        std::cout << "Health: " << health << "\n"
-            << "Focus: " << focus << "\n"
-            << "Money: " << money << "\n";
-    }
+    ~Character();
 
-    virtual void takeDamage(int dmg) {
-        health = (health - dmg > 0) ? health - dmg : 0;
-    }
+    friend std::ostream& operator<<(std::ostream& os, const Character& c);
 
-    // Другие методы, общие для всех персонажей
+    void takeDamage(int dmg);
+
+    void restoreHealth(int amt);
+
+    void restoreFocus(int amt);
+
+    void decreaseFocus(int amt);
 };

@@ -1,10 +1,13 @@
 #include "header/functions.h"
 #include "header/Spell.h"
 #include "header/SpellBook.h"
+#include "header/Character.h"
 
-using namespace std;
+
 
 int main() {
+    using namespace std;
+
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
@@ -71,6 +74,12 @@ int main() {
             getline(cin, name);
 
             mySpellBook.castSpell(name);
+            break;
+        }
+        case 6: {
+            Character hero("Hero", 100, 12);
+
+                cout << hero << endl;
             break;
         }
         case 0: {

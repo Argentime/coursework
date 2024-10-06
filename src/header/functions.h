@@ -11,6 +11,12 @@ enum class Element {
     Spirit  
 };
 
+struct HealthStats {
+    int health;
+    int maxHealth;
+    float defense;
+};
+
 void printMenu();
 std::string elementToString(Element el);
 Element selectElement();

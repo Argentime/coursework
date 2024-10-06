@@ -136,6 +136,7 @@
     </ClCompile>
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellBook.cpp" />
+	<ClCompile Include="Character.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="31Lw24a.vcxproj" />
@@ -145,6 +146,7 @@
     <ClInclude Include="header\functions.h" />
     <ClInclude Include="header\Spell.h" />
     <ClInclude Include="header\SpellBook.h" />
+	  <ClInclude Include="Character.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
