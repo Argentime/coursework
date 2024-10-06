@@ -11,6 +11,12 @@ public:
 
     Spell(std::string const& n, Element el1, Element el2, int dmg);
 
+    Spell(const Spell& other);
+
+	Spell& operator=(const Spell& other);
+
+    ~Spell();
+
     void display() const;
 
     void useSpell();

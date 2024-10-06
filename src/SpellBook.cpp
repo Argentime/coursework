@@ -18,6 +18,8 @@ SpellBook::~SpellBook() {
     delete[] spells;
 }
 
+SpellBook& SpellBook::operator=(const SpellBook& another) = default;
+
 void SpellBook::addSpell(string const& name, Element el1, Element el2, int damage) {
     auto newSpells = new Spell * [spellCount + 1];
     for (int i = 0; i < spellCount; ++i) {
@@ -41,14 +43,15 @@ void SpellBook::displaySpells() const {
 }
 
 void SpellBook::updateSpell(string_view oldName, string_view newName, int newDamage) const {
-    Spell* spellToChange = findSpellByName(oldName);
-
-    if (spellToChange == nullptr) {
-        cout << "Заклинание с таким именем не найдено.\n";
-        return;
+    for (int i = 0; i < spellCount; ++i) {
+        if (spells[i]->name == oldName) {
+            spells[i]->name = newName;
+            spells[i]->damage = newDamage;
+            cout << "Заклинание обновлено.\n";
+            return;
+        }
     }
-    spellToChange->name = newName;
-    spellToChange->damage = newDamage;
+    cout << "Заклинание с таким именем не найдено.\n";
 }
 
 void SpellBook::removeSpell(string const& name) {
