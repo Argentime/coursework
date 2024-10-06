@@ -2,12 +2,12 @@
 #include "Spell.h"
 
 class SpellBook {
-private:
-    
-    Spell** spells;
-    int spellCount;
+private:   
 
 public:
+
+    Spell** spells;
+    int spellCount;
 
     SpellBook();
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <Windows.h>
 
+
 enum class Element {
     Fire,   
     Earth,  
@@ -17,6 +18,10 @@ struct HealthStats {
     float defense;
 };
 
-void printMenu();
+void printMenu(int var);
 std::string elementToString(Element el);
 Element selectElement();
+
+
+
+

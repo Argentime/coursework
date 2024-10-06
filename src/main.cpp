@@ -2,29 +2,93 @@
 #include "header/Spell.h"
 #include "header/SpellBook.h"
 #include "header/Character.h"
+#include <fstream>
+#include "header/nlohmann/json.hpp"
+
+using namespace std;
+
+using json = nlohmann::json;
 
 
 
-int main() {
-    using namespace std;
+json serializeSpell(const Spell& spell) {
+    return json{
+        {"name", spell.name},
+        {"element1", spell.element1},
+        {"element2", spell.element2},
+        {"damage", spell.damage},
+        {"uses", spell.uses}
+    };
+}
 
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+Spell deserializeSpell(const json& j) {
+    std::string name = j.at("name").get<std::string>();
+    Element el1 = static_cast<Element>(j.at("element1").get<int>());
+    Element el2 = static_cast<Element>(j.at("element2").get<int>());
+    int damage = j.at("damage").get<int>();
+    int uses = j.at("uses").get<int>();
 
-    SpellBook mySpellBook;
+    Spell spell(name, el1, el2, damage);
+    spell.uses = uses;
+
+    return spell;
+}
+
+void saveSpellBookToJson(const SpellBook& spellBook, const std::string& filename) {
+    json spellBookJson;
+
+    spellBookJson["spellCount"] = spellBook.spellCount;
+    spellBookJson["spells"] = json::array();
+
+    for (int i = 0; i < spellBook.spellCount; ++i) {
+        spellBookJson["spells"].push_back(serializeSpell(*spellBook.spells[i]));
+    }
+
+    // Сохраняем JSON в файл
+    std::ofstream file(filename);
+    if (file.is_open()) {
+        file << spellBookJson.dump(4); // 4 - отступы для красоты форматирования
+        file.close();
+    }
+    else {
+        std::cerr << "Error: Could not open file for writing." << std::endl;
+    }
+}
+
+void loadSpellBookFromJson(SpellBook& spellBook, const std::string& filename) {
+    std::ifstream file(filename);
+
+    if (file.is_open()) {
+        json spellBookJson;
+        file >> spellBookJson;
+        file.close();
+
+        // Загружаем заклинания
+        int spellCount = spellBookJson.at("spellCount").get<int>();
+
+        for (const auto& spellJson : spellBookJson.at("spells")) {
+            Spell spell = deserializeSpell(spellJson);
+            spellBook.addSpell(spell.name, spell.element1, spell.element2, spell.damage);
+        }
+    }
+    else {
+        std::cerr << "Error: Could not open file for reading." << std::endl;
+    }
+}
+
+void manageSpellBook(SpellBook mySpellBook) {
     int choice;
 
     do {
-        printMenu();
+        printMenu(3);
         cin >> choice;
         cin.ignore();
+        string name;
 
         switch (choice) {
 
         case 1: {
-            string name;
             int damage;
-
             cout << "Введите название заклинания: ";
             getline(cin, name);
             Element el1 = selectElement();
@@ -66,29 +130,45 @@ int main() {
             mySpellBook.removeSpell(name);
             break;
         }
-
-        case 5: {
-            string name;
-
-            cout << "Введите название заклинания для использования: ";
-            getline(cin, name);
-
-            mySpellBook.castSpell(name);
-            break;
-        }
-        case 6: {
-            Character hero("Hero", 100, 12);
-
-                cout << hero << endl;
-            break;
-        }
         case 0: {
-            cout << "Выход из программы.\n";
-            return 0;
+            saveSpellBookToJson(mySpellBook, "spellbook.json");
+            cout << "Выход из меню.\n";
+            return;
         }
         default: {
             cout << "Введите число от 1 до 5 либо 0.\n";
         }
         }
     } while (choice);
+}
+
+int main() {
+   
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    SpellBook mySpellBook;
+    Character hero("Test", 100, 100);
+    int choice;
+
+    do {
+        printMenu(2);
+        cin >> choice;
+        switch (choice) {
+        case 1: {
+            manageSpellBook(mySpellBook);
+            break;
+        }
+        case 2: {
+            loadSpellBookFromJson(mySpellBook, "spellbook.json");
+            manageSpellBook(mySpellBook);
+            break;
+        }
+        default: {
+            cout << "Введите число 1 либо 2.\n";
+        }
+        }
+    } while (choice != (1 || 2));
+
+    
 }

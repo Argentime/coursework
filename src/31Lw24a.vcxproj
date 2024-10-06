@@ -25,7 +25,7 @@
     <RootNamespace>My31Lw24a</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ClIncludeSearchPaths>$(ProjectDir)cpp</ClIncludeSearchPaths>
-	  <ClIncludeSearchPaths>$(ProjectDir)header</ClIncludeSearchPaths>
+    <ClIncludeSearchPaths>$(ProjectDir)header</ClIncludeSearchPaths>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -136,17 +136,17 @@
     </ClCompile>
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellBook.cpp" />
-	<ClCompile Include="Character.cpp" />
+    <ClCompile Include="Character.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="31Lw24a.vcxproj" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\character.h" />
     <ClInclude Include="header\functions.h" />
     <ClInclude Include="header\Spell.h" />
     <ClInclude Include="header\SpellBook.h" />
-	  <ClInclude Include="Character.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
