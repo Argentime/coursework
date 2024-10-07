@@ -1,0 +1,12 @@
+{
+    "spellCount": 1,
+    "spells": [
+        {
+            "damage": 42,
+            "element1": 0,
+            "element2": 0,
+            "name": "Огонь",
+            "uses": -842150451
+        }
+    ]
+}
