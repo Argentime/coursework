@@ -2,6 +2,15 @@
 
 using namespace std;
 
+Spell** SpellBook::getSpells() const {
+    return spells;
+}
+
+int SpellBook::getSpellCount() const {
+	return spellCount;
+}
+
+
 SpellBook::SpellBook() : spells(nullptr), spellCount(0) {};
 
 SpellBook::SpellBook(const SpellBook& another) : spellCount(another.spellCount) {

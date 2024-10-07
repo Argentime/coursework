@@ -4,10 +4,18 @@
 class SpellBook {
 private:   
 
+    
+
 public:
 
     Spell** spells;
+
     int spellCount;
+
+    Spell** getSpells() const;
+
+	int getSpellCount() const;
+
 
     SpellBook();
 

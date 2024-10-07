@@ -1,7 +1,21 @@
 #include "header/Character.h"
 
 using namespace std;
-    
+  
+string Character::getName() const {
+    return name;
+}
+
+HealthStats Character::getHealth() const {
+    return hp;
+}
+
+int Character::getFocus() const {
+    return focus;
+}
+
+
+
 Character::Character(string name, int health, int foc) : name(name), focus(foc) {
 	hp.maxHealth = health;
 	hp.health = health;

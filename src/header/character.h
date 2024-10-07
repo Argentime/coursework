@@ -9,6 +9,13 @@ protected:
 
 public:
 
+    std::string getName() const;
+
+	int getFocus() const;
+
+	HealthStats getHealth() const;
+
+
     Character(std::string name, int health, int focus);
 
     ~Character();
