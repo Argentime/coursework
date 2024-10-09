@@ -5,6 +5,8 @@
 using namespace std;
 using json = nlohmann::json;
 
+bool operator==(HealthStats hp, int percent);
+
 void printMenu(int var) {
     switch (var) {
     case 1:

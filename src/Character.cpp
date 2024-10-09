@@ -14,7 +14,7 @@ int Character::getFocus() const {
     return focus;
 }
 
-void Character::setName(string const& newName) {
+void Character::setName(string_view const& newName) {
     this->name = newName;
 }
 
@@ -46,10 +46,7 @@ ostream& operator<<(ostream& os, const Character& character) {
     return os;
 }
 
-bool operator==(HealthStats hp, int percent) {
-    int healthPercentage = (hp.health * 100) / hp.maxHealth;
-    return healthPercentage <= percent;
-}
+
 
 string Character::status() const {
     Stat Stats;

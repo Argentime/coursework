@@ -22,7 +22,7 @@ public:
 
 	HealthStats getHealth() const;
 
-    void setName(std::string const& newName);
+    void setName(std::string_view const& newName);
 
     void setFocus(int focus);
 

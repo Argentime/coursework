@@ -22,20 +22,7 @@ SpellBook::SpellBook(const SpellBook& another) : spellCount(another.spellCount) 
 
 SpellBook& SpellBook::operator=(const SpellBook& another) = default;
 
-ostream& operator<<(ostream& os, const SpellBook& mySpellBook) {
-    
-    os << "Книга заклинаний:" << endl;
-
-    if (mySpellBook.getSpellCount() == 0) {
-        os << "Заклинаний нет. \n";
-    }
-    else {
-        for (int i = 0; i < mySpellBook.getSpellCount(); ++i) {
-            os << *mySpellBook.getSpells()[i];
-        }
-    }
-    return os;
-}
+ostream& operator<<(ostream& os, const SpellBook& mySpellBook);
 
 SpellBook::~SpellBook() {
     for (int i = 0; i < spellCount; ++i) {

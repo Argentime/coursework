@@ -8,14 +8,27 @@ private:
 
     int spellCount;
 
-    friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook);
-
 public:
 
     Spell** getSpells() const;
 
 	int getSpellCount() const;
 
+
+    friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook) {
+
+        os << "Книга заклинаний:" << endl;
+
+        if (mySpellBook.getSpellCount() == 0) {
+            os << "Заклинаний нет. \n";
+        }
+        else {
+            for (int i = 0; i < mySpellBook.getSpellCount(); ++i) {
+                os << *mySpellBook.getSpells()[i];
+            }
+        }
+        return os;
+    }
 
     SpellBook();
 

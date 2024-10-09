@@ -16,7 +16,10 @@ struct HealthStats {
     int health;
     int maxHealth;
     float defense;
-    friend bool operator==(HealthStats hp, int percent);
+    friend bool operator==(HealthStats hp, int percent) {
+        int healthPercentage = (hp.health * 100) / hp.maxHealth;
+        return healthPercentage <= percent;
+    };
 };
 
 void printMenu(int var);

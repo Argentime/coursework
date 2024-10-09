@@ -26,13 +26,7 @@ Spell& Spell::operator=(const Spell& other) {
 	return *this;
 }
 
-ostream& operator<<(ostream& os, const Spell& spell) {
-    os << spell.name
-        << ": " << elementToString(spell.element1)
-        << " + " << elementToString(spell.element2)
-        << ", Урон: " << spell.damage << endl;
-    return os;
-}
+ostream& operator<<(ostream& os, const Spell& spell);
 
 void Spell::useSpell() {
     uses++;
