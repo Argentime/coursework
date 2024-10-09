@@ -1,4 +1,4 @@
-#include "header/SpellBook.h"
+#include "header/functions.h"
 
 using namespace std;
 

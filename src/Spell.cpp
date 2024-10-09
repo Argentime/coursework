@@ -1,4 +1,4 @@
-#include "header/Spell.h"
+#include "header/functions.h"
 
 using namespace std;
 
