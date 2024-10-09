@@ -71,7 +71,6 @@ Element selectElement() {
     return Element(choice);
 }
 
-
 string win1251ToUtf8(const string& win1251Str) {
     int wcharsCount = MultiByteToWideChar(1251, 0, win1251Str.c_str(), -1, nullptr, 0);
     auto wstr = new wchar_t[wcharsCount];
@@ -130,7 +129,7 @@ void saveSpellBookToJson(const Character& hero, const SpellBook& spellBook, cons
     json spellBookJson;
 
     spellBookJson["spells"] = json::array();
-    spellBookJson["h_name"] = hero.getName();
+    spellBookJson["h_name"] = win1251ToUtf8(hero.getName());
     spellBookJson["h_hp"] = hero.getHealth().health;
     spellBookJson["h_maxHp"] = hero.getHealth().maxHealth;
     spellBookJson["h_defence"] = hero.getHealth().defense;
@@ -163,7 +162,7 @@ void loadSpellBookFromJson(Character& hero,SpellBook& spellBook, const std::stri
         hp.defense = spellBookJson.at("h_defence").get<float>();
         hp.health = spellBookJson.at("h_hp").get<int>();
         hp.maxHealth = spellBookJson.at("h_maxHp").get<int>();
-        string name = spellBookJson.at("h_name").get<string>(); 
+        string name = utf8ToWin1251(spellBookJson.at("h_name").get<string>());
         int focus = spellBookJson.at("h_focus").get<int>();
 
         for (const auto& spellJson : spellBookJson.at("spells")) {

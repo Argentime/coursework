@@ -7,7 +7,7 @@ public:
     Element element1;
     Element element2;
     int damage;
-    int uses;
+    int uses=0;
 
     Spell(std::string const& n, Element el1, Element el2, int dmg);
 

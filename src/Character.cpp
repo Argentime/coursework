@@ -19,7 +19,7 @@ void Character::setName(string_view const& newName) {
 }
 
 void Character::setHealth(int health, float def, int maxHp) {
-    this->hp.health = (hp ==-1) ? this->hp.health : health;
+    this->hp.health = (health ==-1) ? this->hp.health : health;
     this->hp.defense = (def == -1) ? this->hp.defense : def;
     this->hp.maxHealth = (maxHp == -1) ? this->hp.maxHealth : maxHp;
 }

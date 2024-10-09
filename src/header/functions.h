@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include <Windows.h>
-
+#include <fstream>
 
 enum class Element {
     Fire,   
@@ -17,10 +17,12 @@ struct HealthStats {
     int maxHealth;
     float defense;
     friend bool operator==(HealthStats hp, int percent) {
-        int healthPercentage = (hp.health * 100) / hp.maxHealth;
+        int healthPercentage = (hp.maxHealth==0) ? 0 : (hp.health*100) / hp.maxHealth;
         return healthPercentage <= percent;
     };
 };
+
+
 
 void printMenu(int var);
 std::string elementToString(Element el);
@@ -34,7 +36,6 @@ std::string win1251ToUtf8(const std::string& win1251Str);
 #include "header/Spell.h"
 #include "header/SpellBook.h"
 #include "header/Character.h"
-#include <fstream>
 using json = nlohmann::json;
 
 json serializeSpell(const Spell& spell);
