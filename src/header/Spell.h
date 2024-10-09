@@ -15,7 +15,7 @@ public:
 
     Spell& operator=(const Spell& other);
 
-    void display() const;
+    friend std::ostream& operator<<(std::ostream& os, const Spell& spell);
 
     void useSpell();
 

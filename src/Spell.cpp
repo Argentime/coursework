@@ -26,11 +26,12 @@ Spell& Spell::operator=(const Spell& other) {
 	return *this;
 }
 
-void Spell::display() const {
-    cout << name
-        << ": " << elementToString(element1)
-        << " + " << elementToString(element2)
-        << ", Урон: " << damage << endl;
+ostream& operator<<(ostream& os, const Spell& spell) {
+    os << spell.name
+        << ": " << elementToString(spell.element1)
+        << " + " << elementToString(spell.element2)
+        << ", Урон: " << spell.damage << endl;
+    return os;
 }
 
 void Spell::useSpell() {
@@ -40,8 +41,8 @@ void Spell::useSpell() {
 }
 
 void Spell::evolve() {
-    if (uses % 2 == 0) {
-        damage += 5;
+    if (uses % 3 == 0) {
+        damage += 1;
         cout << "Заклинание " << name
             << " эволюционировало, новый урон: "
             << damage << endl;

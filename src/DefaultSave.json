@@ -1,0 +1,86 @@
+{
+  "h_defence": 1.0,
+  "h_focus": 100,
+  "h_hp": 100,
+  "h_maxHp": 100,
+  "h_name": "Test",
+  "spells": [
+    {
+      "damage": 3,
+      "element1": 3,
+      "element2": 4,
+      "name": "Вампиризм",
+      "uses": -842150451
+    },
+    {
+      "damage": 5,
+      "element1": 2,
+      "element2": 1,
+      "name": "Гейзер",
+      "uses": -842150451
+    },
+    {
+      "damage": 2,
+      "element1": 3,
+      "element2": 2,
+      "name": "Заморозка",
+      "uses": -842150451
+    },
+    {
+      "damage": 7,
+      "element1": 4,
+      "element2": 2,
+      "name": "Исцеление",
+      "uses": -842150451
+    },
+    {
+      "damage": 15,
+      "element1": 1,
+      "element2": 4,
+      "name": "Концентрация",
+      "uses": -842150451
+    },
+    {
+      "damage": 5,
+      "element1": 0,
+      "element2": 1,
+      "name": "Метеор",
+      "uses": -842150451
+    },
+    {
+      "damage": 8,
+      "element1": 0,
+      "element2": 4,
+      "name": "Огненное Лезвие",
+      "uses": -842150451
+    },
+    {
+      "damage": 5,
+      "element1": 0,
+      "element2": 3,
+      "name": "Огненный Шар",
+      "uses": -842150451
+    },
+    {
+      "damage": 10,
+      "element1": 0,
+      "element2": 2,
+      "name": "Рассеянность",
+      "uses": -842150451
+    },
+    {
+      "damage": 1,
+      "element1": 3,
+      "element2": 1,
+      "name": "Щит",
+      "uses": -842150451
+    },
+    {
+      "damage": 8,
+      "element1": 4,
+      "element2": 4,
+      "name": "Ледяная Пчела",
+      "uses": -842150451
+    }
+  ]
+}

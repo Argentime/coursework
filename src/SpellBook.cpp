@@ -22,6 +22,21 @@ SpellBook::SpellBook(const SpellBook& another) : spellCount(another.spellCount) 
 
 SpellBook& SpellBook::operator=(const SpellBook& another) = default;
 
+ostream& operator<<(ostream& os, const SpellBook& mySpellBook) {
+    
+    os << "Книга заклинаний:" << endl;
+
+    if (mySpellBook.getSpellCount() == 0) {
+        os << "Заклинаний нет. \n";
+    }
+    else {
+        for (int i = 0; i < mySpellBook.getSpellCount(); ++i) {
+            os << *mySpellBook.getSpells()[i];
+        }
+    }
+    return os;
+}
+
 SpellBook::~SpellBook() {
     for (int i = 0; i < spellCount; ++i) {
         delete spells[i];
@@ -38,17 +53,6 @@ void SpellBook::addSpell(string const& name, Element el1, Element el2, int damag
     delete[] spells;
     spells = newSpells;
     spellCount++;
-}
-
-void SpellBook::displaySpells() const {
-    if (spellCount == 0) {
-        cout << "Заклинаний нет. \n";
-    }
-    else {
-        for (int i = 0; i < spellCount; ++i) {
-            spells[i]->display();
-        }
-    }
 }
 
 void SpellBook::updateSpell(string_view oldName, string_view newName, int newDamage) const {

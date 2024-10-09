@@ -1,4 +1,4 @@
-#include "header/Character.h"
+#include "header/functions.h"
 
 using namespace std;
   
@@ -14,6 +14,19 @@ int Character::getFocus() const {
     return focus;
 }
 
+void Character::setName(string name) {
+    this->name = name;
+}
+
+void Character::setHealth(int hp, float def, int maxHp) {
+    this->hp.health = (hp ==-1) ? this->hp.health : hp;
+    this->hp.defense = (def == -1) ? this->hp.defense : def;
+    this->hp.maxHealth = (maxHp == -1) ? this->hp.maxHealth : maxHp;
+}
+
+void Character::setFocus(int focus) {
+    this->focus = focus;
+}
 
 
 Character::Character(string name, int health, int foc) : name(name), focus(foc) {
@@ -22,13 +35,40 @@ Character::Character(string name, int health, int foc) : name(name), focus(foc) 
     hp.defense = 1;
 };
 
+Character::Character(string name, HealthStats health, int foc) : name(name), focus(foc), hp(health) {};
+
 Character::~Character() = default;
 
 ostream& operator<<(ostream& os, const Character& character) {
-    os << "Name: " << character.name << "\n";
-    os << "Health: " << character.hp.health << "/" << character.hp.maxHealth << "\n";
-    os << "Focus: " << character.focus << "\n";
+    os << "Имя: " << character.name << endl;
+    os << "Состояние: " << character.status() << endl;
+    os << "Сосредоточенность: " << character.focus << endl;
     return os;
+}
+
+bool operator==(HealthStats hp, int percent) {
+    int healthPercentage = (hp.health * 100) / hp.maxHealth;
+    return healthPercentage <= percent;
+}
+
+string Character::status() const {
+    //Stat Stats;
+
+    if (hp == Stats.VeryWeak) {
+        return "Присмерти";
+    }
+    else if (hp == Stats.Weak) {
+        return "Еле стоите на ногах";
+    }
+    else if (hp == Stats.Normal) {
+        return "Вас немного шатает";
+    }
+    else if (hp == Stats.Strong) {
+        return "Вы чувствуете себя неплохо";
+    }
+    else {
+        return "Вы полны сил!";
+    }
 }
 
 void Character::takeDamage(int dmg) {

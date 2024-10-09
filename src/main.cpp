@@ -8,99 +8,70 @@
 using namespace std;
 using json = nlohmann::json;
 
-void manageSpellBook(SpellBook mySpellBook) {
-    int choice;
-
-    do {
-        printMenu(3);
-        cin >> choice;
-        cin.ignore();
-        string name;
-
-        switch (choice) {
-
-        case 1: {
-            int damage;
-            cout << "Введите название заклинания: ";
-            getline(cin, name);
-            Element el1 = selectElement();
-            Element el2 = selectElement();
-            cout << "Введите урон заклинания: ";
-            cin >> damage;
-
-            mySpellBook.addSpell(name, el1, el2, damage);
-            cout << "Заклинание добавлено.\n";
-            break;
-        }
-
-        case 2: {
-            mySpellBook.displaySpells();
-            break;
-        }
-
-        case 3: {
-            string oldName;
-            string newName;
-            int newDamage;
-
-            cout << "Введите название заклинания для обновления: ";
-            getline(cin, oldName);
-            cout << "Введите новое название заклинания: ";
-            getline(cin, newName);
-            cout << "Введите новый урон заклинания: ";
-            cin >> newDamage;
-            mySpellBook.updateSpell(oldName, newName, newDamage);
-            break;
-        }
-
-        case 4: {
-            string name;
-
-            cout << "Введите название заклинания для удаления: ";
-            getline(cin, name);
-
-            mySpellBook.removeSpell(name);
-            break;
-        }
-        case 0: {
-            saveSpellBookToJson(mySpellBook, "spellbook.json");
-            cout << "Выход из меню.\n";
-            return;
-        }
-        default: {
-            cout << "Введите число от 1 до 5 либо 0.\n";
-        }
-        }
-    } while (choice);
-}
-
 int main() {
 
    SetConsoleCP(1251);
    SetConsoleOutputCP(1251);
 
     SpellBook mySpellBook;
-    Character hero("Test", 100, 100);
+    Character hero("", 0, 0);
     int choice;
 
-    do {
+     do{
         printMenu(2);
         cin >> choice;
         switch (choice) {
         case 1: {
             manageSpellBook(mySpellBook);
+            manageHero(hero);
+            saveSpellBookToJson(hero,mySpellBook, "Save.json");
+            cout << hero << endl;
             break;
         }
         case 2: {
-            loadSpellBookFromJson(mySpellBook, "spellbook.json");
+            loadSpellBookFromJson(hero,mySpellBook, "DefaultSave.json");
             manageSpellBook(mySpellBook);
+            cout << hero << endl;
             break;
         }
         default: {
             cout << "Введите число 1 либо 2.\n";
         }
         }
-    } while (choice != (1||2));
-
+     } while ((choice != 1) && (choice != 2));
     
+     do {
+         printMenu(1);
+         cin >> choice;
+         cout << endl;
+
+         switch (choice) {
+         case 1: {
+             cout << hero;
+             break;
+         }
+         case 2: {
+             cout << "Функция в разработке"<<endl;
+             break;
+         }
+         case 3: {
+             cout << mySpellBook;
+             break;
+         }
+         case 4: {
+             int numb;
+             cout << "Введите номер заклинания: ";
+             cin >> numb;
+             mySpellBook.getSpells()[numb-1]->useSpell();
+             break;
+         }
+         case 0: {
+             cout << "Выход из программы" << endl;
+             return 0;
+         }
+         default: {
+             cout << "Выберите число от 0 до 4.\n";
+         }
+         }
+     } while (choice);
 }
