@@ -66,11 +66,11 @@ int main() {
              break;
          }
          case 0: {
+             saveSpellBookToJson(hero, mySpellBook, "Save.json");
              cout << "Выход из программы" << endl;
              return 0;
          }
          default: {
-             saveSpellBookToJson(hero, mySpellBook, "Save.json");
              cout << "Выберите число от 0 до 4.\n";
          }
          }
