@@ -15,12 +15,11 @@ public:
 
     Spell& operator=(const Spell& other);
 
-    friend std::ostream& operator<<(std::ostream& os, const Spell& spell);
-
     void useSpell();
 
 private:
     
     void evolve();
 
+    friend std::ostream& operator<<(std::ostream& os, const Spell& spell);
 };

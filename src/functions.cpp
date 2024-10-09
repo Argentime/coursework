@@ -72,11 +72,11 @@ Element selectElement() {
 
 string win1251ToUtf8(const string& win1251Str) {
     int wcharsCount = MultiByteToWideChar(1251, 0, win1251Str.c_str(), -1, nullptr, 0);
-    wchar_t* wstr = new wchar_t[wcharsCount];
+    auto wstr = new wchar_t[wcharsCount];
     MultiByteToWideChar(1251, 0, win1251Str.c_str(), -1, wstr, wcharsCount);
 
     int utf8CharCount = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, nullptr, 0, nullptr, nullptr);
-    char* utf8Str = new char[utf8CharCount];
+    auto utf8Str = new char[utf8CharCount];
     WideCharToMultiByte(CP_UTF8, 0, wstr, -1, utf8Str, utf8CharCount, nullptr, nullptr);
 
     string result(utf8Str);
@@ -87,11 +87,11 @@ string win1251ToUtf8(const string& win1251Str) {
 
 string utf8ToWin1251(const string& utf8Str) {
     int wcharsCount = MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, nullptr, 0);
-    wchar_t* wstr = new wchar_t[wcharsCount];
+    auto wstr = new wchar_t[wcharsCount];
     MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, wstr, wcharsCount);
 
     int win1251CharCount = WideCharToMultiByte(1251, 0, wstr, -1, nullptr, 0, nullptr, nullptr);
-    char* win1251Str = new char[win1251CharCount];
+    auto win1251Str = new char[win1251CharCount];
     WideCharToMultiByte(1251, 0, wstr, -1, win1251Str, win1251CharCount, nullptr, nullptr);
 
     string result(win1251Str);
@@ -112,8 +112,8 @@ json serializeSpell(const Spell& spell) {
 
 Spell deserializeSpell(const json& j) {
     string name = utf8ToWin1251(j.at("name").get<string>());
-    Element el1 = static_cast<Element>(j.at("element1").get<int>());
-    Element el2 = static_cast<Element>(j.at("element2").get<int>());
+    auto el1 = static_cast<Element>(j.at("element1").get<int>());
+    auto el2 = static_cast<Element>(j.at("element2").get<int>());
     int damage = j.at("damage").get<int>();
     int uses = j.at("uses").get<int>();
 
@@ -223,7 +223,7 @@ void manageSpellBook(SpellBook& mySpellBook) {
         }
 
         case 4: {
-            string name;
+            string newName;
 
             cout << "Введите название заклинания для удаления: ";
             getline(cin, name);
@@ -255,7 +255,6 @@ void manageHero(Character& hero) {
         switch (ch) {
 
         case 1: {
-            int damage;
             cout << "Введите имя героя: ";
             getline(cin, name);
             hero.setName(name);
@@ -290,7 +289,6 @@ void manageHero(Character& hero) {
             break;
         }
         case 0: {
-            //saveSpellBookToJson(mySpellBook, "spellbook.json");
             break;
         }
         default: {

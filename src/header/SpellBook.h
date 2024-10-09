@@ -8,6 +8,8 @@ private:
 
     int spellCount;
 
+    friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook);
+
 public:
 
     Spell** getSpells() const;
@@ -24,8 +26,6 @@ public:
     ~SpellBook();
 
     void addSpell(std::string const& name, Element el1, Element el2, int damage);
-
-    friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook);
 
     void updateSpell(std::string_view oldName, std::string_view newName, int newDamage) const;
 

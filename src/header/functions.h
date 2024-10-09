@@ -16,6 +16,7 @@ struct HealthStats {
     int health;
     int maxHealth;
     float defense;
+    friend bool operator==(HealthStats hp, int percent);
 };
 
 void printMenu(int var);

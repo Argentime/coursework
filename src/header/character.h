@@ -6,7 +6,7 @@ const struct Stat {
     int Weak = 40;
     int Normal = 60;
     int Strong = 80;
-}Stats;
+};
 
 class Character {
 protected:
@@ -22,16 +22,16 @@ public:
 
 	HealthStats getHealth() const;
 
-    void setName(std::string name);
+    void setName(std::string const& newName);
 
     void setFocus(int focus);
 
     void setHealth(int hp, float def, int maxHp);
 
 
-    Character(std::string name, int health, int focus);
+    Character(std::string const& name, int health, int focus);
 
-    Character(std::string name, HealthStats health, int foc);
+    Character(std::string const& name, HealthStats health, int foc);
 
     ~Character();
 

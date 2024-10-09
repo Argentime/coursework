@@ -14,28 +14,28 @@ int Character::getFocus() const {
     return focus;
 }
 
-void Character::setName(string name) {
-    this->name = name;
+void Character::setName(string const& newName) {
+    this->name = newName;
 }
 
-void Character::setHealth(int hp, float def, int maxHp) {
-    this->hp.health = (hp ==-1) ? this->hp.health : hp;
+void Character::setHealth(int health, float def, int maxHp) {
+    this->hp.health = (hp ==-1) ? this->hp.health : health;
     this->hp.defense = (def == -1) ? this->hp.defense : def;
     this->hp.maxHealth = (maxHp == -1) ? this->hp.maxHealth : maxHp;
 }
 
-void Character::setFocus(int focus) {
-    this->focus = focus;
+void Character::setFocus(int foc) {
+    this->focus = foc;
 }
 
 
-Character::Character(string name, int health, int foc) : name(name), focus(foc) {
+Character::Character(string const& newName, int health, int foc) : name(newName), focus(foc) {
 	hp.maxHealth = health;
 	hp.health = health;
     hp.defense = 1;
 };
 
-Character::Character(string name, HealthStats health, int foc) : name(name), focus(foc), hp(health) {};
+Character::Character(string const& newName, HealthStats health, int foc) : name(newName), hp(health), focus(foc) {};
 
 Character::~Character() = default;
 
@@ -52,7 +52,7 @@ bool operator==(HealthStats hp, int percent) {
 }
 
 string Character::status() const {
-    //Stat Stats;
+    Stat Stats;
 
     if (hp == Stats.VeryWeak) {
         return "Присмерти";

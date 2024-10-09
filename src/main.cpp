@@ -70,6 +70,7 @@ int main() {
              return 0;
          }
          default: {
+             saveSpellBookToJson(hero, mySpellBook, "Save.json");
              cout << "Выберите число от 0 до 4.\n";
          }
          }
