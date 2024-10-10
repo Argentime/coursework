@@ -14,7 +14,7 @@ void printMenu(int var) {
         cout << "1. Статус героя\n";
         cout << "2. Осмотреться\n";
         cout << "3. Открыть книгу заклинаний\n";
-        cout << "4. Использовать заклинание\n";
+        cout << "4. Использовать заклинание на себе\n";
         cout << "0. Сохранить и выйти\n";
         cout << "Ваш выбор: ";
         break;
@@ -180,12 +180,12 @@ void loadHeroFromJson(Hero& hero, const std::string& filename) {
         }
 
         Hero bufHero(name, hp, focus, money, mana);
+        
 
         for (const auto& spellJson : heroJson.at("spells")) {
             Spell spell = deserializeSpell(spellJson);
             bufHero.getSpellBook().addSpell(spell.name, spell.element1, spell.element2, spell.damage);
         }
-        cout << bufHero.getSpellBook();
         hero = bufHero;
     }
     else {

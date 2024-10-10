@@ -138,7 +138,6 @@
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellBook.cpp" />
     <ClCompile Include="Character.cpp" />
-    <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="31Lw24a.vcxproj" />

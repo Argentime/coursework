@@ -30,9 +30,6 @@
     <ClCompile Include="Character.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Warrior.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Hero.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>

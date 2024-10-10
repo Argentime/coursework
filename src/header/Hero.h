@@ -29,8 +29,8 @@ public:
 
     const SpellBook& getSpellBook() const;
     SpellBook& getSpellBook();
-    void setSpellBook(const SpellBook& another);
 
+    Hero& operator=(const Hero& another);
     friend std::ostream& operator<<(std::ostream& os, const Hero& hero);
 
     std::string status() const override; 

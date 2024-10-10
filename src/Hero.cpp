@@ -30,6 +30,18 @@ Hero::~Hero() {
     delete[] mana;
 }
 
+Hero& Hero::operator=(const Hero& another) {
+    name = another.getName();
+    hp = another.getHealth();
+    focus = another.getFocus();
+    money = another.getMoney();
+    for (int i = 0; i <= static_cast<int>(Element::Spirit); i++) {
+        mana[i] = another.getMana(Element(i));
+    }
+    mySpellBook = another.getSpellBook();
+    return *this;
+}
+
 ostream& operator<<(ostream& os, const Hero& hero) {
     using enum Element;
     
@@ -81,10 +93,6 @@ const SpellBook& Hero::getSpellBook() const {
 
 SpellBook& Hero::getSpellBook() {
     return mySpellBook;
-}
-
-void Hero::setSpellBook(const SpellBook& another) {
-    mySpellBook=another;
 }
 
 // Переопределение метода status() из класса Character

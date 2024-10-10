@@ -55,6 +55,8 @@ int main() {
              cout << "Введите номер заклинания: ";
              cin >> numb;
              hero.getSpellBook().getSpells()[numb-1]->useSpell();
+             hero.attack(hero, hero.getSpellBook().getSpells()[numb - 1]->damage);
+             hero.decreaseFocus(2);
              break;
          }
          case 0: {
