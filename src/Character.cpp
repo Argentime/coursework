@@ -17,7 +17,6 @@ int Character::getFocus() const {
 void Character::setName(string_view const& newName) {
     this->name = newName;
 }
-
 void Character::setHealth(int health, float def, int maxHp) {
     this->hp.health = (health ==-1) ? this->hp.health : health;
     this->hp.defense = (def == -1) ? this->hp.defense : def;
@@ -27,7 +26,6 @@ void Character::setHealth(int health, float def, int maxHp) {
 void Character::setFocus(int foc) {
     this->focus = foc;
 }
-
 
 Character::Character(string const& newName, int health, int foc) : name(newName), focus(foc) {
 	hp.maxHealth = health;

@@ -1,9 +1,4 @@
 #include "header/functions.h"
-#include "header/Spell.h"
-#include "header/SpellBook.h"
-#include "header/Character.h"
-#include "header/nlohmann/json.hpp"
-#include <fstream>
 
 using namespace std;
 using json = nlohmann::json;
@@ -24,14 +19,11 @@ int main() {
         case 1: {
             manageSpellBook(mySpellBook);
             manageHero(hero);
-            saveSpellBookToJson(hero,mySpellBook, "Save.json");
-            cout << hero << endl;
+            saveSpellBookToJson(hero,mySpellBook, "resources/Save.json");
             break;
         }
         case 2: {
-            loadSpellBookFromJson(hero,mySpellBook, "DefaultSave.json");
-            manageSpellBook(mySpellBook);
-            cout << hero << endl;
+            loadSpellBookFromJson(hero,mySpellBook, "resources/DefaultSave.json");
             break;
         }
         default: {
@@ -66,7 +58,7 @@ int main() {
              break;
          }
          case 0: {
-             saveSpellBookToJson(hero, mySpellBook, "Save.json");
+             saveSpellBookToJson(hero, mySpellBook, "resources/Save.json");
              cout << "Выход из программы" << endl;
              return 0;
          }
