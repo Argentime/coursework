@@ -1,4 +1,5 @@
 #include "header/functions.h"
+#include "header/Hero.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -8,8 +9,7 @@ int main() {
    SetConsoleCP(1251);
    SetConsoleOutputCP(1251);
 
-    SpellBook mySpellBook;
-    Character hero("", 0, 0);
+    Hero hero("", 0, 0, 0);
     int choice;
 
      do{
@@ -17,13 +17,13 @@ int main() {
         cin >> choice;
         switch (choice) {
         case 1: {
-            manageSpellBook(mySpellBook);
+            manageSpellBook(hero.getSpellBook());
             manageHero(hero);
-            saveSpellBookToJson(hero,mySpellBook, "resources/Save.json");
+            saveHeroToJson(hero, "resources/Save.json");
             break;
         }
         case 2: {
-            loadSpellBookFromJson(hero,mySpellBook, "resources/DefaultSave.json");
+            loadHeroFromJson(hero, "resources/DefaultSave.json");
             break;
         }
         default: {
@@ -47,18 +47,18 @@ int main() {
              break;
          }
          case 3: {
-             cout << mySpellBook;
+             cout << hero.getSpellBook();
              break;
          }
          case 4: {
              int numb;
              cout << "Введите номер заклинания: ";
              cin >> numb;
-             mySpellBook.getSpells()[numb-1]->useSpell();
+             hero.getSpellBook().getSpells()[numb-1]->useSpell();
              break;
          }
          case 0: {
-             saveSpellBookToJson(hero, mySpellBook, "resources/Save.json");
+             saveHeroToJson(hero, "resources/Save.json");
              cout << "Выход из программы" << endl;
              return 0;
          }

@@ -124,24 +124,31 @@ Spell deserializeSpell(const json& j) {
     return spell;
 }
 
-void saveSpellBookToJson(const Character& hero, const SpellBook& spellBook, const std::string& filename) {
+void saveHeroToJson(const Hero& hero, const std::string& filename) {
 
-    json spellBookJson;
+    json heroJson;
+    Element el;
 
-    spellBookJson["spells"] = json::array();
-    spellBookJson["h_name"] = win1251ToUtf8(hero.getName());
-    spellBookJson["h_hp"] = hero.getHealth().health;
-    spellBookJson["h_maxHp"] = hero.getHealth().maxHealth;
-    spellBookJson["h_defence"] = hero.getHealth().defense;
-    spellBookJson["h_focus"] = hero.getFocus();
+    heroJson["spells"] = json::array();
+    heroJson["h_mana"] = json::array();
+    heroJson["h_money"] = hero.getMoney();
+    heroJson["h_name"] = win1251ToUtf8(hero.getName());
+    heroJson["h_hp"] = hero.getHealth().health;
+    heroJson["h_maxHp"] = hero.getHealth().maxHealth;
+    heroJson["h_defence"] = hero.getHealth().defense;
+    heroJson["h_focus"] = hero.getFocus();
 
-    for (int i = 0; i < spellBook.getSpellCount(); ++i) {
-        spellBookJson["spells"].push_back(serializeSpell(*spellBook.getSpells()[i]));
+    for (int i = 0; i < hero.getSpellBook().getSpellCount(); ++i) {
+        heroJson["spells"].push_back(serializeSpell(*hero.getSpellBook().getSpells()[i]));
+    }
+
+    for (int i = 0; i < 5; ++i) {
+        heroJson["h_mana"].push_back(hero.getMana(Element(i)));
     }
 
     std::ofstream file(filename);
     if (file.is_open()) {
-        file << spellBookJson.dump(4);
+        file << heroJson.dump(4);
         file.close();
     }
     else {
@@ -149,27 +156,36 @@ void saveSpellBookToJson(const Character& hero, const SpellBook& spellBook, cons
     }
 }
 
-void loadSpellBookFromJson(Character& hero,SpellBook& spellBook, const std::string& filename) {
+void loadHeroFromJson(Hero& hero, const std::string& filename) {
     std::ifstream file(filename);
 
     if (file.is_open()) {
-        json spellBookJson;
-        file >> spellBookJson;
+        json heroJson;
+        file >> heroJson;
         file.close();
 
         HealthStats hp;
         
-        hp.defense = spellBookJson.at("h_defence").get<float>();
-        hp.health = spellBookJson.at("h_hp").get<int>();
-        hp.maxHealth = spellBookJson.at("h_maxHp").get<int>();
-        string name = utf8ToWin1251(spellBookJson.at("h_name").get<string>());
-        int focus = spellBookJson.at("h_focus").get<int>();
+        hp.defense = heroJson.at("h_defence").get<float>();
+        hp.health = heroJson.at("h_hp").get<int>();
+        hp.maxHealth = heroJson.at("h_maxHp").get<int>();
+        string name = utf8ToWin1251(heroJson.at("h_name").get<string>());
+        int focus = heroJson.at("h_focus").get<int>();
+        int money = heroJson.at("h_money").get<int>();
+        auto mana = new int[static_cast<int>(Element::Spirit) + 1];
+        
 
-        for (const auto& spellJson : spellBookJson.at("spells")) {
-            Spell spell = deserializeSpell(spellJson);
-            spellBook.addSpell(spell.name, spell.element1, spell.element2, spell.damage);
+        for (int i = 0; i < 5; ++i) {
+            mana[i] = heroJson.at("h_mana").at(i).get<int>();
         }
-        Character bufHero(name, hp, focus);
+
+        Hero bufHero(name, hp, focus, money, mana);
+
+        for (const auto& spellJson : heroJson.at("spells")) {
+            Spell spell = deserializeSpell(spellJson);
+            bufHero.getSpellBook().addSpell(spell.name, spell.element1, spell.element2, spell.damage);
+        }
+        cout << bufHero.getSpellBook();
         hero = bufHero;
     }
     else {
@@ -242,7 +258,7 @@ void manageSpellBook(SpellBook& mySpellBook) {
     } while (ch);
 }
 
-void manageHero(Character& hero) {
+void manageHero(Hero& hero) {
     int ch;
 
     do {

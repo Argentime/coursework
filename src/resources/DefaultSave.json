@@ -2,7 +2,15 @@
   "h_defence": 1.0,
   "h_focus": 100,
   "h_hp": 100,
+  "h_mana": [
+    100,
+    100,
+    100,
+    100,
+    100
+  ],
   "h_maxHp": 100,
+  "h_money": 0,
   "h_name": "Герой",
   "spells": [
     {

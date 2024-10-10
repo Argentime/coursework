@@ -36,19 +36,21 @@ std::string win1251ToUtf8(const std::string& win1251Str);
 #include "header/Spell.h"
 #include "header/SpellBook.h"
 #include "header/Character.h"
+#include "header/Warrior.h"
+#include "header/Hero.h"
 using nlohmann::json;
 
 json serializeSpell(const Spell& spell);
 
 Spell deserializeSpell(const json& j);
 
-void saveSpellBookToJson(const Character& hero, const SpellBook& spellBook, const std::string& filename);
+void saveHeroToJson(const Hero& hero, const std::string& filename);
 
-void loadSpellBookFromJson(Character& hero, SpellBook& spellBook, const std::string& filename);
+void loadHeroFromJson(Hero& hero, const std::string& filename);
 
 void manageSpellBook(SpellBook& mySpellBook);
 
-void manageHero(Character& hero);
+void manageHero(Hero& hero);
 
 
 

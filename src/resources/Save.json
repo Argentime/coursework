@@ -1,85 +1,23 @@
 {
     "h_defence": 1.0,
-    "h_focus": 100,
-    "h_hp": 100,
-    "h_maxHp": 100,
-    "h_name": "Герой",
+    "h_focus": 0,
+    "h_hp": 0,
+    "h_mana": [
+        100,
+        100,
+        100,
+        100,
+        100
+    ],
+    "h_maxHp": 0,
+    "h_money": 0,
+    "h_name": "",
     "spells": [
         {
-            "damage": 3,
-            "element1": 3,
-            "element2": 4,
-            "name": "Вампиризм",
-            "uses": 0
-        },
-        {
-            "damage": 5,
-            "element1": 2,
-            "element2": 1,
-            "name": "Гейзер",
-            "uses": 1
-        },
-        {
-            "damage": 2,
-            "element1": 3,
-            "element2": 2,
-            "name": "Заморозка",
-            "uses": 0
-        },
-        {
-            "damage": 7,
-            "element1": 4,
-            "element2": 2,
-            "name": "Исцеление",
-            "uses": 0
-        },
-        {
-            "damage": 15,
-            "element1": 1,
-            "element2": 4,
-            "name": "Концентрация",
-            "uses": 0
-        },
-        {
-            "damage": 5,
+            "damage": 225,
             "element1": 0,
             "element2": 1,
-            "name": "Метеор",
-            "uses": 0
-        },
-        {
-            "damage": 8,
-            "element1": 0,
-            "element2": 4,
-            "name": "Огненное Лезвие",
-            "uses": 0
-        },
-        {
-            "damage": 5,
-            "element1": 0,
-            "element2": 3,
-            "name": "Огненный Шар",
-            "uses": 0
-        },
-        {
-            "damage": 10,
-            "element1": 0,
-            "element2": 2,
-            "name": "Рассеянность",
-            "uses": 0
-        },
-        {
-            "damage": 1,
-            "element1": 3,
-            "element2": 1,
-            "name": "Щит",
-            "uses": 0
-        },
-        {
-            "damage": 8,
-            "element1": 4,
-            "element2": 4,
-            "name": "Ледяная Пчела",
+            "name": "123",
             "uses": 0
         }
     ]
