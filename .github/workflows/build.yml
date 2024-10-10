@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - branch-a
+      - branch-b
       - master
       - dev-a
   pull_request:
