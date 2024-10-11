@@ -19,7 +19,7 @@ public:
     Hero(std::string const& name, int health, int focus, int money);
     Hero(std::string const& name, HealthStats newHealth, int focus, int money, int* mana);
     Hero(const Hero& other);
-    ~Hero();
+    ~Hero() override;
 
     int getMoney() const;
     void setMoney(int newMoney);

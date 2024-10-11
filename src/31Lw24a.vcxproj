@@ -140,12 +140,14 @@
     <ClCompile Include="Character.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\sonar-project.properties" />
     <None Include="31Lw24a.vcxproj" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\character.h" />
     <ClInclude Include="header\functions.h" />
+    <ClInclude Include="header\Hero.h" />
     <ClInclude Include="header\Spell.h" />
     <ClInclude Include="header\SpellBook.h" />
     <ClInclude Include="header\Warrior.h" />

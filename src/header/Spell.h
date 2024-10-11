@@ -15,6 +15,8 @@ public:
 
     Spell& operator=(const Spell& other);
 
+    ~Spell() = default;
+
     friend std::ostream& operator<<(std::ostream& os, const Spell& spell) {
         os << spell.name
             << ": " << elementToString(spell.element1)
