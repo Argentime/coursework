@@ -44,8 +44,6 @@ ostream& operator<<(ostream& os, const Character& character) {
     return os;
 }
 
-
-
 string Character::status() const {
     Stat Stats;
 

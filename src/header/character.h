@@ -47,3 +47,4 @@ public:
 
     void decreaseFocus(int amt);
 };
+
