@@ -1,25 +1,45 @@
 #pragma once
-#include "Spell.h"
+#include "header/functions.h"
 
 class SpellBook {
-private:
-    
+private:   
+
     Spell** spells;
+
     int spellCount;
 
 public:
+
+    Spell** getSpells() const;
+
+	int getSpellCount() const;
+
+
+    friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook) {
+
+        os << "����� ����������:" << std::endl;
+
+        if (mySpellBook.getSpellCount() == 0) {
+            os << "���������� ���. \n";
+        }
+        else {
+            for (int i = 0; i < mySpellBook.getSpellCount(); ++i) {
+                os << *mySpellBook.getSpells()[i];
+            }
+        }
+        return os;
+    }
 
     SpellBook();
 
     SpellBook(const SpellBook& another);
 
-    SpellBook& operator=(const SpellBook& another);
+	SpellBook& operator=(const SpellBook& another);
+
 
     ~SpellBook();
 
     void addSpell(std::string const& name, Element el1, Element el2, int damage);
-
-    void displaySpells() const;
 
     void updateSpell(std::string_view oldName, std::string_view newName, int newDamage) const;
 

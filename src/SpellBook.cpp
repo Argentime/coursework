@@ -1,6 +1,15 @@
-#include "header/SpellBook.h"
+#include "header/functions.h"
 
 using namespace std;
+
+Spell** SpellBook::getSpells() const {
+    return spells;
+}
+
+int SpellBook::getSpellCount() const {
+	return spellCount;
+}
+
 
 SpellBook::SpellBook() : spells(nullptr), spellCount(0) {};
 
@@ -10,6 +19,10 @@ SpellBook::SpellBook(const SpellBook& another) : spellCount(another.spellCount) 
         spells[i] = new Spell(*another.spells[i]); 
     }
 }
+
+SpellBook& SpellBook::operator=(const SpellBook& another) = default;
+
+ostream& operator<<(ostream& os, const SpellBook& mySpellBook);
 
 SpellBook::~SpellBook() {
     for (int i = 0; i < spellCount; ++i) {
@@ -29,17 +42,6 @@ void SpellBook::addSpell(string const& name, Element el1, Element el2, int damag
     delete[] spells;
     spells = newSpells;
     spellCount++;
-}
-
-void SpellBook::displaySpells() const {
-    if (spellCount == 0) {
-        cout << "Заклинаний нет. \n";
-    }
-    else {
-        for (int i = 0; i < spellCount; ++i) {
-            spells[i]->display();
-        }
-    }
 }
 
 void SpellBook::updateSpell(string_view oldName, string_view newName, int newDamage) const {
