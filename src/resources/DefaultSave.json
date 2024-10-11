@@ -21,6 +21,15 @@
       "uses": 0
     },
     {
+      "damage": 8,
+      "element1": 4,
+      "element2": 4,
+      "name": "Ледяная Пчела",
+      "uses": 0
+    }
+  ]
+}
+    {
       "damage": 5,
       "element1": 2,
       "element2": 1,
