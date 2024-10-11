@@ -30,15 +30,15 @@ ostream& operator<<(ostream& os, const Spell& spell);
 
 void Spell::useSpell() {
     uses++;
-    cout << "Çàêëèíàíèå " << name << " óñïåøíî ïðèìåíåíî\n";
+    cout << "Ã‡Ã ÃªÃ«Ã¨Ã­Ã Ã­Ã¨Ã¥ " << name << " Ã³Ã±Ã¯Ã¥Ã¸Ã­Ã® Ã¯Ã°Ã¨Ã¬Ã¥Ã­Ã¥Ã­Ã®\n";
     evolve();
 }
 
 void Spell::evolve() {
     if (uses % 3 == 0) {
         damage += 1;
-        cout << "Çàêëèíàíèå " << name
-            << " ýâîëþöèîíèðîâàëî, íîâûé óðîí: "
+        cout << "Ã‡Ã ÃªÃ«Ã¨Ã­Ã Ã­Ã¨Ã¥ " << name
+            << " Ã½Ã¢Ã®Ã«Ã¾Ã¶Ã¨Ã®Ã­Ã¨Ã°Ã®Ã¢Ã Ã«Ã®, Ã­Ã®Ã¢Ã»Ã© Ã³Ã°Ã®Ã­: "
             << damage << endl;
     }
 }

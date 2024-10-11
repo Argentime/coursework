@@ -17,10 +17,10 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook) {
 
-        os << "Книга заклинаний:" << std::endl;
+        os << "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:" << std::endl;
 
         if (mySpellBook.getSpellCount() == 0) {
-            os << "Заклинаний нет. \n";
+            os << "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. \n";
         }
         else {
             for (int i = 0; i < mySpellBook.getSpellCount(); ++i) {
@@ -35,6 +35,7 @@ public:
     SpellBook(const SpellBook& another);
 
 	SpellBook& operator=(const SpellBook& another);
+
 
     ~SpellBook();
 
