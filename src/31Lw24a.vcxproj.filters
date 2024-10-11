@@ -39,6 +39,8 @@
       <Filter>Файлы ресурсов</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="..\sonar-project.properties" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\functions.h">
@@ -54,6 +56,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="header\Warrior.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Hero.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

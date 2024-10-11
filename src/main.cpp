@@ -9,9 +9,8 @@ int main() {
    SetConsoleCP(1251);
    SetConsoleOutputCP(1251);
 
-    Hero hero("", 0, 0, 0);
-    //Character& characterPtr = hero;
-    
+   Hero hero("", 0, 0, 0);
+
     int choice;
 
      do{
