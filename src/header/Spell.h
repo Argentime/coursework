@@ -1,5 +1,5 @@
 #pragma once
-#include "functions.h"
+#include "header/functions.h"
 
 class Spell {
 public:
@@ -7,22 +7,27 @@ public:
     Element element1;
     Element element2;
     int damage;
-    int uses;
+    int uses=0;
 
     Spell(std::string const& n, Element el1, Element el2, int dmg);
 
     Spell(const Spell& other);
 
-	Spell& operator=(const Spell& other);
+    Spell& operator=(const Spell& other);
 
-    ~Spell();
+    friend std::ostream& operator<<(std::ostream& os, const Spell& spell) {
+        os << spell.name
+            << ": " << elementToString(spell.element1)
+            << " + " << elementToString(spell.element2)
+            << ", ����: " << spell.damage << std::endl;
+        return os;
+    };
 
-    void display() const;
+    ~Spell()=default;
 
     void useSpell();
 
 private:
     
     void evolve();
-
 };

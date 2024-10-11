@@ -1,9 +1,9 @@
-#include "header/Spell.h"
+#include "header/functions.h"
 
 using namespace std;
 
 Spell::Spell(string const& n, Element el1, Element el2, int dmg)
-        : name(n), element1(el1), element2(el2), damage(dmg) {}
+        : name(n), element1(el1), element2(el2), damage(dmg)  {}
 
 Spell::Spell(const Spell& other) {
     if (this != &other) {
@@ -15,28 +15,30 @@ Spell::Spell(const Spell& other) {
     }
 }
 
-Spell& Spell::operator=(const Spell& other) = default;
-
-Spell::~Spell() = default;
-
-void Spell::display() const {
-    cout << name
-        << ": " << elementToString(element1)
-        << " + " << elementToString(element2)
-        << ", Óðîí: " << damage << endl;
+Spell& Spell::operator=(const Spell& other) {
+	if (this != &other) {
+		name = other.name;
+		element1 = other.element1;
+		element2 = other.element2;
+		damage = other.damage;
+		uses = other.uses;
+	}
+	return *this;
 }
+
+ostream& operator<<(ostream& os, const Spell& spell);
 
 void Spell::useSpell() {
     uses++;
-    cout << "Çàêëèíàíèå " << name << " óñïåøíî ïðèìåíåíî\n";
+    cout << "Ã‡Ã ÃªÃ«Ã¨Ã­Ã Ã­Ã¨Ã¥ " << name << " Ã³Ã±Ã¯Ã¥Ã¸Ã­Ã® Ã¯Ã°Ã¨Ã¬Ã¥Ã­Ã¥Ã­Ã®\n";
     evolve();
 }
 
 void Spell::evolve() {
-    if (uses % 2 == 0) {
-        damage += 5;
-        cout << "Çàêëèíàíèå " << name
-            << " ýâîëþöèîíèðîâàëî, íîâûé óðîí: "
+    if (uses % 3 == 0) {
+        damage += 1;
+        cout << "Ã‡Ã ÃªÃ«Ã¨Ã­Ã Ã­Ã¨Ã¥ " << name
+            << " Ã½Ã¢Ã®Ã«Ã¾Ã¶Ã¨Ã®Ã­Ã¨Ã°Ã®Ã¢Ã Ã«Ã®, Ã­Ã®Ã¢Ã»Ã© Ã³Ã°Ã®Ã­: "
             << damage << endl;
     }
 }
