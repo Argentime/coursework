@@ -44,9 +44,10 @@ Hero& Hero::operator=(const Hero& another) {
 
 ostream& operator<<(ostream& os, const Hero& hero) {
     using enum Element;
+    const Character* characterPtr = &hero;
     
     os << "Имя: " << hero.getName() << endl;
-    os << "Состояние: " << hero.status() << endl;
+    os << "Состояние: " << characterPtr->status() << endl;
     os << "Сосредоточенность: " << hero.getFocus() << endl;
     os << "Мана: " << endl;
     os << "Огонь: " << hero.getMana(Fire) << endl;

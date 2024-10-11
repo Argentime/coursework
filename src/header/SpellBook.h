@@ -14,7 +14,6 @@ public:
 
 	int getSpellCount() const;
 
-
     friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook) {
 
         os << "Книга заклинаний:" << std::endl;
