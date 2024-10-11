@@ -1,5 +1,5 @@
 #pragma once
-#include "header/functions.h"
+#include "functions.h"
 
 class Spell {
 public:

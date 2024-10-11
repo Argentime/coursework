@@ -33,9 +33,9 @@ std::string utf8ToWin1251(const std::string& utf8Str);
 std::string win1251ToUtf8(const std::string& win1251Str);
 
 #include "lib/nlohmann/json.hpp"
-#include "header/Spell.h"
-#include "header/SpellBook.h"
-#include "header/Character.h"
+#include "Spell.h"
+#include "SpellBook.h"
+#include "Character.h"
 using nlohmann::json;
 
 json serializeSpell(const Spell& spell);
