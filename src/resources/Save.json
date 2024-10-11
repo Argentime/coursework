@@ -1,7 +1,7 @@
 {
     "h_defence": 1.0,
-    "h_focus": 100,
-    "h_hp": 100,
+    "h_focus": 98,
+    "h_hp": 97,
     "h_mana": [
         100,
         100,
@@ -14,11 +14,11 @@
     "h_name": "Герой",
     "spells": [
         {
-            "damage": 4,
+            "damage": 3,
             "element1": 3,
             "element2": 4,
             "name": "Вампиризм",
-            "uses": 3
+            "uses": 1
         },
         {
             "damage": 5,

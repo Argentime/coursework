@@ -5,8 +5,7 @@ using namespace std;
 Spell::Spell(string const& n, Element el1, Element el2, int dmg)
         : name(n), element1(el1), element2(el2), damage(dmg)  {}
 
-Spell::Spell(const Spell& other) : name(other.name), element1(other.element1), 
-element2(other.element2), damage(other.damage), uses(other.uses) {}
+Spell::Spell(const Spell& other) = default;
 
 Spell& Spell::operator=(const Spell& other) {
 	if (this != &other) {

@@ -127,7 +127,6 @@ Spell deserializeSpell(const json& j) {
 void saveHeroToJson(const Hero& hero, const std::string& filename) {
 
     json heroJson;
-    Element el;
 
     heroJson["spells"] = json::array();
     heroJson["h_mana"] = json::array();
