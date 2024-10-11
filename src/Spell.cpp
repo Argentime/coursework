@@ -15,6 +15,8 @@ Spell::Spell(const Spell& other) {
     }
 }
 
+Spell::~Spell()=default;
+
 Spell& Spell::operator=(const Spell& other) {
 	if (this != &other) {
 		name = other.name;

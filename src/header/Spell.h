@@ -19,11 +19,11 @@ public:
         os << spell.name
             << ": " << elementToString(spell.element1)
             << " + " << elementToString(spell.element2)
-            << ", ����: " << spell.damage << std::endl;
+            << ", Урон: " << spell.damage << std::endl;
         return os;
     };
 
-    ~Spell()=default;
+    ~Spell();
 
     void useSpell();
 
