@@ -139,6 +139,7 @@
     <ClCompile Include="Character.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\README.md" />
     <None Include="31Lw24a.vcxproj" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
