@@ -17,7 +17,7 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook) {
 
-        os << "Книга заклинанй:" << std::endl;
+        os << utf8ToWin1251("Книга заклинанй:") << std::endl;
 
         if (mySpellBook.getSpellCount() == 0) {
             os << "Заклинаний нет. \n";
