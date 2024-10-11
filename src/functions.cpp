@@ -192,7 +192,6 @@ void loadHeroFromJson(Hero& hero, const std::string& filename) {
     }
 }
 
-
 void manageSpellBook(SpellBook& mySpellBook) {
     int ch;
 

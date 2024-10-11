@@ -58,7 +58,6 @@ ostream& operator<<(ostream& os, const Hero& hero) {
     return os;
 }
 
-// Геттер и сеттер для денег
 int Hero::getMoney() const {
     return money;
 }
@@ -67,7 +66,6 @@ void Hero::setMoney(int newMoney) {
     money = newMoney;
 }
 
-// Геттер и сеттер для маны
 int Hero::getMana(Element el) const {
     using enum Element;
     switch (el) {
@@ -87,7 +85,6 @@ void Hero::setMana(int element, int value) {
     }
 }
 
-// Работа с книгой заклинаний
 const SpellBook& Hero::getSpellBook() const {
     return mySpellBook;
 }
@@ -96,7 +93,6 @@ SpellBook& Hero::getSpellBook() {
     return mySpellBook;
 }
 
-// Переопределение метода status() из класса Character
 std::string Hero::status() const {
     if (hp == Stats.VeryWeak) {
         return "Вы присмерти";
@@ -115,7 +111,6 @@ std::string Hero::status() const {
     }
 }
 
-// Переопределение метода атаки из класса Warrior
 void Hero::attack(Hero& another, int damage) {
     another.takeDamage(damage);
 }
