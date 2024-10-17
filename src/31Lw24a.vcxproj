@@ -142,8 +142,8 @@
   <ItemGroup>
     <None Include="..\sonar-project.properties" />
     <None Include="31Lw24a.vcxproj" />
-    <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="resources\DefaultSave.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\character.h" />
