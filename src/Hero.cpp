@@ -111,10 +111,11 @@ std::string Hero::status() const {
     }
 }
 
-void Hero::attack(Hero& another, int damage) {
-    another.takeDamage(damage);
-}
-
-void Hero::disperseFocus(Hero& another, int impact) {
-    another.decreaseFocus(impact);
-}
+//void Hero::attack(Hero& another, Spell& spell) {
+//    another.takeDamage(spell.damage);
+//    this->disperseFocus(*this, static_cast<int>(spell.damage*0.5));
+//}
+//
+//void Hero::disperseFocus(Hero& another, int impact) {
+//    another.decreaseFocus(impact);
+//}

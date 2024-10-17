@@ -34,7 +34,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Hero& hero);
 
     std::string status() const override; 
-    void attack(Hero& another, int damage) override;  
-    void disperseFocus(Hero& another, int impact) override;
+    /*void attack(Hero& another, Spell& spell) override;  
+    void disperseFocus(Hero& another, int impact) override;*/
 
 };
