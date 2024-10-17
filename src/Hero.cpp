@@ -1,6 +1,9 @@
 #include "header/Hero.h"
 #include "header/functions.h"
 #include "header/Warrior.h"
+#include <ctime>
+
+#define RAND_MAX 100;
 
 using namespace std;
 
@@ -111,11 +114,14 @@ std::string Hero::status() const {
     }
 }
 
-//void Hero::attack(Hero& another, Spell& spell) {
-//    another.takeDamage(spell.damage);
-//    this->disperseFocus(*this, static_cast<int>(spell.damage*0.5));
-//}
-//
-//void Hero::disperseFocus(Hero& another, int impact) {
-//    another.decreaseFocus(impact);
-//}
+void Hero::attack(Hero& another, Spell& spell) {
+    srand(time(0));
+    bool hitChance = (another.getFocus() / 100) < (rand());
+    another.takeDamage(((spell.damage)*hitChance));
+    decreaseFocus((spell.damage*0.5));
+    another.decreaseFocus(spell.damage * 1.2);
+} 
+
+void Hero::disperseFocus(Hero& another, int impact) {
+    another.decreaseFocus(impact);
+}
