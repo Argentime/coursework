@@ -1,9 +1,7 @@
 #include "header/Hero.h"
 #include "header/functions.h"
 #include "header/Warrior.h"
-#include <ctime>
-
-#define RAND_MAX 100;
+#include <random>
 
 using namespace std;
 
@@ -115,8 +113,11 @@ std::string Hero::status() const {
 }
 
 void Hero::attack(Hero& another, Spell& spell) {
-    srand(time(0));
-    bool hitChance = (another.getFocus() / 100) < (rand());
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distrib(0,100);
+
+    bool hitChance = (another.getFocus()) > (distrib(gen));
     another.takeDamage(((spell.damage)*hitChance));
     decreaseFocus((spell.damage*0.5));
     another.decreaseFocus(spell.damage * 1.2);
