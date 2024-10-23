@@ -1,6 +1,13 @@
 #pragma once
 #include "header/functions.h"
 
+const struct Stat {
+    int VeryWeak = 20;
+    int Weak = 40;
+    int Normal = 60;
+    int Strong = 80;
+}Stats;
+
 class Character {
 protected:
     std::string name;
