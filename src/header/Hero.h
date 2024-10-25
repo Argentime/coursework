@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "functions.h"
 
-class Hero : public Character, public Warrior {
+class Hero : public Character, public Warrior<Hero, Spell> {
 private:
     int money;
     SpellBook mySpellBook;

@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "functions.h"
 
-
 class Spell {
 public:
     std::string name;

@@ -1,20 +1,7 @@
 ﻿#include "header/SecondWindow.h"
 #include "header/MainWindow.h"
 #include "header/functions.h"
-
-template <typename T>
-class DefensiveSpell : public Spell {
-public:
-    DefensiveSpell(std::string const& n, Element el1, Element el2, int dmg) : Spell(name, el1, el2, dmg) {};
-    void useSpell(Hero& caster) override {
-        int shieldStrength = this->damage / T::shieldBonus();
-        caster.setHealth(-1, shieldStrength, -1);
-    }
-};
-
-struct EarthDefense {
-    static int shieldBonus() { return 5; }
-};
+#include <random>
 
 using namespace std;
 using json = nlohmann::json;
@@ -155,23 +142,16 @@ void SecondWindow::processActiveButton() {
     QString spellName;
     QString element1;
     QString element2;
-    Warrior* warriorPtr = hero;
 
     ui.label_3->setText(heroStatus(*hero));
 
     if (spellChoose) {
-            if (activeButton == 10) {
-                DefensiveSpell<EarthDefense>stoneShield("Каменный Щит", Element::Air, Element::Earth, 1);
-                stoneShield.useSpell(*hero);
-            }
-            else {
-                warriorPtr->attack(*hero, *hero->getSpellBook().getSpells()[activeButton - 1]);
-                hero->getSpellBook().getSpells()[activeButton - 1]->useSpell();
-                spellChoose = false;
-                makeAllButtonsInactive();
-                ui.pushButton->setText("Отойти от стола");
-                activeButtonCSS(ui.pushButton);
-            }
+        hero->attack(*hero, *hero->getSpellBook().getSpells()[activeButton - 1]);
+        hero->getSpellBook().getSpells()[activeButton - 1]->useSpell();
+        spellChoose = false;
+        makeAllButtonsInactive();
+        ui.pushButton->setText("Отойти от стола");
+        activeButtonCSS(ui.pushButton);
     }
     else {
         switch (activeButton) {
