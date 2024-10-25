@@ -4,6 +4,7 @@ on:
     branches:
       - branch-a
       - branch-b
+      - branch-lab4
       - master
       - dev-a
   pull_request:
