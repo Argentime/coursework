@@ -49,10 +49,6 @@ void saveHeroToJson(const Hero& hero, const std::string& filename);
 
 void loadHeroFromJson(Hero& hero, const std::string& filename);
 
-//void manageSpellBook(SpellBook& mySpellBook);
-
-//void manageHero(Hero& hero);
-
 void printMenu(int var, QLabel* label);
 
 void activeButtonCSS(QPushButton* b);

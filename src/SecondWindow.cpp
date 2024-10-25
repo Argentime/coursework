@@ -17,7 +17,9 @@ SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
 }
 
 SecondWindow::~SecondWindow()
-{}
+{
+    delete[] hero;
+}
 
 void SecondWindow::setImage(const QPixmap& pixmap) {
     originalPixmap = pixmap;

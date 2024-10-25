@@ -4,7 +4,6 @@
 #include <QApplication>
 #include <QWidget>
 #include <QResizeEvent>
-#include <qpixmap.h>
 #include <QMessageBox>
 #include <QDebug>
 #include <QApplication>
@@ -51,8 +50,6 @@ private:
 	void applyRoundedMask(QLabel* label, const QPixmap& originalPixmap);
 
 	void on_menuButton_clicked();
-
-	//void on_settingsButton_clicked();
 	
 	void resizeEvent(QResizeEvent* event) override;
 
