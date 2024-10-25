@@ -1,4 +1,6 @@
-#include "header/functions.h"
+п»ї#include "header/functions.h"
+
+
 
 using namespace std;
 
@@ -24,15 +26,15 @@ ostream& operator<<(ostream& os, const Spell& spell);
 
 void Spell::useSpell() {
     uses++;
-    cout << "Заклинание " << name << " успешно применено\n";
+    cout << "Р—Р°РєР»РёРЅР°РЅРёРµ " << name << " СѓСЃРїРµС€РЅРѕ РїСЂРёРјРµРЅРµРЅРѕ\n";
     evolve();
 }
 
 void Spell::evolve() {
     if (uses % 3 == 0) {
         damage += 1;
-        cout << "Заклинание " << name
-            << " эволюционировало, новый урон: "
+        cout << "Р—Р°РєР»РёРЅР°РЅРёРµ " << name
+            << " СЌРІРѕР»СЋС†РёРѕРЅРёСЂРѕРІР°Р»Рѕ, РЅРѕРІС‹Р№ СѓСЂРѕРЅ: "
             << damage << endl;
     }
 }

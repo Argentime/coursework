@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "functions.h"
 
 class Hero : public Character, public Warrior {

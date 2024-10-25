@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Формы">
+      <UniqueIdentifier>{3885d3ae-d63a-4d9a-a06d-e0207bdcd70c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,9 +41,9 @@
     <None Include="31Lw24a.vcxproj">
       <Filter>Файлы ресурсов</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
     <None Include="..\sonar-project.properties" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="resources\DefaultSave.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\functions.h">

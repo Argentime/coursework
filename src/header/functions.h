@@ -1,8 +1,10 @@
-#pragma once
+﻿#pragma once
 #include <string>
 #include <iostream>
 #include <Windows.h>
 #include <fstream>
+#include <qlabel.h>
+#include <qpushbutton.h>
 
 enum class Element {
     Fire,   
@@ -22,9 +24,6 @@ struct HealthStats {
     };
 };
 
-
-
-void printMenu(int var);
 std::string elementToString(Element el);
 Element selectElement();
 
@@ -32,12 +31,14 @@ std::string utf8ToWin1251(const std::string& utf8Str);
 
 std::string win1251ToUtf8(const std::string& win1251Str);
 
-#include "lib/nlohmann/json.hpp"
-#include "header/Spell.h"
-#include "header/SpellBook.h"
-#include "header/Character.h"
-#include "header/Warrior.h"
-#include "header/Hero.h"
+#include "../lib/nlohmann/json.hpp"
+#include "Spell.h"
+#include "SpellBook.h"
+#include "Character.h"
+#include "Warrior.h"
+#include "Hero.h"
+
+
 using nlohmann::json;
 
 json serializeSpell(const Spell& spell);
@@ -48,9 +49,15 @@ void saveHeroToJson(const Hero& hero, const std::string& filename);
 
 void loadHeroFromJson(Hero& hero, const std::string& filename);
 
-void manageSpellBook(SpellBook& mySpellBook);
+//void manageSpellBook(SpellBook& mySpellBook);
 
-void manageHero(Hero& hero);
+//void manageHero(Hero& hero);
+
+void printMenu(int var, QLabel* label);
+
+void activeButtonCSS(QPushButton* b);
+
+void inactiveButtonCSS(QPushButton* b);
 
 
 

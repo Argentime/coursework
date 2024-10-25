@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/rec">
+        <file>resources/background_images/2BG.png</file>
+        <file>resources/background_images/2WinRight.png</file>
+        <file>resources/background_images/pimp.png</file>
+        <file>resources/background_images/Racer.png</file>
+    </qresource>
+    <qresource prefix="/prefix2">
+        <file>resources/styles/style1.css</file>
+        <file>resources/styles/source.html</file>
+    </qresource>
+</RCC>

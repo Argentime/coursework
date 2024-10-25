@@ -1,5 +1,6 @@
-#pragma once
-#include "header/functions.h"
+ï»¿#pragma once
+#include "functions.h"
+
 
 class Spell {
 public:
@@ -21,7 +22,7 @@ public:
         os << spell.name
             << ": " << elementToString(spell.element1)
             << " + " << elementToString(spell.element2)
-            << ", Óðîí: " << spell.damage << std::endl;
+            << ", Ð£Ñ€Ð¾Ð½: " << spell.damage << std::endl;
         return os;
     };
 

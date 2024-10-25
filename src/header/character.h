@@ -1,5 +1,5 @@
-#pragma once
-#include "header/functions.h"
+﻿#pragma once
+#include "functions.h"
 
 const struct Stat {
     int VeryWeak = 20;

@@ -1,5 +1,5 @@
-#pragma once
-#include "header/functions.h"
+ï»¿#pragma once
+#include "functions.h"
 
 class SpellBook {
 private:   
@@ -16,10 +16,10 @@ public:
 
     friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook) {
 
-        os << "Êíèãà çàêëèíàíèé:" << std::endl;
+        os << "ÐšÐ½Ð¸Ð³Ð° Ð·Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ð¹:" << std::endl;
 
         if (mySpellBook.getSpellCount() == 0) {
-            os << "Çàêëèíàíèé íåò. \n";
+            os << "Ð—Ð°ÐºÐ»Ð¸Ð½Ð°Ð½Ð¸Ð¹ Ð½ÐµÑ‚. \n";
         }
         else {
             for (int i = 0; i < mySpellBook.getSpellCount(); ++i) {

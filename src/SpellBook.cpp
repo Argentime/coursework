@@ -1,4 +1,4 @@
-#include "header/functions.h"
+п»ї#include "header/functions.h"
 
 using namespace std;
 
@@ -53,18 +53,18 @@ void SpellBook::updateSpell(string_view oldName, string_view newName, int newDam
     Spell* spellToUpdate = findSpellByName(oldName);
 
     if (spellToUpdate == nullptr) {
-        cout << "Заклинание с таким именем не найдено.\n";
+        cout << "Р—Р°РєР»РёРЅР°РЅРёРµ СЃ С‚Р°РєРёРј РёРјРµРЅРµРј РЅРµ РЅР°Р№РґРµРЅРѕ.\n";
         return;
     }
     spellToUpdate->name = newName;
     spellToUpdate->damage = newDamage;
-    cout << "Заклинание обновлено.\n";
+    cout << "Р—Р°РєР»РёРЅР°РЅРёРµ РѕР±РЅРѕРІР»РµРЅРѕ.\n";
 }
 
 void SpellBook::removeSpell(string const& name) {
     const Spell* spellToRemove = findSpellByName(name);
     if (spellToRemove == nullptr) {
-        cout << "Заклинание с таким именем не найдено.\n";
+        cout << "Р—Р°РєР»РёРЅР°РЅРёРµ СЃ С‚Р°РєРёРј РёРјРµРЅРµРј РЅРµ РЅР°Р№РґРµРЅРѕ.\n";
         return;
     }
 
@@ -76,7 +76,7 @@ void SpellBook::removeSpell(string const& name) {
             }
             spellCount--;
             spells[spellCount] = nullptr;
-            cout << "Заклинание удалено.\n";
+            cout << "Р—Р°РєР»РёРЅР°РЅРёРµ СѓРґР°Р»РµРЅРѕ.\n";
             return;
         }
     }
@@ -94,7 +94,7 @@ Spell* SpellBook::findSpellByName(string_view name) const {
 void SpellBook::castSpell(string_view name) const {
     Spell* spellToCast = findSpellByName(name);
     if (spellToCast == nullptr) {
-        cout << "Данного заклинания не найденно\n";
+        cout << "Р”Р°РЅРЅРѕРіРѕ Р·Р°РєР»РёРЅР°РЅРёСЏ РЅРµ РЅР°Р№РґРµРЅРЅРѕ\n";
         return;
     }
     spellToCast->useSpell();

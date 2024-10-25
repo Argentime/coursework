@@ -1,4 +1,4 @@
-#include "header/Hero.h"
+ï»¿#include "header/Hero.h"
 #include "header/functions.h"
 #include "header/Warrior.h"
 #include <random>
@@ -47,15 +47,15 @@ ostream& operator<<(ostream& os, const Hero& hero) {
     using enum Element;
     const Character* characterPtr = &hero;
     
-    os << "Èìÿ: " << hero.getName() << endl;
-    os << "Ñîñòîÿíèå: " << characterPtr->status() << endl;
-    os << "Ñîñðåäîòî÷åííîñòü: " << hero.getFocus() << endl;
-    os << "Ìàíà: " << endl;
-    os << "Îãîíü: " << hero.getMana(Fire) << endl;
-    os << "Çåìëÿ: " << hero.getMana(Earth) << endl;
-    os << "Âîäà: " << hero.getMana(Water) << endl;
-    os << "Âîçäóõ: " << hero.getMana(Air) << endl;
-    os << "Äóõ: " << hero.getMana(Spirit) << endl;
+    os << "Ð˜Ð¼Ñ: " << hero.getName() << endl;
+    os << "Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ: " << characterPtr->status() << endl;
+    os << "Ð¡Ð¾ÑÑ€ÐµÐ´Ð¾Ñ‚Ð¾Ñ‡ÐµÐ½Ð½Ð¾ÑÑ‚ÑŒ: " << hero.getFocus() << endl;
+    os << "ÐœÐ°Ð½Ð°: " << endl;
+    os << "ÐžÐ³Ð¾Ð½ÑŒ: " << hero.getMana(Fire) << endl;
+    os << "Ð—ÐµÐ¼Ð»Ñ: " << hero.getMana(Earth) << endl;
+    os << "Ð’Ð¾Ð´Ð°: " << hero.getMana(Water) << endl;
+    os << "Ð’Ð¾Ð·Ð´ÑƒÑ…: " << hero.getMana(Air) << endl;
+    os << "Ð”ÑƒÑ…: " << hero.getMana(Spirit) << endl;
     return os;
 }
 
@@ -96,19 +96,19 @@ SpellBook& Hero::getSpellBook() {
 
 std::string Hero::status() const {
     if (hp == Stats.VeryWeak) {
-        return "Âû ïðèñìåðòè";
+        return "Ð’Ñ‹ Ð¿Ñ€Ð¸ÑÐ¼ÐµÑ€Ñ‚Ð¸";
     }
     else if (hp == Stats.Weak) {
-        return "Âû åëå ñòîèòå íà íîãàõ";
+        return "Ð’Ñ‹ ÐµÐ»Ðµ ÑÑ‚Ð¾Ð¸Ñ‚Ðµ Ð½Ð° Ð½Ð¾Ð³Ð°Ñ…";
     }
     else if (hp == Stats.Normal) {
-        return "Âàñ íåìíîãî øàòàåò";
+        return "Ð’Ð°Ñ Ð½ÐµÐ¼Ð½Ð¾Ð³Ð¾ ÑˆÐ°Ñ‚Ð°ÐµÑ‚";
     }
     else if (hp == Stats.Strong) {
-        return "Âû ÷óâñòâóåòå ñåáÿ íåïëîõî";
+        return "Ð’Ñ‹ Ñ‡ÑƒÐ²ÑÑ‚Ð²ÑƒÐµÑ‚Ðµ ÑÐµÐ±Ñ Ð½ÐµÐ¿Ð»Ð¾Ñ…Ð¾";
     }
     else {
-        return "Âû ïîëíû ñèë!";
+        return "Ð’Ñ‹ Ð¿Ð¾Ð»Ð½Ñ‹ ÑÐ¸Ð»!";
     }
 }
 

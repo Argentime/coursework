@@ -1,4 +1,4 @@
-#include "header/functions.h"
+﻿#include "header/functions.h"
 using namespace std;
 
 string Character::getName() const {
