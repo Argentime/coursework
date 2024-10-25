@@ -13,11 +13,9 @@ public:
 
     Spell(const Spell& other);
 
-    ~Spell()=default;
-
     Spell& operator=(const Spell& other);
 
-    ~Spell();
+    ~Spell() = default;
 
     friend std::ostream& operator<<(std::ostream& os, const Spell& spell) {
         os << spell.name

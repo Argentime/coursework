@@ -9,7 +9,6 @@ Spell::Spell(string const& n, Element el1, Element el2, int dmg)
 
 Spell::Spell(const Spell& other) = default;
 
-Spell::~Spell() = default;
 
 Spell& Spell::operator=(const Spell& other) {
 	if (this != &other) {
