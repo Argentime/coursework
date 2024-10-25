@@ -34,8 +34,6 @@ public:
 
 	void startGame();
 
-	QString heroStatus(const Hero& hero);
-
 	int getActiveButton();
 
 private:
@@ -46,6 +44,8 @@ private:
 	int activeButton;
 	bool isBookPickUp = false;
 	bool spellChoose = false;
+	
+	QString heroStatus();
 	void connectSlots();
 	void applyRoundedMask(QLabel* label, const QPixmap& originalPixmap);
 

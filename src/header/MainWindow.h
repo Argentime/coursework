@@ -10,7 +10,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() = default;
 
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();

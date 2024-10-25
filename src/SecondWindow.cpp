@@ -7,7 +7,7 @@ using namespace std;
 using json = nlohmann::json;
 
 SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
-	: mainMenu(menu), QMainWindow(parent)
+	: QMainWindow(parent), mainMenu(menu)
 {
     hero = new Hero("", 0, 0, 0);
     ui.setupUi(this);
@@ -44,7 +44,7 @@ void SecondWindow::connectSlots() {
     connect(ui.pushButton_7, &QPushButton::clicked, this, &SecondWindow::on_menuButton_clicked);
 }
 
-void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& originalPixmap)
+void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& pixmap)
 {
     // Проверка на существование label
     if (!label) {
@@ -56,7 +56,7 @@ void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& originalPixmap
     int height = label->height();
     int cornerRadius = 80;
 
-    QPixmap scaledPixmap = originalPixmap.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QPixmap scaledPixmap = pixmap.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     QPixmap roundedPixmap(width, height);
     roundedPixmap.fill(Qt::transparent);
@@ -65,7 +65,6 @@ void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& originalPixmap
     painter.setRenderHint(QPainter::Antialiasing);
 
     int xOffset = (width - scaledPixmap.width()) / 2;
-    int yOffset = (height - scaledPixmap.height()) / 2;
 
     QPainterPath path;
     path.moveTo(cornerRadius, 0);
@@ -117,23 +116,23 @@ void SecondWindow::startGame(){
     makeAllButtonsInactive();
     ui.pushButton->setText("Осмотреться");
     activeButtonCSS(ui.pushButton);
-    ui.label_3->setText(heroStatus(*hero));
+    ui.label_3->setText(heroStatus());
 
 }
 
-QString SecondWindow::heroStatus(const Hero& hero) {
+QString SecondWindow::heroStatus() {
     using enum Element;
-    const Character* characterPtr = &hero;
+    const Character* characterPtr = hero;
 
-    QString status = QString("Имя: %1\n").arg(QString::fromStdString(hero.getName()));
+    QString status = QString("Имя: %1\n").arg(QString::fromStdString(hero->getName()));
     status += QString("%1\n").arg(QString::fromStdString(characterPtr->status()));
-    status += QString("Сосредоточенность: %1\n").arg(hero.getFocus());
+    status += QString("Сосредоточенность: %1\n").arg(hero->getFocus());
     status += "Мана:\n";
-    status += QString("Огонь: %1\n").arg(hero.getMana(Fire));
-    status += QString("Земля: %1\n").arg(hero.getMana(Earth));
-    status += QString("Вода: %1\n").arg(hero.getMana(Water));
-    status += QString("Воздух: %1\n").arg(hero.getMana(Air));
-    status += QString("Дух: %1\n").arg(hero.getMana(Spirit));
+    status += QString("Огонь: %1\n").arg(hero->getMana(Fire));
+    status += QString("Земля: %1\n").arg(hero->getMana(Earth));
+    status += QString("Вода: %1\n").arg(hero->getMana(Water));
+    status += QString("Воздух: %1\n").arg(hero->getMana(Air));
+    status += QString("Дух: %1\n").arg(hero->getMana(Spirit));
 
     return status;
 }
@@ -145,7 +144,7 @@ void SecondWindow::processActiveButton() {
     QString element1;
     QString element2;
 
-    ui.label_3->setText(heroStatus(*hero));
+    ui.label_3->setText(heroStatus());
 
     if (spellChoose) {
         hero->attack(*hero, *hero->getSpellBook().getSpells()[activeButton - 1]);

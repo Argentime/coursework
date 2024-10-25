@@ -115,10 +115,10 @@ std::string Hero::status() const {
 void Hero::attack(Hero& another, Spell& spell) {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distrib(0,100);
+    uniform_int_distribution<int> distrib(0,100);
 
     bool hitChance = (another.getFocus()) > (distrib(gen));
-    another.takeDamage(((spell.damage)*hitChance));
+    if (hitChance) another.takeDamage(spell.damage);
     decreaseFocus((spell.damage*0.5));
     another.decreaseFocus(spell.damage * 1.2);
 } 
