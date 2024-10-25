@@ -13,6 +13,8 @@ public:
 
     Spell(const Spell& other);
 
+    ~Spell()=default;
+
     Spell& operator=(const Spell& other);
 
     ~Spell();
