@@ -4,6 +4,17 @@
 using namespace std;
 using json = nlohmann::json;
 
+template <typename SpellType>
+json serializeSpell(const SpellType& spell) {
+    return json{
+        {"name", spell.name},
+        {"element1", spell.element1},
+        {"element2", spell.element2},
+        {"damage", spell.damage},
+        {"uses", spell.uses}
+    };
+}
+
 bool operator==(HealthStats hp, int percent);
 
 void printMenu(int var, QLabel* label) {
@@ -128,16 +139,6 @@ string utf8ToWin1251(const string& utf8Str) {
     return result;
 }
 
-json serializeSpell(const Spell& spell) {
-    return json{
-        {"name", win1251ToUtf8(spell.name)},
-        {"element1", spell.element1},
-        {"element2", spell.element2},
-        {"damage", spell.damage},
-        {"uses", spell.uses}
-    };
-}
-
 Spell deserializeSpell(const json& j) {
     string name = j.at("name").get<string>();
     auto el1 = static_cast<Element>(j.at("element1").get<int>());
@@ -158,14 +159,14 @@ void saveHeroToJson(const Hero& hero, const std::string& filename) {
     heroJson["spells"] = json::array();
     heroJson["h_mana"] = json::array();
     heroJson["h_money"] = hero.getMoney();
-    heroJson["h_name"] = win1251ToUtf8(hero.getName());
+    heroJson["h_name"] = hero.getName();
     heroJson["h_hp"] = hero.getHealth().health;
     heroJson["h_maxHp"] = hero.getHealth().maxHealth;
     heroJson["h_defence"] = hero.getHealth().defense;
     heroJson["h_focus"] = hero.getFocus();
 
     for (int i = 0; i < hero.getSpellBook().getSpellCount(); ++i) {
-        heroJson["spells"].push_back(serializeSpell(*hero.getSpellBook().getSpells()[i]));
+        heroJson["spells"].push_back(serializeSpell<Spell>(*hero.getSpellBook().getSpells()[i]));
     }
 
     for (int i = 0; i < 5; ++i) {

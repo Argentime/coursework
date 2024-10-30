@@ -1,7 +1,7 @@
 {
     "h_defence": 1.0,
-    "h_focus": 100,
-    "h_hp": 100,
+    "h_focus": 0,
+    "h_hp": 70,
     "h_mana": [
         100,
         100,
@@ -42,11 +42,11 @@
             "uses": 0
         },
         {
-            "damage": 15,
+            "damage": 16,
             "element1": 1,
             "element2": 4,
             "name": "Концентрация",
-            "uses": 0
+            "uses": 4
         },
         {
             "damage": 5,

@@ -18,7 +18,8 @@ SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
 
 SecondWindow::~SecondWindow()
 {
-    delete[] hero;
+    saveHeroToJson(*hero, "resources/Save.json");
+    delete hero;
 }
 
 void SecondWindow::setImage(const QPixmap& pixmap) {
@@ -117,6 +118,7 @@ void SecondWindow::startGame(){
     ui.pushButton->setText("Осмотреться");
     activeButtonCSS(ui.pushButton);
     ui.label_3->setText(heroStatus());
+    saveHeroToJson(*hero, "resources/Save.json");
 
 }
 

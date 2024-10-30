@@ -11,6 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
     connectSlots();
 }
 
+MainWindow::~MainWindow()
+{
+    delete window;
+}
+
 void MainWindow::connectSlots() {
     connect(ui.pushButton, &QPushButton::clicked, this, &MainWindow::on_pushButton_clicked);
     connect(ui.pushButton_2, &QPushButton::clicked, this, &MainWindow::on_pushButton_2_clicked);
