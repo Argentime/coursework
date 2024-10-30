@@ -35,10 +35,9 @@ std::string win1251ToUtf8(const std::string& win1251Str);
 #include "Spell.h"
 #include "SpellBook.h"
 #include "Character.h"
-#include "Warrior.h"
 #include "Hero.h"
 
-
+class Hero;
 using nlohmann::json;
 
 json serializeSpell(const Spell& spell);

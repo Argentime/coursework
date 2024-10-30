@@ -60,7 +60,9 @@
   <Import Project="$(QtMsBuild)\qt_defaults.props" Condition="Exists('$(QtMsBuild)\qt_defaults.props')" />
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtModules>core;gui;widgets</QtModules>
+  </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') OR !Exists('$(QtMsBuild)\Qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
@@ -153,9 +155,10 @@
     <ClCompile Include="main.cpp">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
     </ClCompile>
-    <ClCompile Include="Qt\mainQt.cpp" />
-    <ClCompile Include="Qt\MainWindow.cpp" />
-    <ClCompile Include="Qt\Pixmap.cpp" />
+    <ClCompile Include="mainQt.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="Pixmap.cpp" />
+    <ClCompile Include="SecondWindow.cpp" />
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellBook.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -164,26 +167,26 @@
     <None Include="..\sonar-project.properties" />
     <None Include="31Lw24a.vcxproj" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram11.cd" />
     <None Include="resources\DefaultSave.json" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\character.h" />
     <ClInclude Include="header\functions.h" />
     <ClInclude Include="header\Hero.h" />
+    <ClInclude Include="header\Warrior.h" />
+    <QtMoc Include="header\SecondWindow.h" />
+    <QtMoc Include="header\MainWindow.h" />
     <ClInclude Include="header\Spell.h" />
     <ClInclude Include="header\SpellBook.h" />
-    <ClInclude Include="Qt\header\Pixmap.h" />
-    <QtMoc Include="Qt\header\SecondWindow.h" />
-    <QtMoc Include="Qt\header\MainWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Qt\DialogButtonBottom.ui" />
-    <QtUic Include="Qt\MainWindow.ui" />
-    <QtUic Include="Qt\SecondWindow.ui" />
+    <QtUic Include="DialogButtonRight.ui" />
+    <QtUic Include="MainWindow.ui" />
+    <QtUic Include="SecondWindow.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="Qt\MainWindow.qrc" />
-    <QtRcc Include="Qt\Resource.qrc" />
+    <QtRcc Include="Resource.qrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
