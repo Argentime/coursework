@@ -43,6 +43,7 @@ using nlohmann::json;
 
 template <typename SpellType> 
 json serializeSpell(const SpellType& spell);
+
 template <typename SpellType>
 Spell deserializeSpell(const json& j);
 

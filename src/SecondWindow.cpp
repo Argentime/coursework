@@ -12,7 +12,6 @@ SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
     hero = new Hero("", 0, 0, 0);
     ui.setupUi(this);
 	connectSlots();
-    startGame();
     Qt::Window;
 }
 
@@ -23,7 +22,12 @@ SecondWindow::~SecondWindow()
 }
 
 void SecondWindow::setImage(const QPixmap& pixmap) {
-    originalPixmap = pixmap;
+    try {
+        originalPixmap = pixmap;
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Error setting image: " << e.what() << std::endl;
+    }
 }
 
 int SecondWindow::getActiveButton() {
@@ -47,7 +51,6 @@ void SecondWindow::connectSlots() {
 
 void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& pixmap)
 {
-    // Проверка на существование label
     if (!label) {
         qDebug() << "Label is null!";
         return;
@@ -80,10 +83,8 @@ void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& pixmap)
     painter.drawPixmap(xOffset, 0, scaledPixmap);
     painter.end();
 
-
-    label->setPixmap(roundedPixmap);;
-    
-    //label->setScaledContents(true);
+    label->setPixmap(roundedPixmap);
+    label->setScaledContents(true);
 
 }
 void SecondWindow::resizeEvent(QResizeEvent* event) {
@@ -102,9 +103,7 @@ void SecondWindow::resizeEvent(QResizeEvent* event) {
 
 }
 void SecondWindow::showEvent(QShowEvent* event) {
-
-        applyRoundedMask(ui.label_2, originalPixmap);
-
+    applyRoundedMask(ui.label_2, originalPixmap);
 }
 void SecondWindow::on_menuButton_clicked(){
     hide();
@@ -112,14 +111,22 @@ void SecondWindow::on_menuButton_clicked(){
 }
 void SecondWindow::startGame(){
 
-    loadHeroFromJson(*hero, "resources/DefaultSave.json");
     printMenu(1, this->ui.label);
     makeAllButtonsInactive();
     ui.pushButton->setText("Осмотреться");
     activeButtonCSS(ui.pushButton);
     ui.label_3->setText(heroStatus());
-    saveHeroToJson(*hero, "resources/Save.json");
 
+}
+
+void SecondWindow::defaultLoad() {
+    loadHeroFromJson(*hero, "resources/DefaultSave.json");
+    startGame();
+}
+
+void SecondWindow::userLoad() {
+    loadHeroFromJson(*hero, "resources/wsSave.json");
+    startGame();
 }
 
 QString SecondWindow::heroStatus() {

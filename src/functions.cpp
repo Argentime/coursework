@@ -14,6 +14,7 @@ json serializeSpell(const SpellType& spell) {
         {"uses", spell.uses}
     };
 }
+
 template <typename SpellType>
 Spell deserializeSpell(const json& j) {
     string name = j.at("name").get<string>();
@@ -185,38 +186,43 @@ void saveHeroToJson(const Hero& hero, const std::string& filename) {
 
 void loadHeroFromJson(Hero& hero, const std::string& filename) {
     std::ifstream file(filename);
-
-    if (file.is_open()) {
-        json heroJson;
-        file >> heroJson;
-        file.close();
-
-        HealthStats hp;
-        
-        hp.defense = heroJson.at("h_defence").get<float>();
-        hp.health = heroJson.at("h_hp").get<int>();
-        hp.maxHealth = heroJson.at("h_maxHp").get<int>();
-        string name = heroJson.at("h_name").get<string>();
-        int focus = heroJson.at("h_focus").get<int>();
-        int money = heroJson.at("h_money").get<int>();
-        auto mana = new int[static_cast<int>(Element::Spirit) + 1];
-        
-
-        for (int i = 0; i < 5; ++i) {
-            mana[i] = heroJson.at("h_mana").at(i).get<int>();
+    try {
+        std::ifstream file(filename);
+        if (!file.is_open()) {
+            throw std::runtime_error("Error: Could not open file for reading.");
         }
+        if (file.is_open()) {
+            json heroJson;
+            file >> heroJson;
+            file.close();
 
-        Hero bufHero(name, hp, focus, money, mana);
-        
+            HealthStats hp;
 
-        for (const auto& spellJson : heroJson.at("spells")) {
-            Spell spell = deserializeSpell<Spell>(spellJson);
-            bufHero.getSpellBook().addSpell(spell.name, spell.element1, spell.element2, spell.damage);
+            hp.defense = heroJson.at("h_defence").get<float>();
+            hp.health = heroJson.at("h_hp").get<int>();
+            hp.maxHealth = heroJson.at("h_maxHp").get<int>();
+            string name = heroJson.at("h_name").get<string>();
+            int focus = heroJson.at("h_focus").get<int>();
+            int money = heroJson.at("h_money").get<int>();
+            auto mana = new int[static_cast<int>(Element::Spirit) + 1];
+
+
+            for (int i = 0; i < 5; ++i) {
+                mana[i] = heroJson.at("h_mana").at(i).get<int>();
+            }
+
+            Hero bufHero(name, hp, focus, money, mana);
+
+
+            for (const auto& spellJson : heroJson.at("spells")) {
+                Spell spell = deserializeSpell<Spell>(spellJson);
+                bufHero.getSpellBook().addSpell(spell.name, spell.element1, spell.element2, spell.damage);
+            }
+            hero = bufHero;
         }
-        hero = bufHero;
     }
-    else {
-        std::cerr << "Error: Could not open file for reading." << std::endl;
+    catch (const std::exception& e) {
+        std::cerr << "Error loading save file: " << e.what() << std::endl;
     }
 }
 

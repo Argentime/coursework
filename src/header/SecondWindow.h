@@ -35,6 +35,8 @@ public:
 	void startGame();
 
 	int getActiveButton();
+	void defaultLoad();
+	void userLoad();
 
 private:
 	

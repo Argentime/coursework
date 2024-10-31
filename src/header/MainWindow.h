@@ -13,10 +13,14 @@ public:
     ~MainWindow();
 
     void on_pushButton_clicked();
+    
+    void on_pushButton_4_clicked();
     void on_pushButton_2_clicked();
 
 private:
     Ui::MainWindowClass ui;
     SecondWindow* window;
+
+    void openSecondWindow();
     void connectSlots();
 };

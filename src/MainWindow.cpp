@@ -19,6 +19,7 @@ MainWindow::~MainWindow()
 void MainWindow::connectSlots() {
     connect(ui.pushButton, &QPushButton::clicked, this, &MainWindow::on_pushButton_clicked);
     connect(ui.pushButton_2, &QPushButton::clicked, this, &MainWindow::on_pushButton_2_clicked);
+    connect(ui.pushButton_4, &QPushButton::clicked, this, &MainWindow::on_pushButton_4_clicked);
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -31,8 +32,12 @@ void MainWindow::on_pushButton_clicked()
     }
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
+void MainWindow::on_pushButton_4_clicked() {
+    openSecondWindow();
+    window->userLoad();
+}
+
+void MainWindow::openSecondWindow() {
     window = new SecondWindow(this, nullptr);
     QPixmap originalPixmap(":/rec/resources/background_images/Racer.png");
     window->setImage(originalPixmap);
@@ -45,5 +50,11 @@ void MainWindow::on_pushButton_2_clicked()
     );
     hide();
     window->show();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    openSecondWindow();
+    window->defaultLoad();
 }
 
