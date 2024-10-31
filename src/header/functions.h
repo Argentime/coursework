@@ -41,8 +41,9 @@ std::string win1251ToUtf8(const std::string& win1251Str);
 
 using nlohmann::json;
 
-json serializeSpell(const Spell& spell);
-
+template <typename SpellType> 
+json serializeSpell(const SpellType& spell);
+template <typename SpellType>
 Spell deserializeSpell(const json& j);
 
 void saveHeroToJson(const Hero& hero, const std::string& filename);

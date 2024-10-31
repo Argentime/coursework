@@ -14,6 +14,19 @@ json serializeSpell(const SpellType& spell) {
         {"uses", spell.uses}
     };
 }
+template <typename SpellType>
+Spell deserializeSpell(const json& j) {
+    string name = j.at("name").get<string>();
+    auto el1 = static_cast<Element>(j.at("element1").get<int>());
+    auto el2 = static_cast<Element>(j.at("element2").get<int>());
+    int damage = j.at("damage").get<int>();
+    int uses = j.at("uses").get<int>();
+
+    SpellType spell(name, el1, el2, damage);
+    spell.uses = uses;
+
+    return spell;
+}
 
 bool operator==(HealthStats hp, int percent);
 
@@ -139,19 +152,6 @@ string utf8ToWin1251(const string& utf8Str) {
     return result;
 }
 
-Spell deserializeSpell(const json& j) {
-    string name = j.at("name").get<string>();
-    auto el1 = static_cast<Element>(j.at("element1").get<int>());
-    auto el2 = static_cast<Element>(j.at("element2").get<int>());
-    int damage = j.at("damage").get<int>();
-    int uses = j.at("uses").get<int>();
-
-    Spell spell(name, el1, el2, damage);
-    spell.uses = uses;
-
-    return spell;
-}
-
 void saveHeroToJson(const Hero& hero, const std::string& filename) {
 
     json heroJson;
@@ -210,7 +210,7 @@ void loadHeroFromJson(Hero& hero, const std::string& filename) {
         
 
         for (const auto& spellJson : heroJson.at("spells")) {
-            Spell spell = deserializeSpell(spellJson);
+            Spell spell = deserializeSpell<Spell>(spellJson);
             bufHero.getSpellBook().addSpell(spell.name, spell.element1, spell.element2, spell.damage);
         }
         hero = bufHero;
