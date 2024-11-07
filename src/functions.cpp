@@ -4,6 +4,11 @@
 using namespace std;
 using json = nlohmann::json;
 
+bool operator==(HealthStats hp, int percent) {
+    int healthPercentage = (hp.maxHealth == 0) ? 0 : (hp.health * 100) / hp.maxHealth;
+    return healthPercentage <= percent;
+};
+
 template <typename SpellType>
 json serializeSpell(const SpellType& spell) {
     return json{
@@ -121,36 +126,6 @@ Element selectElement() {
     
 
     return Element(choice);
-}
-
-string win1251ToUtf8(const string& win1251Str) {
-    int wcharsCount = MultiByteToWideChar(1251, 0, win1251Str.c_str(), -1, nullptr, 0);
-    auto wstr = new wchar_t[wcharsCount];
-    MultiByteToWideChar(1251, 0, win1251Str.c_str(), -1, wstr, wcharsCount);
-
-    int utf8CharCount = WideCharToMultiByte(CP_UTF8, 0, wstr, -1, nullptr, 0, nullptr, nullptr);
-    auto utf8Str = new char[utf8CharCount];
-    WideCharToMultiByte(CP_UTF8, 0, wstr, -1, utf8Str, utf8CharCount, nullptr, nullptr);
-
-    string result(utf8Str);
-    delete[] wstr;
-    delete[] utf8Str;
-    return result;
-}
-
-string utf8ToWin1251(const string& utf8Str) {
-    int wcharsCount = MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, nullptr, 0);
-    auto wstr = new wchar_t[wcharsCount];
-    MultiByteToWideChar(CP_UTF8, 0, utf8Str.c_str(), -1, wstr, wcharsCount);
-
-    int win1251CharCount = WideCharToMultiByte(1251, 0, wstr, -1, nullptr, 0, nullptr, nullptr);
-    auto win1251Str = new char[win1251CharCount];
-    WideCharToMultiByte(1251, 0, wstr, -1, win1251Str, win1251CharCount, nullptr, nullptr);
-
-    string result(win1251Str);
-    delete[] wstr;
-    delete[] win1251Str;
-    return result;
 }
 
 void saveHeroToJson(const Hero& hero, const std::string& filename) {

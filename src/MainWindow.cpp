@@ -1,8 +1,9 @@
 ﻿#include "header/MainWindow.h"
-#include "ui_MainWindow.h"
 #include <QMessageBox>
 #include <QDebug>
 #include "header/functions.h"
+#include "header/SaveWindow.h"
+#include "header/SaveSlot.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete window;
+    delete gWindow;
 }
 
 void MainWindow::connectSlots() {
@@ -33,15 +34,30 @@ void MainWindow::on_pushButton_clicked()
 }
 
 void MainWindow::on_pushButton_4_clicked() {
-    openSecondWindow();
-    window->userLoad();
+    QWidget* container = new QWidget;
+    QVBoxLayout* layout = new QVBoxLayout(container);
+    sWindow = new SaveWindow(this);
+    SaveSlot *sv = new SaveSlot();
+    layout->addWidget(sv);
+    SaveSlot* sv1 = new SaveSlot();
+    layout->addWidget(sv1);
+    SaveSlot* sv2 = new SaveSlot();
+    layout->addWidget(sv2);
+    SaveSlot* sv3 = new SaveSlot();
+    layout->addWidget(sv3);
+    SaveSlot* sv4 = new SaveSlot();
+    layout->addWidget(sv4);
+    SaveSlot* sv5 = new SaveSlot();
+    layout->addWidget(sv5);
+    sWindow->ui.scrollArea->setWidget(container);
+    sWindow->show();
 }
 
 void MainWindow::openSecondWindow() {
-    window = new SecondWindow(this, nullptr);
+    gWindow = new SecondWindow(this, nullptr);
     QPixmap originalPixmap(":/rec/resources/background_images/Racer.png");
-    window->setImage(originalPixmap);
-    window->setStyleSheet(
+    gWindow->setImage(originalPixmap);
+    gWindow->setStyleSheet(
         "QMainWindow {"
         "background-image: url(:/rec/resources/background_images/2BG.png);"
         "background - position: center;"
@@ -49,12 +65,12 @@ void MainWindow::openSecondWindow() {
         "}"
     );
     hide();
-    window->show();
+    gWindow->show();
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
     openSecondWindow();
-    window->defaultLoad();
+    gWindow->defaultLoad();
 }
 

@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_MainWindow.h"
 #include "SecondWindow.h"
+#include "SaveWindow.h"
 
 class MainWindow : public QMainWindow
 {
@@ -19,7 +20,8 @@ public:
 
 private:
     Ui::MainWindowClass ui;
-    SecondWindow* window;
+    SecondWindow* gWindow;
+    SaveWindow* sWindow;
 
     void openSecondWindow();
     void connectSlots();

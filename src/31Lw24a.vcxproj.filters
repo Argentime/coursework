@@ -36,14 +36,26 @@
     <ClCompile Include="Hero.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="MainWindow.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondWindow.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveWindow.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveSlot.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="31Lw24a.vcxproj">
       <Filter>Файлы ресурсов</Filter>
     </None>
     <None Include="..\sonar-project.properties" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="resources\DefaultSave.json" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\functions.h">
@@ -64,5 +76,41 @@
     <ClInclude Include="header\Hero.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="header\SecondWindow.h">
+      <Filter>Файлы заголовков</Filter>
+    </QtMoc>
+    <QtMoc Include="header\MainWindow.h">
+      <Filter>Файлы заголовков</Filter>
+    </QtMoc>
+    <QtMoc Include="header\SaveSlot.h">
+      <Filter>Файлы заголовков</Filter>
+    </QtMoc>
+    <QtMoc Include="header\SaveWindow.h">
+      <Filter>Файлы заголовков</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="MainWindow.ui">
+      <Filter>Формы</Filter>
+    </QtUic>
+    <QtUic Include="SecondWindow.ui">
+      <Filter>Формы</Filter>
+    </QtUic>
+    <QtUic Include="DialogButtonRight1.ui">
+      <Filter>Формы</Filter>
+    </QtUic>
+    <QtUic Include="SaveWindow.ui">
+      <Filter>Формы</Filter>
+    </QtUic>
+    <QtUic Include="SaveSlot.ui">
+      <Filter>Формы</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Resource.qrc">
+      <Filter>Файлы ресурсов</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>
