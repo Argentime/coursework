@@ -18,7 +18,7 @@ SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
 SecondWindow::~SecondWindow()
 {
     saveHeroToJson(*hero, "resources/Save.json");
-    delete hero;
+    delete hero; //231
 }
 
 void SecondWindow::setImage(const QPixmap& pixmap) {
