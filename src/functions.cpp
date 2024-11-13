@@ -1,5 +1,6 @@
 ﻿#include "header/functions.h"
 #include "header/SecondWindow.h"
+#include "header/GameException.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -222,7 +223,7 @@ void loadHeroFromJson(Hero& hero, const std::string& filename) {
         }
     }
     catch (const std::exception& e) {
-        std::cerr << "Error loading save file: " << e.what() << std::endl;
+        GameException("Error load file: " + string(e.what()), ExceptionType::FILE_ERROR);
     }
 }
 

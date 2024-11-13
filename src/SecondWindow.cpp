@@ -1,6 +1,7 @@
 ﻿#include "header/SecondWindow.h"
 #include "header/MainWindow.h"
 #include "header/functions.h"
+#include "header/GameException.h"
 #include <random>
 
 using namespace std;
@@ -18,7 +19,7 @@ SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
 SecondWindow::~SecondWindow()
 {
     saveHeroToJson(*hero, "resources/Save.json");
-    delete hero; //231
+    delete hero;
 }
 
 void SecondWindow::setImage(const QPixmap& pixmap) {
@@ -26,7 +27,7 @@ void SecondWindow::setImage(const QPixmap& pixmap) {
         originalPixmap = pixmap;
     }
     catch (const std::exception& e) {
-        std::cerr << "Error setting image: " << e.what() << std::endl;
+        GameException("Error setting image: " + string(e.what()), ExceptionType::FILE_ERROR);
     }
 }
 

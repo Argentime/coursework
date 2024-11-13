@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
+    <ClCompile Include="GameException.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="main.cpp">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="header\character.h" />
     <ClInclude Include="header\functions.h" />
+    <ClInclude Include="header\GameException.h" />
     <ClInclude Include="header\Hero.h" />
     <ClInclude Include="header\Warrior.h" />
     <QtMoc Include="header\SecondWindow.h" />
