@@ -1,6 +1,7 @@
 ﻿#include "header/functions.h"
 #include "header/SecondWindow.h"
 #include "header/GameException.h"
+#include <exception>
 
 using namespace std;
 using json = nlohmann::json;
@@ -155,33 +156,37 @@ string utf8ToWin1251(const string& utf8Str) {
 }
 
 void saveHeroToJson(const Hero& hero, const std::string& filename) {
+    try {
+        json heroJson;
 
-    json heroJson;
+        heroJson["spells"] = json::array();
+        heroJson["h_mana"] = json::array();
+        heroJson["h_money"] = hero.getMoney();
+        heroJson["h_name"] = hero.getName();
+        heroJson["h_hp"] = hero.getHealth().health;
+        heroJson["h_maxHp"] = hero.getHealth().maxHealth;
+        heroJson["h_defence"] = hero.getHealth().defense;
+        heroJson["h_focus"] = hero.getFocus();
 
-    heroJson["spells"] = json::array();
-    heroJson["h_mana"] = json::array();
-    heroJson["h_money"] = hero.getMoney();
-    heroJson["h_name"] = hero.getName();
-    heroJson["h_hp"] = hero.getHealth().health;
-    heroJson["h_maxHp"] = hero.getHealth().maxHealth;
-    heroJson["h_defence"] = hero.getHealth().defense;
-    heroJson["h_focus"] = hero.getFocus();
+        for (int i = 0; i < hero.getSpellBook().getSpellCount(); ++i) {
+            heroJson["spells"].push_back(serializeSpell<Spell>(*hero.getSpellBook().getSpells()[i]));
+        }
 
-    for (int i = 0; i < hero.getSpellBook().getSpellCount(); ++i) {
-        heroJson["spells"].push_back(serializeSpell<Spell>(*hero.getSpellBook().getSpells()[i]));
+        for (int i = 0; i < 5; ++i) {
+            heroJson["h_mana"].push_back(hero.getMana(Element(i)));
+        }
+
+        std::ofstream file(filename);
+        if (file.is_open()) {
+            file << heroJson.dump(4);
+            file.close();
+        }
+        else {
+            throw(std::runtime_error("Could not open file for writing."));
+        }
     }
-
-    for (int i = 0; i < 5; ++i) {
-        heroJson["h_mana"].push_back(hero.getMana(Element(i)));
-    }
-
-    std::ofstream file(filename);
-    if (file.is_open()) {
-        file << heroJson.dump(4);
-        file.close();
-    }
-    else {
-        std::cerr << "Error: Could not open file for writing." << std::endl;
+    catch (const std::exception& e) {
+        GameException("Error load state: " + string(e.what()), ExceptionType::FILE_ERROR);
     }
 }
 
@@ -190,7 +195,7 @@ void loadHeroFromJson(Hero& hero, const std::string& filename) {
     try {
         std::ifstream file(filename);
         if (!file.is_open()) {
-            throw std::runtime_error("Error: Could not open file for reading.");
+            throw std::runtime_error("Could not open file for reading.");
         }
         if (file.is_open()) {
             json heroJson;
@@ -223,7 +228,7 @@ void loadHeroFromJson(Hero& hero, const std::string& filename) {
         }
     }
     catch (const std::exception& e) {
-        GameException("Error load file: " + string(e.what()), ExceptionType::FILE_ERROR);
+        GameException("Error load state: " + string(e.what()), ExceptionType::FILE_ERROR);
     }
 }
 

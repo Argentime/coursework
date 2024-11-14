@@ -23,12 +23,7 @@ SecondWindow::~SecondWindow()
 }
 
 void SecondWindow::setImage(const QPixmap& pixmap) {
-    try {
         originalPixmap = pixmap;
-    }
-    catch (const std::exception& e) {
-        GameException("Error setting image: " + string(e.what()), ExceptionType::FILE_ERROR);
-    }
 }
 
 int SecondWindow::getActiveButton() {

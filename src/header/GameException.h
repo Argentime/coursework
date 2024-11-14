@@ -13,7 +13,7 @@ enum class ExceptionType {
 class GameException : public std::exception {
 public:
     GameException(const std::string& message, ExceptionType type);
-    const char* what() const throw();
+    const char* what() const noexcept override;
     ExceptionType getType() const;
 
 private:
