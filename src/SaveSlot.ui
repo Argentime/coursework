@@ -61,6 +61,12 @@ padding: 0; </string>
      <property name="text">
       <string/>
      </property>
+     <property name="maxLength">
+      <number>43</number>
+     </property>
+     <property name="frame">
+      <bool>false</bool>
+     </property>
     </widget>
    </item>
    <item row="1" column="1">
