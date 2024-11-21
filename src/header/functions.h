@@ -28,7 +28,6 @@ Element selectElement();
 #include "Spell.h"
 #include "SpellBook.h"
 #include "Character.h"
-#include "Warrior.h"
 #include "Hero.h"
 
 

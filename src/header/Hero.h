@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "functions.h"
 
-class Hero : public Character, public Warrior<Hero, Spell> {
+class Hero : public Character{
 private:
     int money;
     SpellBook mySpellBook;
@@ -27,7 +27,7 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Hero& hero);
 
     std::string status() const override; 
-    void attack(Hero& another, Spell& spell) override;  
-    void disperseFocus(Hero& another, int impact) override;
+    void attack(Hero& another, Spell& spell) ;  
+    void disperseFocus(Hero& another, int impact);
 
 };

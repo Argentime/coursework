@@ -1,6 +1,5 @@
 ﻿#include "header/Hero.h"
 #include "header/functions.h"
-#include "header/Warrior.h"
 #include <random>
 
 using namespace std;
