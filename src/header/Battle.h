@@ -1,6 +1,5 @@
-#pragma once
-#include "Hero.h"
-#include "Enemy.h"
+п»ї#pragma once
+#include "functions.h"
 
 class Battle {
 private:
@@ -11,6 +10,6 @@ private:
 public:
     Battle(Hero& h, Enemy& e);
 
-    void processBattle(); // Обработка битвы
+    void processBattle(); // РћР±СЂР°Р±РѕС‚РєР° Р±РёС‚РІС‹
     bool isBattleFinished() const;
 };

@@ -1,4 +1,4 @@
-#include "header/Enemy.h"
+п»ї
 #include "header/functions.h"
 
 using namespace std;
@@ -23,21 +23,21 @@ Enemy::Enemy(const Enemy& other)
 Enemy::~Enemy() {
     delete[] mana;
 }
-string Enemy::status() const {
+std::string Enemy::status() const {
     if (hp == Stats.VeryWeak) {
-        return "Вы присмерти";
+        return "Р’С‹ РїСЂРёСЃРјРµСЂС‚Рё";
     }
     else if (hp == Stats.Weak) {
-        return "Вы еле стоите на ногах";
+        return "Р’С‹ РµР»Рµ СЃС‚РѕРёС‚Рµ РЅР° РЅРѕРіР°С…";
     }
     else if (hp == Stats.Normal) {
-        return "Вас немного шатает";
+        return "Р’Р°СЃ РЅРµРјРЅРѕРіРѕ С€Р°С‚Р°РµС‚";
     }
     else if (hp == Stats.Strong) {
-        return "Вы чувствуете себя неплохо";
+        return "Р’С‹ С‡СѓРІСЃС‚РІСѓРµС‚Рµ СЃРµР±СЏ РЅРµРїР»РѕС…Рѕ";
     }
     else {
-        return "Вы полны сил!";
+        return "Р’С‹ РїРѕР»РЅС‹ СЃРёР»!";
     }
 }
 
@@ -63,4 +63,7 @@ int Enemy::getMana(Element el) const {
     case Spirit: return mana[4];
     default: return 0;
     }
+}
+Enemy& Enemy::operator=(const Enemy* other) {
+    return *this;
 }

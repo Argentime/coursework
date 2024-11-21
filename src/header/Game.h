@@ -1,28 +1,26 @@
-#pragma once
-#include "Hero.h"
-#include "Enemy.h"
-#include "Battle.h"
+п»ї#pragma once
+#include "functions.h"
 
 class Game
 {
 private:
-    std::unique_ptr<Hero> hero;           // Главный герой
-    Enemy *enemies;           // Список врагов
+    std::unique_ptr<Hero> hero;           // Р“Р»Р°РІРЅС‹Р№ РіРµСЂРѕР№
+    Enemy *enemies;           // РЎРїРёСЃРѕРє РІСЂР°РіРѕРІ
     int enemyCount;
-    std::unique_ptr<Battle> currentBattle; // Текущее сражение
+    Battle *currentBattle; // РўРµРєСѓС‰РµРµ СЃСЂР°Р¶РµРЅРёРµ
     enum class GameState { MainMenu, InGame, InBattle, Settings, Exit };
     GameState currentState;
 
 public:
     Game();
 
-    void start();                          // Запустить игру
-    void mainMenu();                       // Главное меню
-    void startNewGame();                   // Начать новую игру
-    void loadGame(const std::string& saveFile); // Загрузить сохранение
-    void saveGame(const std::string& saveFile); // Сохранить игру
-    void update();                         // Основной цикл обновления
-    void startBattle(Enemy& enemy);        // Начать сражение
+    void start();                          // Р—Р°РїСѓСЃС‚РёС‚СЊ РёРіСЂСѓ
+    void mainMenu();                       // Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ
+    void startNewGame();                   // РќР°С‡Р°С‚СЊ РЅРѕРІСѓСЋ РёРіСЂСѓ
+    void loadGame(const std::string& saveFile); // Р—Р°РіСЂСѓР·РёС‚СЊ СЃРѕС…СЂР°РЅРµРЅРёРµ
+    void saveGame(const std::string& saveFile); // РЎРѕС…СЂР°РЅРёС‚СЊ РёРіСЂСѓ
+    void update();                         // РћСЃРЅРѕРІРЅРѕР№ С†РёРєР» РѕР±РЅРѕРІР»РµРЅРёСЏ
+    void startBattle(Enemy& enemy);        // РќР°С‡Р°С‚СЊ СЃСЂР°Р¶РµРЅРёРµ
     void exitGame();
 };
 

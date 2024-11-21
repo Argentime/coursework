@@ -1,14 +1,9 @@
-#include "header/Game.h"
-#include <iostream>
+п»ї#include "header/functions.h"
 
 Game::Game()
-    : hero(std::make_unique<Hero>("Игрок", 100, 50, 1000)),
-    currentState(GameState::MainMenu) 
-{
-    for (int i = 0; i < enemyCount; ++i) {
-        enemies[i] = new Enemy("",0,0);
-    }
-}
+    : hero(std::make_unique<Hero>("РРіСЂРѕРє", 100, 50, 1000)),
+    currentState(GameState::MainMenu), enemies(nullptr)
+{}
 
 void Game::start() {
     while (currentState != GameState::Exit) {
@@ -23,13 +18,13 @@ void Game::start() {
             if (currentBattle) {
                 currentBattle->processBattle();
                 if (currentBattle->isBattleFinished()) {
-                    currentBattle.reset(); // Завершить сражение
+                    //currentBattle.reset(); // Р—Р°РІРµСЂС€РёС‚СЊ СЃСЂР°Р¶РµРЅРёРµ
                     currentState = GameState::InGame;
                 }
             }
             break;
         case GameState::Settings:
-            std::cout << "Настройки игры (реализация в будущем)\n";
+            std::cout << "РќР°СЃС‚СЂРѕР№РєРё РёРіСЂС‹ (СЂРµР°Р»РёР·Р°С†РёСЏ РІ Р±СѓРґСѓС‰РµРј)\n";
             currentState = GameState::MainMenu;
             break;
         case GameState::Exit:
@@ -40,12 +35,12 @@ void Game::start() {
 
 void Game::mainMenu() {
     int choice;
-    std::cout << "Главное меню:\n"
-        << "1. Начать новую игру\n"
-        << "2. Загрузить игру\n"
-        << "3. Настройки\n"
-        << "4. Выход\n"
-        << "Выбор: ";
+    std::cout << "Р“Р»Р°РІРЅРѕРµ РјРµРЅСЋ:\n"
+        << "1. РќР°С‡Р°С‚СЊ РЅРѕРІСѓСЋ РёРіСЂСѓ\n"
+        << "2. Р—Р°РіСЂСѓР·РёС‚СЊ РёРіСЂСѓ\n"
+        << "3. РќР°СЃС‚СЂРѕР№РєРё\n"
+        << "4. Р’С‹С…РѕРґ\n"
+        << "Р’С‹Р±РѕСЂ: ";
     std::cin >> choice;
 
     switch (choice) {
@@ -62,59 +57,59 @@ void Game::mainMenu() {
         exitGame();
         break;
     default:
-        std::cout << "Неверный выбор\n";
+        std::cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ\n";
     }
 }
 
 void Game::startNewGame() {
-    hero = std::make_unique<Hero>("Игрок", 100, 50, 1000);
-    enemies = { Enemy("Волк", 50, 20), Enemy("Босс", 200, 50) };
+    hero = std::make_unique<Hero>("РРіСЂРѕРє", 100, 50, 1000);
+    enemies = { Enemy("Р’РѕР»Рє", 50, 20), Enemy("Р‘РѕСЃСЃ", 200, 50) };
     currentState = GameState::InGame;
-    std::cout << "Новая игра началась!\n";
+    std::cout << "РќРѕРІР°СЏ РёРіСЂР° РЅР°С‡Р°Р»Р°СЃСЊ!\n";
 }
 
 void Game::loadGame(const std::string& saveFile) {
     try {
-        // Логика загрузки сохранения (добавить позже)
-        std::cout << "Игра загружена из " << saveFile << "\n";
+        // Р›РѕРіРёРєР° Р·Р°РіСЂСѓР·РєРё СЃРѕС…СЂР°РЅРµРЅРёСЏ (РґРѕР±Р°РІРёС‚СЊ РїРѕР·Р¶Рµ)
+        std::cout << "РРіСЂР° Р·Р°РіСЂСѓР¶РµРЅР° РёР· " << saveFile << "\n";
         currentState = GameState::InGame;
     }
     catch (const std::exception& e) {
-        std::cerr << "Ошибка загрузки игры: " << e.what() << "\n";
+        std::cerr << "РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё РёРіСЂС‹: " << e.what() << "\n";
         mainMenu();
     }
 }
 
 void Game::saveGame(const std::string& saveFile) {
     try {
-        // Логика сохранения игры (добавить позже)
-        std::cout << "Игра сохранена в " << saveFile << "\n";
+        // Р›РѕРіРёРєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РёРіСЂС‹ (РґРѕР±Р°РІРёС‚СЊ РїРѕР·Р¶Рµ)
+        std::cout << "РРіСЂР° СЃРѕС…СЂР°РЅРµРЅР° РІ " << saveFile << "\n";
     }
     catch (const std::exception& e) {
-        std::cerr << "Ошибка сохранения игры: " << e.what() << "\n";
+        std::cerr << "РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РёРіСЂС‹: " << e.what() << "\n";
     }
 }
 
 void Game::update() {
-    /*std::cout << "Вы путешествуете по миру...\n";
+    /*std::cout << "Р’С‹ РїСѓС‚РµС€РµСЃС‚РІСѓРµС‚Рµ РїРѕ РјРёСЂСѓ...\n";
     if (!enemies.empty()) {
-        std::cout << "На вашем пути враг: " << enemies.back().getName() << "\n";
+        std::cout << "РќР° РІР°С€РµРј РїСѓС‚Рё РІСЂР°Рі: " << enemies.back().getName() << "\n";
         startBattle(enemies.back());
         enemies.pop_back();
     }
     else {
-        std::cout << "Все враги побеждены! Вы выиграли игру!\n";
+        std::cout << "Р’СЃРµ РІСЂР°РіРё РїРѕР±РµР¶РґРµРЅС‹! Р’С‹ РІС‹РёРіСЂР°Р»Рё РёРіСЂСѓ!\n";
         currentState = GameState::MainMenu;
     }*/
 }
 
 void Game::startBattle(Enemy& enemy) {
-    /*std::cout << "Началось сражение с " << enemy.getName() << "!\n";
+    /*std::cout << "РќР°С‡Р°Р»РѕСЃСЊ СЃСЂР°Р¶РµРЅРёРµ СЃ " << enemy.getName() << "!\n";
     currentBattle = std::make_unique<Battle>(*hero, enemy);
     currentState = GameState::InBattle;*/
 }
 
 void Game::exitGame() {
-    //std::cout << "Выход из игры...\n";
+    //std::cout << "Р’С‹С…РѕРґ РёР· РёРіСЂС‹...\n";
     currentState = GameState::Exit;
 }

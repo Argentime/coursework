@@ -1,22 +1,21 @@
-#include "header/Battle.h"
-#include <iostream>
+п»ї#include "header/functions.h"
 
 Battle::Battle(Hero& h, Enemy& e) : hero(h), enemy(e), battleFinished(false) {}
 
 void Battle::processBattle() {
     //while (hero.getHealth() > 0 && enemy.getHealth() > 0) {
-    //    // Атака героя
+    //    // РђС‚Р°РєР° РіРµСЂРѕСЏ
     //    hero.attack(enemy);
     //    if (enemy.getHealth() <= 0) {
-    //        std::cout << "Вы победили врага!\n";
+    //        std::cout << "Р’С‹ РїРѕР±РµРґРёР»Рё РІСЂР°РіР°!\n";
     //        battleFinished = true;
     //        return;
     //    }
 
-    //    // Атака врага
+    //    // РђС‚Р°РєР° РІСЂР°РіР°
     //    enemy.attack(hero);
     //    if (hero.getHealth() <= 0) {
-    //        std::cout << "Вы проиграли битву!\n";
+    //        std::cout << "Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё Р±РёС‚РІСѓ!\n";
     //        battleFinished = true;
     //        return;
     //    }

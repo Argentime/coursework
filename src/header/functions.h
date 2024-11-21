@@ -29,6 +29,9 @@ Element selectElement();
 #include "SpellBook.h"
 #include "Character.h"
 #include "Hero.h"
+#include "Enemy.h"
+#include "Battle.h"
+#include "Game.h"
 
 
 using nlohmann::json;

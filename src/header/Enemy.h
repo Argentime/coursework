@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "functions.h"
 
 class Enemy: public Character
@@ -17,6 +17,8 @@ public:
 	const SpellBook& getSpellBook() const;
 	SpellBook& getSpellBook();
 	int getMana(Element element) const;
+
+	Enemy& operator=(const Enemy* other);
 
 };
 
