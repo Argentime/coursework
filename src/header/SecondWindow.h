@@ -19,6 +19,7 @@
 #include "functions.h"
 
 class MainWindow;
+class Game;
 
 class SecondWindow : public QMainWindow
 {
@@ -38,16 +39,20 @@ public:
 	void defaultLoad();
 	void userLoad();
 
+	int activeButton;
+
+	QString heroStatus();
+
 private:
 	
 	QPixmap originalPixmap;
 	MainWindow* mainMenu;
 	Hero* hero;
-	int activeButton;
+	Game* game;
 	bool isBookPickUp = false;
 	bool spellChoose = false;
 	
-	QString heroStatus();
+
 	void connectSlots();
 	void applyRoundedMask(QLabel* label, const QPixmap& originalPixmap);
 

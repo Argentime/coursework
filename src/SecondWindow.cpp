@@ -10,6 +10,7 @@ SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
 	: QMainWindow(parent), mainMenu(menu)
 {
     hero = new Hero("", 0, 0, 0);
+    game = new Game(this);
     ui.setupUi(this);
 	connectSlots();
     Qt::Window;
@@ -111,6 +112,8 @@ void SecondWindow::on_menuButton_clicked(){
 }
 void SecondWindow::startGame(){
 
+    game->startNewGame();
+    game->start();
     printMenu(1, this->ui.label);
     makeAllButtonsInactive();
     ui.pushButton->setText("Осмотреться");

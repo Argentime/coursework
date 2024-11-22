@@ -6,6 +6,8 @@
 #include <qlabel.h>
 #include <qpushbutton.h>
 
+class Hero;
+
 enum class Element {
     Fire,   
     Earth,  

@@ -2,6 +2,8 @@
 
 #include <QDialog>
 #include "ui_SaveWindow.h"
+#include "SaveSlot.h"
+
 
 class SaveWindow : public QDialog
 {
@@ -10,8 +12,11 @@ class SaveWindow : public QDialog
 public:
 	SaveWindow(QWidget *parent = nullptr);
 	~SaveWindow();
-	Ui::SaveWindowClass ui;
+
 
 private:
-	
+	Ui::SaveWindowClass ui;
+	SaveSlot** sv=nullptr;
+
+	int saveCount;
 };

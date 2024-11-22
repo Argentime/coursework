@@ -1,18 +1,24 @@
 ﻿#pragma once
 #include "functions.h"
+#include "SecondWindow.h"
+
+class SecondWindow;
 
 class Game
 {
 private:
+    SecondWindow* gameWindow;
     std::unique_ptr<Hero> hero;           // Главный герой
     Enemy *enemies;           // Список врагов
     int enemyCount;
     Battle *currentBattle; // Текущее сражение
     enum class GameState { MainMenu, InGame, InBattle, Settings, Exit };
     GameState currentState;
+    bool isBookPickUp = false;
+    bool spellChoose = false;
 
 public:
-    Game();
+    Game(SecondWindow* window);
 
     void start();                          // Запустить игру
     void mainMenu();                       // Главное меню

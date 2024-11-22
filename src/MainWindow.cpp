@@ -34,22 +34,8 @@ void MainWindow::on_pushButton_clicked()
 }
 
 void MainWindow::on_pushButton_4_clicked() {
-    QWidget* container = new QWidget;
-    QVBoxLayout* layout = new QVBoxLayout(container);
+    
     sWindow = new SaveWindow(this);
-    SaveSlot *sv = new SaveSlot();
-    layout->addWidget(sv);
-    SaveSlot* sv1 = new SaveSlot();
-    layout->addWidget(sv1);
-    SaveSlot* sv2 = new SaveSlot();
-    layout->addWidget(sv2);
-    SaveSlot* sv3 = new SaveSlot();
-    layout->addWidget(sv3);
-    SaveSlot* sv4 = new SaveSlot();
-    layout->addWidget(sv4);
-    SaveSlot* sv5 = new SaveSlot();
-    layout->addWidget(sv5);
-    sWindow->ui.scrollArea->setWidget(container);
     sWindow->show();
 }
 
