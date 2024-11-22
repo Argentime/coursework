@@ -12,11 +12,11 @@ public:
 	SaveSlot(QWidget *parent = nullptr);
 	~SaveSlot();
 	bool isButtonActive=false;
+	QPushButton* floatingButton;
 	
 
 private:
 	Ui::SaveSlotClass ui;
-	QPushButton* floatingButton;
 	void on_pushButton_clicked();
 	void resizeEvent(QResizeEvent* event) override;
 

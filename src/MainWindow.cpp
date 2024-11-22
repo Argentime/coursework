@@ -30,6 +30,7 @@ void MainWindow::on_pushButton_clicked()
     
     if (reply == QMessageBox::Yes) {
         QApplication::quit();
+        qDebug() << "Выход из игры";
     }
 }
 

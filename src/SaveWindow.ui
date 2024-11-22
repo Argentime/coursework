@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Сохранить</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
@@ -41,7 +41,13 @@ border: 6px solid qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.582, fx:0
 padding: 0; </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>/todo вставить подходящюю картинку</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
@@ -54,7 +60,7 @@ padding: 0; </string>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Загрузить</string>
    </property>
   </widget>
   <widget class="QScrollArea" name="scrollArea">
@@ -90,7 +96,7 @@ padding: 0; </string>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Удалить</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
@@ -103,7 +109,7 @@ padding: 0; </string>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Назад</string>
    </property>
   </widget>
   <widget class="QWidget" name="widget" native="true">
@@ -115,6 +121,17 @@ padding: 0; </string>
      <height>50</height>
     </rect>
    </property>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>321</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
