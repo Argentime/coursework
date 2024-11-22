@@ -121,7 +121,7 @@ void SecondWindow::defaultLoad() {
 }
 
 void SecondWindow::userLoad() {
-    loadHeroFromJson(*hero, "resources/wsSave.json");
+    loadHeroFromJson(*hero, "resources/Save.json");
     startGame();
 }
 
