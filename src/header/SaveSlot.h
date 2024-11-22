@@ -10,9 +10,12 @@ class SaveSlot : public QWidget
 
 public:
 	SaveSlot(QWidget *parent = nullptr);
+	SaveSlot(const SaveSlot& other);
 	~SaveSlot();
 	bool isButtonActive=false;
 	QPushButton* floatingButton;
+	void setUi(Ui::SaveSlotClass ui);
+	SaveSlot& operator=(const SaveSlot& other);
 	
 
 private:

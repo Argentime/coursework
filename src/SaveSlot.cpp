@@ -22,6 +22,22 @@ SaveSlot::SaveSlot(QWidget *parent)
 	);
 	connect(floatingButton, &QPushButton::clicked, this, &SaveSlot::on_pushButton_clicked);
 }
+SaveSlot::SaveSlot(const SaveSlot& other)
+	{
+	floatingButton = new QPushButton(other.floatingButton);
+	setUi(other.ui);
+}
+void SaveSlot::setUi(Ui::SaveSlotClass ui) {
+	this->ui = ui;
+}
+
+SaveSlot& SaveSlot::operator=(const SaveSlot& other) {
+	if (this != &other) {
+		floatingButton = new QPushButton(other.floatingButton);
+		setUi(other.ui);
+	}
+	return *this;
+}
 
 void SaveSlot::on_pushButton_clicked() {
 	isButtonActive = true;
