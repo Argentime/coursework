@@ -57,6 +57,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Container.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="31Lw24a.vcxproj">
@@ -89,6 +92,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="header\Enemy.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Container.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

@@ -14,7 +14,8 @@ SaveWindow::SaveWindow(QWidget *parent)
     sv = new SaveSlot * [saveSlotCount[0]];
     for (int i = 0; i < saveSlotCount[0]; i++) {
         sv[i] = new SaveSlot();
-        layout->addWidget(sv[i]);
+        saveSlots.addSaveSlot(sv[i]);
+        layout->addWidget(saveSlots.getSaveSlot(i));
     }
     ui.scrollArea->setWidget(container);
     connectSlots();
@@ -24,29 +25,38 @@ SaveWindow::~SaveWindow()
 {}
 
 void SaveWindow::connectSlots() {
-    for (int i = 0; i < saveSlotCount[0]; i++) {
-        connect(sv[i]->floatingButton, &QPushButton::clicked, this, [this,i] { on_slot_clicked(i); });
+    for (SaveSlotContainer::iterator it = saveSlots.begin(); it != saveSlots.end(); ++it) {
+        SaveSlot* slot = *it;
+        connect(slot->floatingButton, &QPushButton::clicked, this, [this, slot] { on_slot_clicked(slot); });
     }
     connect(ui.pushButton, &QPushButton::clicked, this, &SaveWindow::on_pushButton_clicked);
     connect(ui.pushButton_2, &QPushButton::clicked, this, &SaveWindow::on_pushButton_2_clicked);
     connect(ui.pushButton_3, &QPushButton::clicked, this, &SaveWindow::on_pushButton_3_clicked);
 }
-void SaveWindow::on_slot_clicked(int numb) {
-    sv[numb]->floatingButton->setDisabled(true);
-    sv[numb]->floatingButton->lower();
+void SaveWindow::on_slot_clicked(SaveSlot* slot) {
+    slot->floatingButton->setDisabled(true);
+    slot->floatingButton->lower();
     if (saveSlotCount[1] != -1) {
-        sv[saveSlotCount[1]] = tsv;
-        sv[saveSlotCount[1]]->floatingButton->raise();
-        sv[saveSlotCount[1]]->floatingButton->setEnabled(true);
-        sv[saveSlotCount[1]]->floatingButton->setDisabled(false);
+        SaveSlot* oldSlot = saveSlots.getSaveSlot(saveSlotCount[1]);
+        oldSlot->floatingButton->raise();
+        oldSlot->floatingButton->setEnabled(true);
+        oldSlot->floatingButton->setDisabled(false);
         delete tsv;
+        tsv = nullptr;
     }
-    
-    tsv = new SaveSlot(sv[numb]);
+
+    tsv = new SaveSlot(slot);
     //tsv->floatingButton->lower();
     ui.verticalLayoutWidget->layout()->addWidget(tsv);
-    qDebug() << "slot " << numb << " clicked";
-    saveSlotCount[1] = numb;
+    qDebug() << "slot clicked";
+    int index = 0;
+    for (SaveSlotContainer::iterator it = saveSlots.begin(); it != saveSlots.end(); ++it) {
+        if (*it == slot) {
+            index = it.index;
+            break;
+        }
+    }
+    saveSlotCount[1] = index;
 }
 void SaveWindow::on_pushButton_clicked() {
 
