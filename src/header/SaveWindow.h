@@ -3,7 +3,6 @@
 #include <QDialog>
 #include "ui_SaveWindow.h"
 #include "SaveSlot.h"
-#include "Container.h"
 
 
 class SaveWindow : public QDialog
@@ -17,11 +16,10 @@ public:
 
 private:
 	Ui::SaveWindowClass ui;
-	SaveSlotContainer saveSlots;
 	SaveSlot** sv=nullptr;
 	SaveSlot* tsv = nullptr;
 	void connectSlots();
-	void on_slot_clicked(SaveSlot* slot);
+	void on_slot_clicked(int numb);
 	void on_pushButton_clicked();
 	void on_pushButton_2_clicked();
 	void on_pushButton_3_clicked();
