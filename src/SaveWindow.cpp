@@ -44,7 +44,7 @@ void SaveWindow::on_slot_clicked(int numb) {
     
     tsv = new SaveSlot(sv[numb]);
     //tsv->floatingButton->lower();
-    ui.verticalLayoutWidget->layout()->addWidget(tsv);
+    ui.verticalLayoutWidget->layout()->addWidget(tsv);//a
     qDebug() << "slot " << numb << " clicked";
     saveSlotCount[1] = numb;
 }
