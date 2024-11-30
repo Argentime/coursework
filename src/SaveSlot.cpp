@@ -16,16 +16,23 @@ SaveSlot::SaveSlot(QWidget *parent)
 		"QPushButton:hover{"
 		"background-color:rgba(128,128,128,50)"
 		"}"
-		"QPushButton:pressed{"
+		"QPushButton:disabled {"
 		"background-color:rgba(128,128,128,150)"
 		"}"
 	);
 	connect(floatingButton, &QPushButton::clicked, this, &SaveSlot::on_pushButton_clicked);
 }
-SaveSlot::SaveSlot(const SaveSlot& other)
+SaveSlot::SaveSlot(const SaveSlot& other):QWidget(nullptr)
 	{
-	floatingButton = new QPushButton(other.floatingButton);
-	setUi(other.ui);
+	ui.setupUi(this);
+	floatingButton = new QPushButton("", this);
+	floatingButton->move(0, 0);
+	floatingButton->raise();
+	floatingButton->setStyleSheet("");
+	ui.label->setText(other.ui.label->text());
+	ui.label_2->setText(other.ui.label_2->text());
+	ui.label_3->setText(other.ui.label_3->text());
+	ui.lineEdit->setText(other.ui.lineEdit->text());
 }
 void SaveSlot::setUi(Ui::SaveSlotClass ui) {
 	this->ui = ui;
@@ -33,8 +40,10 @@ void SaveSlot::setUi(Ui::SaveSlotClass ui) {
 
 SaveSlot& SaveSlot::operator=(const SaveSlot& other) {
 	if (this != &other) {
-		floatingButton = new QPushButton(other.floatingButton);
-		setUi(other.ui);
+		ui.label->setText(other.ui.label->text());
+		ui.label_2->setText(other.ui.label_2->text());
+		ui.label_3->setText(other.ui.label_3->text());
+		ui.lineEdit->setText(other.ui.lineEdit->text());
 	}
 	return *this;
 }
@@ -47,3 +56,6 @@ void SaveSlot::resizeEvent(QResizeEvent* event) {
 }
 SaveSlot::~SaveSlot()
 {}
+void SaveSlot::setActive(bool isActive) {
+	ui.lineEdit->setReadOnly(!isActive);
+}

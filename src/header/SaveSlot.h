@@ -16,6 +16,7 @@ public:
 	QPushButton* floatingButton;
 	void setUi(Ui::SaveSlotClass ui);
 	SaveSlot& operator=(const SaveSlot& other);
+	void setActive(bool isActive);
 	
 
 private:

@@ -13,6 +13,27 @@
   <property name="windowTitle">
    <string>SaveWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#SaveWindowClass {
+	background-image: url(:/rec/resources/background_images/2BG.png);
+background-color: rgb(0, 79, 117);
+border: 5px solid #00ccff;
+border - radius: 15px;
+width: 500px;
+padding: 20px;
+  color: #fff; /* Light text */
+font-family: sans-serif;
+}</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
@@ -21,6 +42,43 @@
      <width>101</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>sans-serif</family>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  background-color: rgb(0, 152, 176);
+	color: rgb(0, 40, 64);
+  border: none;
+  padding: 1px 10px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+QPushButton:disabled { /* Выключенная кнопка */
+  background-color: #ccc; /* Светло-серый цвет для выключенного состояния */
+  color: #888; /* Более темный текст */
+  cursor: default; /* Убираем курсор руки */
+}
+
+QPushButton:pressed { /* Нажатая кнопка */
+  background-color: #3e8e41; /* Более темный оттенок зеленого */
+}
+
+QPushButton:hover { /* Наведение курсора */
+  background-color: #45a049; /* Немного светлее, чем в обычном состоянии */
+}
+</string>
    </property>
    <property name="text">
     <string>Сохранить</string>
@@ -59,6 +117,44 @@ padding: 0; </string>
      <height>21</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>sans-serif</family>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  background-color: rgb(0, 152, 176);
+	color: rgb(0, 40, 64);
+  border: none;
+  padding: 1px 10px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+QPushButton:disabled { /* Выключенная кнопка */
+  background-color: #ccc; /* Светло-серый цвет для выключенного состояния */
+  color: #888; /* Более темный текст */
+  cursor: default; /* Убираем курсор руки */
+}
+
+QPushButton:pressed { /* Нажатая кнопка */
+  background-color: #3e8e41; /* Более темный оттенок зеленого */
+}
+
+QPushButton:hover { /* Наведение курсора */
+  background-color: #45a049; /* Немного светлее, чем в обычном состоянии */
+}
+
+</string>
+   </property>
    <property name="text">
     <string>Загрузить</string>
    </property>
@@ -68,9 +164,20 @@ padding: 0; </string>
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>341</width>
+     <width>351</width>
      <height>301</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QScrollArea {
+background-image:url(:/rec/resources/background_images/2Field.png);
+background-color: rgb(207, 207, 207);
+  border: 1px solid #444;
+  border-radius: 5px;
+}</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
    </property>
    <property name="widgetResizable">
     <bool>true</bool>
@@ -80,10 +187,48 @@ padding: 0; </string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>339</width>
+      <width>349</width>
       <height>299</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#scrollAreaWidgetContents {
+background-image:url(:/rec/resources/background_images/2Field.png);
+background-color: rgb(207, 207, 207);
+  border: 1px solid #444;
+  border-radius: 5px;
+}</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color:transparent;
+border:none;
+}
+QPushButton:hover{
+background-color:rgba(128,128,128,50)
+}
+QPushButton:disabled {
+background-color:rgba(128,128,128,150)
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
@@ -94,6 +239,44 @@ padding: 0; </string>
      <width>101</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>sans-serif</family>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  background-color: rgb(0, 152, 176);
+	color: rgb(0, 40, 64);
+  border: none;
+  padding: 1px 10px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+QPushButton:disabled { /* Выключенная кнопка */
+  background-color: #ccc; /* Светло-серый цвет для выключенного состояния */
+  color: #888; /* Более темный текст */
+  cursor: default; /* Убираем курсор руки */
+}
+
+QPushButton:pressed { /* Нажатая кнопка */
+  background-color: #3e8e41; /* Более темный оттенок зеленого */
+}
+
+QPushButton:hover { /* Наведение курсора */
+  background-color: #45a049; /* Немного светлее, чем в обычном состоянии */
+}
+
+</string>
    </property>
    <property name="text">
     <string>Удалить</string>
@@ -108,6 +291,44 @@ padding: 0; </string>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>sans-serif</family>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  background-color: rgb(0, 152, 176);
+	color: rgb(0, 40, 64);
+  border: none;
+  padding: 1px 5px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+QPushButton:disabled { /* Выключенная кнопка */
+  background-color: #ccc; /* Светло-серый цвет для выключенного состояния */
+  color: #888; /* Более темный текст */
+  cursor: default; /* Убираем курсор руки */
+}
+
+QPushButton:pressed { /* Нажатая кнопка */
+  background-color: #3e8e41; /* Более темный оттенок зеленого */
+}
+
+QPushButton:hover { /* Наведение курсора */
+  background-color: #45a049; /* Немного светлее, чем в обычном состоянии */
+}
+
+</string>
+   </property>
    <property name="text">
     <string>Назад</string>
    </property>
@@ -120,6 +341,14 @@ padding: 0; </string>
      <width>320</width>
      <height>50</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#widget {
+background-image:url(:/rec/resources/background_images/2Field.png);
+background-color: rgb(207, 207, 207);
+  border: 1px solid #444;
+  border-radius: 5px;
+}</string>
    </property>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
@@ -135,6 +364,8 @@ padding: 0; </string>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

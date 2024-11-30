@@ -1,7 +1,7 @@
 {
     "h_defence": 1.0,
-    "h_focus": 100,
-    "h_hp": 100,
+    "h_focus": 96,
+    "h_hp": 97,
     "h_mana": [
         100,
         100,
@@ -18,7 +18,7 @@
             "element1": 3,
             "element2": 4,
             "name": "Вампиризм",
-            "uses": 0
+            "uses": 1
         },
         {
             "damage": 5,
