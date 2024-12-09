@@ -73,7 +73,7 @@ private:
 	void handleButton9();
 	void handleButton10();
 	void handleButton11();
-	void processActiveButton();
+	void processQuestButton(int numb);
 	void makeAllButtonsInactive();
 };
 

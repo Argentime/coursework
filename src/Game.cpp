@@ -12,16 +12,10 @@ void Game::start() {
         mainMenu();
         break;
     case GameState::InGame:
-        update();
+        storyManager.startNextStage();
+        storyManager.completeCurrentStage();
         break;
     case GameState::InBattle:
-        if (currentBattle) {
-            currentBattle->processBattle();
-            if (currentBattle->isBattleFinished()) {
-                //currentBattle.reset(); // Завершить сражение
-                currentState = GameState::InGame;
-            }
-        }
         break;
     case GameState::Settings:
         currentState = GameState::MainMenu;
@@ -42,6 +36,32 @@ void Game::startNewGame() {
         enemies[1] = new Enemy("Босс", 200, 50);
     currentState = GameState::InGame;
     std::cout << "New game is started!\n";
+    eventSystem.registerEvent("FindArtifact", []() {
+        std::cout << "You found the artifact! Moving to the next stage.\n";
+    });
+
+    eventSystem.registerEvent("BattleStart", [&]() {
+        startBattle(enemies[0]);
+    });
+
+    // Adding story stages
+    storyManager.addStage(std::make_shared<StoryStage>(
+        "Chapter 1: Awakening",
+        []() { std::cout << "You wake up in a strange room...\n"; },
+        []() { std::cout << "You leave the room.\n"; }
+    ));
+
+    storyManager.addStage(std::make_shared<StoryStage>(
+        "Chapter 2: Find the artifact",
+        [&]() { eventSystem.triggerEvent("FindArtifact"); },
+        []() { std::cout << "The artifact has been found.\n"; }
+    ));
+
+    storyManager.addStage(std::make_shared<StoryStage>(
+        "Chapter 3: Goblin battle",
+        [&]() { eventSystem.triggerEvent("BattleStart"); },
+        []() { std::cout << "The goblin has been defeated.\n"; }
+    ));
 }
 
 void Game::loadGame(const std::string& saveFile) {
@@ -71,7 +91,14 @@ void Game::update() {
 }
 
 void Game::startBattle(Enemy& enemy) {
-    
+    std::cout << "Начинается битва с " << enemy.getName() << "!\n";
+    Battle battle(*hero, enemy);
+    battle.processBattle();
+
+    if (hero->getHealth().health <= 0) {
+        std::cout << "Вы проиграли битву. Конец игры.\n";
+        exit(0);
+    }
 }
 
 void Game::exitGame() {
