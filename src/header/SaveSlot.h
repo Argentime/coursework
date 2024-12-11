@@ -14,6 +14,7 @@ public:
 	~SaveSlot();
 	bool isButtonActive=false;
 	QPushButton* floatingButton;
+	QPixmap originalPixmap;
 	void setUi(Ui::SaveSlotClass ui);
 	SaveSlot& operator=(const SaveSlot& other);
 	void setActive(bool isActive);

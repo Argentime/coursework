@@ -46,6 +46,8 @@ void SaveWindow::on_slot_clicked(int numb) {
     ui.pushButton_5->setEnabled(true);
     ui.pushButton_3->setEnabled(true);
     ui.pushButton->setEnabled(true);
+    ui.label->setPixmap(sv[numb].get()->originalPixmap);
+    
     if (!ui.verticalLayoutWidget->layout()->isEmpty()) {
         ui.verticalLayoutWidget->layout()->removeWidget(tsv.get());
         tsv->hide();
@@ -55,7 +57,6 @@ void SaveWindow::on_slot_clicked(int numb) {
             oldSlot->floatingButton->raise();
             oldSlot->floatingButton->setEnabled(true);
             oldSlot->setActive(false);
-
             tsv.reset();
         }
     }
@@ -103,6 +104,7 @@ void SaveWindow::on_pushButton_4_clicked() {
 void SaveWindow::on_pushButton_5_clicked() {
     if (sv.size() > saveSlotCount[0]) sv.pop_back();
     sv.emplace_back(std::make_unique<SaveSlot>());
+    ui.label->setPixmap(QPixmap());
     on_slot_clicked(saveSlotCount[0]);
     ui.scrollAreaWidgetContents->layout()->addWidget(sv[saveSlotCount[0]].get());
     sv[saveSlotCount[0]].get()->hide();

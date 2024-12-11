@@ -36,17 +36,9 @@ int SecondWindow::getActiveButton() {
 }
 
 void SecondWindow::connectSlots() {
-    connect(ui.pushButton, &QPushButton::clicked, this, &SecondWindow::handleButton1);
-    connect(ui.pushButton_6, &QPushButton::clicked, this, &SecondWindow::handleButton2);
-    connect(ui.pushButton_5, &QPushButton::clicked, this, &SecondWindow::handleButton3);
-    connect(ui.pushButton_4, &QPushButton::clicked, this, &SecondWindow::handleButton4);
-    connect(ui.pushButton_3, &QPushButton::clicked, this, &SecondWindow::handleButton5);
-    connect(ui.pushButton_2, &QPushButton::clicked, this, &SecondWindow::handleButton6);
-    connect(ui.pushButton_9, &QPushButton::clicked, this, &SecondWindow::handleButton7);
-    connect(ui.pushButton_10, &QPushButton::clicked, this, &SecondWindow::handleButton8);
-    connect(ui.pushButton_11, &QPushButton::clicked, this, &SecondWindow::handleButton9);
-    connect(ui.pushButton_12, &QPushButton::clicked, this, &SecondWindow::handleButton10);
-    connect(ui.pushButton_13, &QPushButton::clicked, this, &SecondWindow::handleButton11);
+    for (int i = 1; i <= 11; i++) {
+        connect(ui.pushButton, &QPushButton::clicked, this, [this, i]() {processQuestButton(i); });
+    }
     connect(ui.pushButton_7, &QPushButton::clicked, this, &SecondWindow::on_menuButton_clicked);
 }
 
@@ -149,144 +141,12 @@ QString SecondWindow::heroStatus() {
     return status;
 }
 
-void SecondWindow::processActiveButton() {
+void SecondWindow::processQuestButton() {
     
-    QString str;
-    QString spellName;
-    QString element1;
-    QString element2;
+    
 
     ui.label_3->setText(heroStatus());
-
-    if (spellChoose) {
-        hero->attack(*hero, *hero->getSpellBook().getSpells()[activeButton - 1]);
-        hero->getSpellBook().getSpells()[activeButton - 1]->useSpell();
-        spellChoose = false;
-        makeAllButtonsInactive();
-        ui.pushButton->setText("Отойти от стола");
-        activeButtonCSS(ui.pushButton);
-    }
-    else {
-        switch (activeButton) {
-        case 1: {
-            printMenu(2, this->ui.label);
-            makeAllButtonsInactive();
-            if (!isBookPickUp) {
-                ui.pushButton_6->setText("Подобрать книгу");
-                activeButtonCSS(ui.pushButton_6);
-            }
-            ui.pushButton_5->setText("Подойти к зеркалу");
-            activeButtonCSS(ui.pushButton_5);
-            break;
-        }
-        case 2: {
-            printMenu(3, this->ui.label);
-            makeAllButtonsInactive();
-            ui.pushButton->setText("Отойти от стола");
-            activeButtonCSS(ui.pushButton);
-            isBookPickUp = true;
-            break;
-        }
-        case 3: {
-            if (isBookPickUp) {
-                printMenu(5, this->ui.label);
-                makeAllButtonsInactive();
-                ui.pushButton_4->setText("Открыть книгу");
-                activeButtonCSS(ui.pushButton_4);
-            }
-            else {
-                printMenu(4, this->ui.label);
-            }
-            break;
-        }
-        case 4: {
-            makeAllButtonsInactive();
-            str = "<body style='line-height: 1.2;'> Вы открываете книгу заклинаний и видите перед собой следующие заклинания :";
-            for (int i = 0; i < hero->getSpellBook().getSpellCount(); i++)
-            {
-                spellName = QString::fromStdString(hero->getSpellBook().getSpells()[i]->name);
-                element1 = QString::fromStdString(elementToString(hero->getSpellBook().getSpells()[i]->element1));
-                element2 = QString::fromStdString(elementToString(hero->getSpellBook().getSpells()[i]->element2));
-                int damage = hero->getSpellBook().getSpells()[i]->damage;
-
-                str += "<li style='line-height: 0.7;'>"
-                    "<strong> </strong> <span style='color: #3498db;'>" + spellName + "</span> "
-                    "<strong> : </strong>" + element1 + " "
-                    "<strong> </strong>" + element2 + " "
-                    "<strong>Урон: </strong>" + QString::number(damage) + " ед.<br>"
-                    "</li>";
-                switch (i) {
-                    case 0: {
-						ui.pushButton->setText("Использовать "+spellName);
-                    break;
-					}
-					case 1: {
-                        ui.pushButton_6->setText("Использовать " + spellName);
-                        break;
-					}
-                    case 2: {
-                        ui.pushButton_5->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 3: {
-                        ui.pushButton_4->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 4: {
-                        ui.pushButton_3->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 5: {
-                        ui.pushButton_2->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 6: {
-                        ui.pushButton_9->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 7: {
-                        ui.pushButton_10->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 8: {
-                        ui.pushButton_11->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 9: {
-                        ui.pushButton_12->setText("Использовать " + spellName);
-                        break;
-                    }
-                    case 10: {
-                        ui.pushButton_13->setText("Использовать " + spellName);
-                        break;
-                    }
-                }
-            }
-            ui.label->setText(str);
-            activeButtonCSS(ui.pushButton);
-            activeButtonCSS(ui.pushButton_2);
-            activeButtonCSS(ui.pushButton_3);
-            activeButtonCSS(ui.pushButton_4);
-            activeButtonCSS(ui.pushButton_5);
-            activeButtonCSS(ui.pushButton_6);
-            activeButtonCSS(ui.pushButton_9);
-            activeButtonCSS(ui.pushButton_10);
-            activeButtonCSS(ui.pushButton_11);
-            activeButtonCSS(ui.pushButton_12);
-            activeButtonCSS(ui.pushButton_13);
-            spellChoose = true;
-            break;
-        }
-        case 0: {
-
-            cout << "Выход из программы" << endl;
-            return;
-        }
-        default: {
-            cout << "Выберите число от 0 до 4.\n";
-        }
-        }
-    }
+    
 }
 
 void  SecondWindow::makeAllButtonsInactive() {

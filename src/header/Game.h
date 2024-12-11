@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "functions.h"
 #include "SecondWindow.h"
+#include "StoryManager.h"
+#include "EventSystem.h"
 
 class SecondWindow;
 
@@ -16,6 +18,8 @@ private:
     GameState currentState;
     bool isBookPickUp = false;
     bool spellChoose = false;
+    StoryManager storyManager;
+    EventSystem eventSystem;
 
 public:
     Game(SecondWindow* window);

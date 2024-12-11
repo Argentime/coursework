@@ -1,7 +1,7 @@
 {
     "h_defence": 1.0,
-    "h_focus": 25,
-    "h_hp": 70,
+    "h_focus": 92,
+    "h_hp": 95,
     "h_mana": [
         100,
         100,
@@ -25,7 +25,7 @@
             "element1": 2,
             "element2": 1,
             "name": "Гейзер",
-            "uses": 0
+            "uses": 1
         },
         {
             "damage": 2,
@@ -42,11 +42,11 @@
             "uses": 0
         },
         {
-            "damage": 16,
+            "damage": 15,
             "element1": 1,
             "element2": 4,
             "name": "Концентрация",
-            "uses": 3
+            "uses": 0
         },
         {
             "damage": 5,

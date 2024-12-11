@@ -20,6 +20,7 @@ SaveSlot::SaveSlot(QWidget *parent)
 		"background-color:rgba(128,128,128,150)"
 		"}"
 	);
+	originalPixmap = QPixmap(":/rec/resources/background_images/Racer.png");
 	connect(floatingButton, &QPushButton::clicked, this, &SaveSlot::on_pushButton_clicked);
 }
 SaveSlot::SaveSlot(const SaveSlot& other):QWidget(nullptr)
