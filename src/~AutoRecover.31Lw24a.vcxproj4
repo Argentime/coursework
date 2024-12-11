@@ -187,7 +187,6 @@
     <ClInclude Include="header\Hero.h" />
     <QtMoc Include="header\SaveSlot.h" />
     <QtMoc Include="header\SaveWindow.h" />
-    <ClInclude Include="header\Warrior.h" />
     <QtMoc Include="header\SecondWindow.h" />
     <QtMoc Include="header\MainWindow.h" />
     <ClInclude Include="header\Spell.h" />

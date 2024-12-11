@@ -179,15 +179,14 @@
     <None Include="resources\DefaultSave.json" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="header\Battle.h" />
     <ClInclude Include="header\character.h" />
+    <ClInclude Include="header\Enemy.h" />
     <ClInclude Include="header\functions.h" />
     <ClInclude Include="header\Game.h" />
     <ClInclude Include="header\Hero.h" />
     <QtMoc Include="header\SaveSlot.h" />
     <QtMoc Include="header\SaveWindow.h" />
-    <ClInclude Include="header\Warrior.h" />
     <QtMoc Include="header\SecondWindow.h" />
     <QtMoc Include="header\MainWindow.h" />
     <ClInclude Include="header\Spell.h" />
