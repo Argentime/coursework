@@ -171,11 +171,12 @@
     <ClCompile Include="Spell.cpp" />
     <ClCompile Include="SpellBook.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="StoryStage.cpp" />
+    <ClCompile Include="StoryManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\sonar-project.properties" />
     <None Include="31Lw24a.vcxproj" />
-    <None Include="ClassDiagram.cd" />
     <None Include="resources\DefaultSave.json" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +186,8 @@
     <ClInclude Include="header\functions.h" />
     <ClInclude Include="header\Game.h" />
     <ClInclude Include="header\Hero.h" />
+    <ClInclude Include="header\StoryStage.h" />
+    <ClInclude Include="header\StoryManager.h" />
     <QtMoc Include="header\SaveSlot.h" />
     <QtMoc Include="header\SaveWindow.h" />
     <QtMoc Include="header\SecondWindow.h" />
@@ -201,6 +204,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Текст.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />
