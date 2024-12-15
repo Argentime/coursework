@@ -177,7 +177,6 @@
   <ItemGroup>
     <None Include="..\sonar-project.properties" />
     <None Include="31Lw24a.vcxproj" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="resources\DefaultSave.json" />
   </ItemGroup>
   <ItemGroup>
