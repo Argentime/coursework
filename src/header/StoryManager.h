@@ -1,13 +1,14 @@
 #pragma once
+
 #include <vector>
 #include <memory>
-#include <functional>
 #include "StoryStage.h"
+
 
 class StoryManager {
 private:
-    std::vector<std::shared_ptr<StoryStage>> stages; // Список этапов сюжета
-    int currentStageIndex = 0;
+    std::vector<std::shared_ptr<StoryStage>> stages; 
+    int currentStageIndex;  
 
 public:
     StoryManager();
@@ -16,5 +17,10 @@ public:
     void startNextStage();
     void completeCurrentStage();
     bool isStoryFinished() const;
+
     std::shared_ptr<StoryStage> getCurrentStage() const;
+    void restartStage(const std::string& stageName);
+
+    void startStage(int index);      
+    std::shared_ptr<StoryStage> getStage(int index) const; 
 };

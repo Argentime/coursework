@@ -1,5 +1,13 @@
 ﻿#pragma once
+
 #include "functions.h"
+
+enum class SpellType {
+    Attack,
+    Defense,
+    Heal,
+	Focus
+};
 
 class Spell {
 public:
@@ -7,28 +15,18 @@ public:
     Element element1;
     Element element2;
     int damage;
-    int uses=0;
+    int uses = 0;
+    SpellType type;
 
-    Spell(std::string const& n, Element el1, Element el2, int dmg);
-
+    Spell(std::string const& n, Element el1, Element el2, int value, SpellType type);
     Spell(const Spell& other);
-
     Spell& operator=(const Spell& other);
 
-    ~Spell() = default;
 
-    friend std::ostream& operator<<(std::ostream& os, const Spell& spell) {
-
-        os << spell.name
-            << ": " << elementToString(spell.element1)
-            << " + " << elementToString(spell.element2)
-            << ", Урон: " << spell.damage << std::endl;
-        return os;
-    };
-
+    void applyDefenseBuff(Hero& hero);
+    void restore(Hero& hero, int amount, bool restoreFocus);
     void useSpell();
-
-private:
-    
     void evolve();
+
+    virtual ~Spell() = default;
 };

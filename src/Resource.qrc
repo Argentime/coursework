@@ -7,6 +7,14 @@
         <file>resources/background_images/2Field.png</file>
         <file>resources/background_images/2S4.png</file>
         <file>resources/background_images/2Bg1.png</file>
+        <file>resources/background_images/Menzols_04.png</file>
+        <file>resources/background_images/Moi_03.png</file>
+        <file>resources/background_images/Moi_18.png</file>
+        <file>resources/background_images/Park_03.png</file>
+        <file>resources/background_images/van_45_fix.png</file>
+        <file>resources/background_images/Borzukhan_01.png</file>
+        <file>resources/background_images/Moi_01.png</file>
+        <file>resources/background_images/Moi_05.png</file>
     </qresource>
     <qresource prefix="/prefix2">
         <file>resources/styles/style1.css</file>

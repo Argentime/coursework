@@ -1,0 +1,23 @@
+{
+    "slot_count": 3,
+    "slots": [
+        {
+            "money": 1000,
+            "name": "Тестовое сохранение",
+            "path": "saves/save_slots0.json",
+            "time": "12.15 22:29"
+        },
+        {
+            "money": 500,
+            "name": "Another",
+            "path": "saves/save_slots1.json",
+            "time": "12.15 22:30"
+        },
+        {
+            "money": 1000,
+            "name": "Пещера призрак",
+            "path": "saves/save_slots2.json",
+            "time": "12.15 22:12"
+        }
+    ]
+}

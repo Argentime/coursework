@@ -4,24 +4,24 @@
 StoryStage::StoryStage(const std::string& desc, std::function<void()> start, std::function<void()> complete)
     : description(desc), onStart(start), onComplete(complete) {}
 
+void StoryStage::addAction(const std::string& actionText, std::function<void()> action) {
+    actions.emplace_back(actionText, action);
+}
+
 void StoryStage::start() {
-    if (onStart) {
-        std::cout << "Начало этапа: " << description << "\n";
-        onStart();
-    }
+    if (onStart) onStart();
+}
+
+const std::vector<std::pair<std::string, std::function<void()>>>& StoryStage::getActions() const {
+    return actions;
 }
 
 void StoryStage::complete() {
-    if (onComplete) {
-        onComplete();
-    }
-    isCompleted = true;
+    if (onComplete) onComplete();
 }
 
-bool StoryStage::completed() const {
-    return isCompleted;
-}
 
 std::string StoryStage::getDescription() const {
     return description;
 }
+

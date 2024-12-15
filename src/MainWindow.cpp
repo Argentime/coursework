@@ -36,7 +36,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_4_clicked() {
     
-    sWindow = new SaveWindow(this);
+    sWindow = new SaveWindow(this,this, -1, "", "");
     sWindow->show();
 }
 
@@ -58,6 +58,6 @@ void MainWindow::openSecondWindow() {
 void MainWindow::on_pushButton_2_clicked()
 {
     openSecondWindow();
-    gWindow->defaultLoad();
+    gWindow->startGame("");
 }
 

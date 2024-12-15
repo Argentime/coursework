@@ -5,6 +5,7 @@
 #include <fstream>
 #include <qlabel.h>
 #include <qpushbutton.h>
+#include <QFile>
 
 class Hero;
 
@@ -13,7 +14,8 @@ enum class Element {
     Earth,  
     Water,  
     Air,    
-    Spirit  
+    Spirit,
+    None
 };
 
 struct HealthStats {
@@ -24,7 +26,6 @@ struct HealthStats {
 };
 
 std::string elementToString(Element el);
-Element selectElement();
 
 #include "../lib/nlohmann/json.hpp"
 #include "Spell.h"
@@ -38,21 +39,15 @@ Element selectElement();
 
 using nlohmann::json;
 
-template <typename SpellType> 
-json serializeSpell(const SpellType& spell);
 
-template <typename SpellType>
+json serializeSpell(const Spell& spell);
 Spell deserializeSpell(const json& j);
 
-void saveHeroToJson(const Hero& hero, const std::string& filename);
-
-void loadHeroFromJson(Hero& hero, const std::string& filename);
-
-void printMenu(int var, QLabel* label);
+void loadHeroSpellBookFromJson(const std::string& filename, SpellBook* spellBook);
 
 void activeButtonCSS(QPushButton* b);
 
 void inactiveButtonCSS(QPushButton* b);
 
-
+void loadHtmlToLabel(QLabel* label, const QString& filePath);
 

@@ -14,6 +14,7 @@
   "h_name": "Герой",
   "spells": [
     {
+      "type": 2,
       "damage": 3,
       "element1": 3,
       "element2": 4,
@@ -21,6 +22,7 @@
       "uses": 0
     },
     {
+      "type": 0,
       "damage": 5,
       "element1": 2,
       "element2": 1,
@@ -28,6 +30,7 @@
       "uses": 0
     },
     {
+      "type": 0,
       "damage": 2,
       "element1": 3,
       "element2": 2,
@@ -35,6 +38,7 @@
       "uses": 0
     },
     {
+      "type": 2,
       "damage": 7,
       "element1": 4,
       "element2": 2,
@@ -42,6 +46,7 @@
       "uses": 0
     },
     {
+      "type": 3,
       "damage": 15,
       "element1": 1,
       "element2": 4,
@@ -49,6 +54,7 @@
       "uses": 0
     },
     {
+      "type": 0,
       "damage": 5,
       "element1": 0,
       "element2": 1,
@@ -56,6 +62,7 @@
       "uses": 0
     },
     {
+      "type": 0,
       "damage": 8,
       "element1": 0,
       "element2": 4,
@@ -63,6 +70,7 @@
       "uses": 0
     },
     {
+      "type": 0,
       "damage": 5,
       "element1": 0,
       "element2": 3,
@@ -70,13 +78,7 @@
       "uses": 0
     },
     {
-      "damage": 10,
-      "element1": 0,
-      "element2": 2,
-      "name": "Рассеянность",
-      "uses": 0
-    },
-    {
+      "type": 1,
       "damage": 1,
       "element1": 3,
       "element2": 1,
@@ -84,6 +86,7 @@
       "uses": 0
     },
     {
+      "type": 0,
       "damage": 8,
       "element1": 4,
       "element2": 4,

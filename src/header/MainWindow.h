@@ -20,9 +20,11 @@ public:
 
 private:
     Ui::MainWindowClass ui;
+    friend class SecondWindow;
+    friend class SaveWindow;
     SecondWindow* gWindow;
     SaveWindow* sWindow;
-
+    
     void openSecondWindow();
     void connectSlots();
 };

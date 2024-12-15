@@ -1,0 +1,20 @@
+{
+    "currentStageName": "Пещера Призраков",
+    "gameState": 1,
+    "hero": {
+        "defense": 1.0,
+        "focus": 100,
+        "health": 100,
+        "mana": [
+            100,
+            100,
+            100,
+            100,
+            100
+        ],
+        "maxHealth": 100,
+        "money": 1000,
+        "name": "Игрок",
+        "spellBook": []
+    }
+}

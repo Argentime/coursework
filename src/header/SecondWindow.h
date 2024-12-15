@@ -1,9 +1,6 @@
 ﻿#pragma once
 
 #include <QtWidgets/QMainWindow>
-#include <QApplication>
-#include <QWidget>
-#include <QResizeEvent>
 #include <QMessageBox>
 #include <QDebug>
 #include <QApplication>
@@ -17,6 +14,7 @@
 #include <qbitmap.h>
 #include "ui_SecondWindow.h"
 #include "functions.h"
+#include "SaveWindow.h"
 
 class MainWindow;
 class Game;
@@ -29,29 +27,29 @@ public:
 
 	SecondWindow(MainWindow* menu, QWidget* parent);
 	~SecondWindow();
-	Ui::SecondWindowClass ui;
+	
 
 	void setImage(const QPixmap& pixmap);
 
-	void startGame();
-
-	int getActiveButton();
-	void defaultLoad();
-	void userLoad();
-
-	int activeButton;
+	void startGame(std::string path);
 
 	QString heroStatus();
+	
 
 private:
 	
+	SaveWindow *SW;
 	QPixmap originalPixmap;
 	MainWindow* mainMenu;
-	Hero* hero;
+	friend class Game;
+	friend class Battle;
+	friend class SaveWindow;
 	Game* game;
+	Ui::SecondWindowClass ui;
+	
 	bool isBookPickUp = false;
 	bool spellChoose = false;
-	
+	std::vector<std::unique_ptr<QPushButton>> questButtons;
 
 	void connectSlots();
 	void applyRoundedMask(QLabel* label, const QPixmap& originalPixmap);
@@ -61,19 +59,9 @@ private:
 	void resizeEvent(QResizeEvent* event) override;
 
 	void showEvent(QShowEvent* event) override;
-
-	void handleButton1();
-	void handleButton2();
-	void handleButton3();
-	void handleButton4();
-	void handleButton5();
-	void handleButton6();
-	void handleButton7();
-	void handleButton8();
-	void handleButton9();
-	void handleButton10();
-	void handleButton11();
-	void processQuestButton(int numb);
+	void processQuestButton(int activeButton);
+	void updateButtons(const std::vector<std::pair<QString, std::function<void()>>>& actions);
 	void makeAllButtonsInactive();
+	void on_saveButton_clicked();
 };
 

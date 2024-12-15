@@ -4,16 +4,18 @@
 
 class StoryStage {
 private:
-    std::string description;              // Описание этапа
-    std::function<void()> onStart;        // Действия при старте этапа
-    std::function<void()> onComplete;     // Действия при завершении
+    std::string description;             
+    std::function<void()> onStart;
+    std::function<void()> onComplete;
     bool isCompleted = false;
 
 public:
     StoryStage(const std::string& desc, std::function<void()> start, std::function<void()> complete);
 
+    void addAction(const std::string& actionText, std::function<void()> action);
+    const std::vector<std::pair<std::string, std::function<void()>>>& getActions() const;
+
     void start();
     void complete();
-    bool completed() const;
     std::string getDescription() const;
 };

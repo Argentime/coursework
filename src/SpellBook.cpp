@@ -3,49 +3,70 @@
 using namespace std;
 
 Spell** SpellBook::getSpells() const {
-    return spells;
+    Spell** spellsArray = new Spell * [spellCount];
+    for (int i = 0; i < spellCount; ++i) {
+        spellsArray[i] = spells[i];
+    }
+    return spellsArray;
+}
+
+Spell* SpellBook::getSpell(int i) const {
+    if (i >= 0 && i < spellCount)
+    {
+        return spells[i];
+    }
+    return nullptr;
 }
 
 int SpellBook::getSpellCount() const {
-	return spellCount;
+    return spellCount;
 }
 
 
-SpellBook::SpellBook() : spells(nullptr), spellCount(0) {};
-
-SpellBook::SpellBook(const SpellBook& another) : spellCount(another.spellCount) {
-    spells = new Spell * [spellCount];
-    for (int i = 0; i < spellCount; ++i) {
-        spells[i] = new Spell(*another.spells[i]); 
+SpellBook::SpellBook(const SpellBook& other) : spellCount(other.spellCount)
+{
+    spells.reserve(spellCount);
+    for (int i = 0; i < spellCount; ++i)
+    {
+        spells.push_back(new Spell(*other.spells[i]));
     }
 }
 
-SpellBook& SpellBook::operator=(const SpellBook& another) {
+
+SpellBook& SpellBook::operator=(const SpellBook& another)
+{
+
+    for (int i = 0; i < spellCount; ++i)
+    {
+        delete spells[i];
+    }
+    spells.clear();
+
+
     spellCount = another.spellCount;
-    spells = new Spell * [spellCount];
+    spells.reserve(spellCount);
     for (int i = 0; i < spellCount; ++i) {
-        spells[i] = new Spell(*another.spells[i]);
+        spells.push_back(new Spell(*another.spells[i]));
     }
     return *this;
-};
+}
 
-ostream& operator<<(ostream& os, const SpellBook& mySpellBook);
+
 
 SpellBook::~SpellBook() {
     for (int i = 0; i < spellCount; ++i) {
         delete spells[i];
     }
-    delete[] spells;
 }
 
-void SpellBook::addSpell(string const& name, Element el1, Element el2, int damage) {
-    auto newSpells = new Spell * [spellCount + 1];
-    for (int i = 0; i < spellCount; ++i) {
-        newSpells[i] = spells[i];
-    }
-    newSpells[spellCount] = new Spell(name, el1, el2, damage);
-    delete[] spells;
-    spells = newSpells;
+void SpellBook::addSpell(const std::string& name, Element el1, Element el2, int value, SpellType type) {
+
+    spells.push_back(new Spell(name, el1, el2, value, type));
+    spellCount++;
+}
+void SpellBook::addSpell(const Spell& other) {
+
+    spells.push_back(new Spell(other));
     spellCount++;
 }
 

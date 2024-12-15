@@ -10,27 +10,34 @@ class Game
 {
 private:
     SecondWindow* gameWindow;
-    std::unique_ptr<Hero> hero;           // Главный герой
-    Enemy *enemies;           // Список врагов
+    Enemy *enemies;
     int enemyCount;
-    Battle *currentBattle; // Текущее сражение
+    bool isAmuletFounded = false;
+    bool isBarierDestroyed = false;
+    friend class Battle;
+    Battle *currentBattle;
     enum class GameState { MainMenu, InGame, InBattle, Settings, Exit };
     GameState currentState;
     bool isBookPickUp = false;
     bool spellChoose = false;
-    StoryManager storyManager;
+    
     EventSystem eventSystem;
+    void showMerchantOptions();
+    void processPurchase(const QString& item, int cost, int itemType);
+    void displayBattle(const QString& enemy);
+    void useAltarOfPower();
+    void initializeEnemies();
+    void displayWorldMap();
 
 public:
     Game(SecondWindow* window);
-
-    void start();                          // Запустить игру
-    void mainMenu();                       // Главное меню
-    void startNewGame();                   // Начать новую игру
-    void loadGame(const std::string& saveFile); // Загрузить сохранение
-    void saveGame(const std::string& saveFile); // Сохранить игру
-    void update();                         // Основной цикл обновления
-    void startBattle(Enemy& enemy);        // Начать сражение
+    std::unique_ptr<Hero> hero;
+    StoryManager storyManager;
+    void start();
+    void startNewGame();
+    void loadGame(const std::string& saveFile);
+    void saveGame(const std::string& saveFile);
+    void startBattle(Enemy& enemy);
     void exitGame();
 };
 

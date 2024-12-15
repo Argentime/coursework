@@ -1,43 +1,30 @@
 ﻿#pragma once
-#include "functions.h"
+
+#include "Spell.h"
+#include <vector>
+#include <iostream>
+
+class Spell;
+enum class SpellType;
 
 class SpellBook {
-private:   
-
-    Spell** spells;
-
-    int spellCount;
+private:
+    std::vector<Spell*> spells;
+    int spellCount = 0;
 
 public:
-
-    Spell** getSpells() const;
-
-	int getSpellCount() const;
-
-    friend std::ostream& operator<<(std::ostream& os, const SpellBook& mySpellBook) {
-
-        os << "Книга заклинаний:" << std::endl;
-
-        if (mySpellBook.getSpellCount() == 0) {
-            os << "Заклинаний нет. \n";
-        }
-        else {
-            for (int i = 0; i < mySpellBook.getSpellCount(); ++i) {
-                os << *mySpellBook.getSpells()[i];
-            }
-        }
-        return os;
-    }
-
-    SpellBook();
-
-    SpellBook(const SpellBook& another);
-
-	SpellBook& operator=(const SpellBook& another);
-
+    SpellBook() = default;
+    SpellBook(const SpellBook& other);
+    SpellBook& operator=(const SpellBook& another);
     ~SpellBook();
 
-    void addSpell(std::string const& name, Element el1, Element el2, int damage);
+    Spell** getSpells() const;
+    Spell* getSpell(int i) const;
+    int getSpellCount() const;
+
+    void addSpell(const std::string& name, Element el1, Element el2, int value, SpellType type);
+
+    void addSpell(const Spell& other);
 
     void updateSpell(std::string_view oldName, std::string_view newName, int newDamage) const;
 

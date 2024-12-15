@@ -111,15 +111,35 @@ std::string Hero::status() const {
     }
 }
 
-void Hero::attack(Hero& another, Spell& spell) {
+void Hero::attack(Enemy& another, Spell& spell) {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<int> distrib(0,100);
+    uniform_int_distribution<> distrib(0,100);
+    bool hitChance = (focus > distrib(gen));
 
-    bool hitChance = (another.getFocus()) > (distrib(gen));
-    if (hitChance) another.takeDamage(spell.damage);
-    decreaseFocus((spell.damage*0.5));
-    another.decreaseFocus(spell.damage * 1.2);
+    switch (spell.type) {
+    case SpellType::Defense:
+        decreaseFocus((spell.damage * 0.7));
+        spell.applyDefenseBuff(*this);
+		break;
+
+	case SpellType::Attack:
+       
+        if (hitChance) another.takeDamage(spell.damage);
+        decreaseFocus((spell.damage * 0.5));
+        another.decreaseFocus(spell.damage * 1.2);
+		break;
+
+	case SpellType::Heal:
+		spell.restore(*this, spell.damage, false);
+        decreaseFocus((spell.damage * 1.5));
+		break;
+    case SpellType::Focus:
+        spell.restore(*this, spell.damage, true);
+		break;
+    }
+
+    
 } 
 
 void Hero::disperseFocus(Hero& another, int impact) {

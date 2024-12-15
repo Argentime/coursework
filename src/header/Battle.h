@@ -1,15 +1,29 @@
 ﻿#pragma once
-#include "functions.h"
+
+#include "Hero.h"
+#include "Enemy.h"
+#include "SecondWindow.h"
+#include "Game.h"
 
 class Battle {
 private:
     Hero& hero;
     Enemy& enemy;
-    bool battleFinished;
 
+    Game* game;
+    SecondWindow* window;
+    bool isHeroTurn;
+
+    void heroTurn();
+    void enemyTurn();
+    void updateButtons();
 public:
-    Battle(Hero& h, Enemy& e);
+    Battle(Hero& hero, Enemy& enemy, Game* game, SecondWindow* window);
+    void processBattle();
+    void nextTurn();
+    void evaluateEnemy();
+    void showSpellBook();
+    void runAway();
+    void castSpell(Spell* spell);
 
-    void processBattle(); // Обработка битвы
-    bool isBattleFinished() const;
 };

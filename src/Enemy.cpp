@@ -10,6 +10,7 @@ Enemy::Enemy(string const& name, int health, int focus)
     for (int i = 0; i < 5; ++i) {
         mana[i] = 100;
     }
+    loadHeroSpellBookFromJson( "resources/DefaultSave.json", &mySpellBook);
 }
 Enemy::Enemy(const Enemy& other)
     : Character(other.getName(), other.getHealth(), other.getFocus()),

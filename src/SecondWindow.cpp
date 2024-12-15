@@ -1,6 +1,7 @@
 ﻿#include "header/SecondWindow.h"
 #include "header/MainWindow.h"
 #include "header/functions.h"
+#include "header/SaveWindow.h"
 #include <random>
 
 using namespace std;
@@ -9,37 +10,65 @@ using json = nlohmann::json;
 SecondWindow::SecondWindow(MainWindow* menu, QWidget* parent)
 	: QMainWindow(parent), mainMenu(menu)
 {
-    hero = new Hero("", 0, 0, 0);
     game = new Game(this);
     ui.setupUi(this);
-	connectSlots();
     Qt::Window;
+    QString buttonStyle = R"(
+            QPushButton {
+                background-color: rgba(122, 122, 122, 0);
+                border: none;
+                border-radius: 3px;  
+                padding: 4px;
+                font-weight: 600;
+                text-align: left;
+                color: white;
+            }
+            QPushButton:hover {
+                background-color: rgba(161, 161, 161, 20);
+            }
+            QPushButton:pressed {
+                background-color: rgba(161, 161, 161, 10);
+            }
+            QPushButton:disabled {
+		        background-color: rgba(122, 122, 122, 0);
+                border: none;
+                border-radius: 3px;
+                padding: 4px;
+                font-weight: 600;
+                text-align: left;
+                color: white;
+            }
+        )";
+
+    for (int i = 0; i < 11; ++i) {
+        questButtons.emplace_back(make_unique<QPushButton>(QString::number(i), this));
+        questButtons[i].get()->setStyleSheet(buttonStyle);
+        questButtons[i].get()->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Maximum);
+        questButtons[i].get()->setMinimumHeight(1);
+        questButtons[i].get()->setIcon(QIcon(":/rec/resources/background_images/pimp.png"));
+        ui.verticalLayout->insertWidget(i,questButtons[i].get());
+    }
+    connectSlots();
 }
 
-SecondWindow::~SecondWindow()
-{
-    saveHeroToJson(*hero, "resources/Save.json");
-    delete hero;
+SecondWindow::~SecondWindow() {
+    questButtons.clear();
 }
+
 
 void SecondWindow::setImage(const QPixmap& pixmap) {
     try {
         originalPixmap = pixmap;
+        applyRoundedMask(ui.label_2, originalPixmap);
     }
     catch (const std::exception& e) {
         std::cerr << "Error setting image: " << e.what() << std::endl;
     }
 }
 
-int SecondWindow::getActiveButton() {
-	return activeButton;
-}
-
 void SecondWindow::connectSlots() {
-    for (int i = 1; i <= 11; i++) {
-        connect(ui.pushButton, &QPushButton::clicked, this, [this, i]() {processQuestButton(i); });
-    }
     connect(ui.pushButton_7, &QPushButton::clicked, this, &SecondWindow::on_menuButton_clicked);
+    connect(ui.pushButton_8, &QPushButton::clicked, this, &SecondWindow::on_saveButton_clicked);
 }
 
 void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& pixmap)
@@ -82,128 +111,104 @@ void SecondWindow::applyRoundedMask(QLabel* label, const QPixmap& pixmap)
 }
 void SecondWindow::resizeEvent(QResizeEvent* event) {
 
-    applyRoundedMask(ui.label_2, originalPixmap);
+    
 
     int width = event->size().width();
-    int newSize = max(8, width / 150);
+    int newSize = max(7.5, width / 150);
     QFont font = ui.label->font();
     font.setPointSize(newSize);
     ui.label->setFont(font);
-    newSize = max(8, width / 200);
+    newSize = max(7.5, width / 200);
     font = ui.label_3->font();
     font.setPointSize(newSize);
     ui.label_3->setFont(font);
+    for (int i = 0; i < 11; ++i) {
+        questButtons[i]->setFont(font);
+    }
+    applyRoundedMask(ui.label_2, originalPixmap);
 
 }
 void SecondWindow::showEvent(QShowEvent* event) {
     applyRoundedMask(ui.label_2, originalPixmap);
 }
 void SecondWindow::on_menuButton_clicked(){
+    game->saveGame("saves/autoSave.json");
     hide();
     mainMenu->show();
 }
-void SecondWindow::startGame(){
+void SecondWindow::startGame(std::string path){
 
+    makeAllButtonsInactive();
+    questButtons[0].get()->setText("Осмотреться");
+    activeButtonCSS(questButtons[0].get());
+    questButtons[1].get()->setText("Вернуться назад");
+    activeButtonCSS(questButtons[1].get());
     game->startNewGame();
     game->start();
-    printMenu(1, this->ui.label);
-    makeAllButtonsInactive();
-    ui.pushButton->setText("Осмотреться");
-    activeButtonCSS(ui.pushButton);
+    if (path != "") {
+        game->loadGame(path);
+    }
     ui.label_3->setText(heroStatus());
-
-}
-
-void SecondWindow::defaultLoad() {
-    loadHeroFromJson(*hero, "resources/DefaultSave.json");
-    startGame();
-}
-
-void SecondWindow::userLoad() {
-    loadHeroFromJson(*hero, "resources/wsSave.json");
-    startGame();
+    applyRoundedMask(ui.label_2, originalPixmap);
 }
 
 QString SecondWindow::heroStatus() {
     using enum Element;
-    const Character* characterPtr = hero;
+    const Character* characterPtr = game->hero.get();
 
-    QString status = QString("Имя: %1\n").arg(QString::fromStdString(hero->getName()));
+    QString status = QString("Имя: %1\n").arg(QString::fromStdString(game->hero->getName()));
     status += QString("%1\n").arg(QString::fromStdString(characterPtr->status()));
-    status += QString("Сосредоточенность: %1\n").arg(hero->getFocus());
+    status += QString("Сосредоточенность: %1\n").arg(game->hero->getFocus());
+    status += QString("Баланс: %1\n").arg(game->hero->getMoney());
     status += "Мана:\n";
-    status += QString("Огонь: %1\n").arg(hero->getMana(Fire));
-    status += QString("Земля: %1\n").arg(hero->getMana(Earth));
-    status += QString("Вода: %1\n").arg(hero->getMana(Water));
-    status += QString("Воздух: %1\n").arg(hero->getMana(Air));
-    status += QString("Дух: %1\n").arg(hero->getMana(Spirit));
+    status += QString("Огонь: %1\n").arg(game->hero->getMana(Fire));
+    status += QString("Земля: %1\n").arg(game->hero->getMana(Earth));
+    status += QString("Вода: %1\n").arg(game->hero->getMana(Water));
+    status += QString("Воздух: %1\n").arg(game->hero->getMana(Air));
+    status += QString("Дух: %1\n").arg(game->hero->getMana(Spirit));
 
     return status;
 }
 
-void SecondWindow::processQuestButton() {
+void SecondWindow::processQuestButton(int activeButton) {
     
-    
-
+    qDebug() << "slot " << activeButton << " clicked";
+    game->start();
     ui.label_3->setText(heroStatus());
+}
+
+void SecondWindow::updateButtons(const std::vector<std::pair<QString, std::function<void()>>>& actions) {
+
+    makeAllButtonsInactive();
+
+    for (auto& button : questButtons) {
+        button->hide();
+        disconnect(button.get(), nullptr, this, nullptr);
+        connect(button.get(), &QPushButton::clicked, this, [this] { ui.label_3->setText(heroStatus()); });
+    }
+
+
+    for (size_t i = 0; i < actions.size() && i < questButtons.size(); ++i) {
+        questButtons[i]->setText(actions[i].first);
+        connect(questButtons[i].get(), &QPushButton::clicked, this, actions[i].second);
+        questButtons[i]->show();
+        activeButtonCSS(questButtons[i].get());
+    }
     
+    qDebug() << "Actions updated. Total:" << actions.size();
+    for (const auto& action : actions) {
+        qDebug() << "Action:" << action.first;
+    }
 }
 
 void  SecondWindow::makeAllButtonsInactive() {
-    inactiveButtonCSS(ui.pushButton);
-	inactiveButtonCSS(ui.pushButton_2);
-	inactiveButtonCSS(ui.pushButton_3);
-	inactiveButtonCSS(ui.pushButton_4);
-	inactiveButtonCSS(ui.pushButton_5);
-	inactiveButtonCSS(ui.pushButton_6);
-    inactiveButtonCSS(ui.pushButton_9);
-    inactiveButtonCSS(ui.pushButton_10);
-    inactiveButtonCSS(ui.pushButton_11);
-    inactiveButtonCSS(ui.pushButton_12);
-    inactiveButtonCSS(ui.pushButton_13);
+    for (int i = 0; i < 11; i++) {
+        inactiveButtonCSS(questButtons[i].get());
+    }
+}
 
-}
-void SecondWindow::handleButton1() {
-    activeButton = 1;
-    processActiveButton();
-}
-void SecondWindow::handleButton2() {
-    activeButton = 2;
-    processActiveButton();
-}
-void SecondWindow::handleButton3() {
-    activeButton = 3;
-    processActiveButton();
-}
-void SecondWindow::handleButton4() {
-    activeButton = 4;
-    processActiveButton();
-}
-void SecondWindow::handleButton5() {
-    activeButton = 5;
-    processActiveButton();
-}
-void SecondWindow::handleButton6() {
-    activeButton = 6;
-    processActiveButton();
-}
-void SecondWindow::handleButton7() {
-    activeButton = 7;
-    processActiveButton();
-}
-void SecondWindow::handleButton8() {
-    activeButton = 8;
-    processActiveButton();
-}
-void SecondWindow::handleButton9() {
-    activeButton = 9;
-    processActiveButton();
-}
-void SecondWindow::handleButton10() {
-    activeButton = 10;
-    processActiveButton();
-}
-void SecondWindow::handleButton11() {
-    activeButton = 11;
-    processActiveButton();
+void SecondWindow::on_saveButton_clicked() {
+    game->saveGame("saves/autoSave.json");
+    SW = new SaveWindow(this,this->mainMenu, game->hero->getMoney(), ":/rec/resources/background_images/Racer.png", "saves/autoSave.json");
+    SW->show();
 }

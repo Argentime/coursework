@@ -20,8 +20,6 @@ SaveSlot::SaveSlot(QWidget *parent)
 		"background-color:rgba(128,128,128,150)"
 		"}"
 	);
-	originalPixmap = QPixmap(":/rec/resources/background_images/Racer.png");
-	connect(floatingButton, &QPushButton::clicked, this, &SaveSlot::on_pushButton_clicked);
 }
 SaveSlot::SaveSlot(const SaveSlot& other):QWidget(nullptr)
 	{
@@ -29,7 +27,12 @@ SaveSlot::SaveSlot(const SaveSlot& other):QWidget(nullptr)
 	floatingButton = new QPushButton("", this);
 	floatingButton->move(0, 0);
 	floatingButton->raise();
-	floatingButton->setStyleSheet("");
+	floatingButton->setStyleSheet(
+		"QPushButton{"
+		"background-color:transparent;"
+		"border:none;"
+		"}"
+	);
 	ui.label->setText(other.ui.label->text());
 	ui.label_2->setText(other.ui.label_2->text());
 	ui.label_3->setText(other.ui.label_3->text());
@@ -49,8 +52,11 @@ SaveSlot& SaveSlot::operator=(const SaveSlot& other) {
 	return *this;
 }
 
-void SaveSlot::on_pushButton_clicked() {
-	isButtonActive = true;
+void SaveSlot::updateSlot(const QString& lineEditText, const QPixmap& pixmap, const std::string& path, int money) {
+	ui.lineEdit->setText(lineEditText);
+	originalPixmap = pixmap;
+	this->path = path;
+	ui.label_3->setText(QString::number(money));
 }
 void SaveSlot::resizeEvent(QResizeEvent* event) {
 	floatingButton->setGeometry(0, 0, width(), height());
@@ -59,4 +65,20 @@ SaveSlot::~SaveSlot()
 {}
 void SaveSlot::setActive(bool isActive) {
 	ui.lineEdit->setReadOnly(!isActive);
+}
+
+void SaveSlot::setUiLabel(const std::string& label) {
+	ui.lineEdit->setText(QString::fromStdString(label));
+}
+
+std::string SaveSlot::getUiLabel() const {
+	return ui.lineEdit->text().toStdString();
+}
+
+void SaveSlot::setPath(const std::string& path) {
+	this->path = path;
+}
+
+std::string SaveSlot::getPath() {
+	return path;
 }
