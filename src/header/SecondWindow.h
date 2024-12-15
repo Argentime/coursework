@@ -51,7 +51,7 @@ private:
 	bool spellChoose = false;
 	std::vector<std::unique_ptr<QPushButton>> questButtons;
 
-	void connectSlots();
+	void connectSlots(); 
 	void applyRoundedMask(QLabel* label, const QPixmap& originalPixmap);
 
 	void on_menuButton_clicked();
