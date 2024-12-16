@@ -79,6 +79,14 @@ void Battle::castSpell(Spell* spell) {
     window->ui.label->setText(QString("%1 применяет %2").arg(QString::fromStdString(hero.getName()), QString::fromStdString(spell->name)));
     hero.attack(enemy, *spell);
     spell->useSpell();
+    if (hero.getMana(spell->element1) >= 0 && hero.getMana(spell->element2) >= 0) {
+        hero.setMana(static_cast<int>(spell->element1), hero.getMana(spell->element1) - 10);
+        hero.setMana(static_cast<int>(spell->element2), hero.getMana(spell->element2) - 10);
+    }
+    else {
+        hero.setMana(static_cast<int>(spell->element1), 0);
+        hero.setMana(static_cast<int>(spell->element2), 0);
+    }
     isHeroTurn = false;
     enemyTurn();
 }
