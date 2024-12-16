@@ -58,7 +58,15 @@ void Battle::nextTurn() {
 
     if (enemy.getHealth().health <= 0)
     {
-        window->ui.label->setText(QString("%1 победил в битве!").arg(QString::fromStdString(hero.getName())));
+        window->ui.label->setText(QString("%1 победил в битве!, под ним вы обнаружили мешок с монетами").arg(QString::fromStdString(hero.getName())));
+        switch (enemy.getHealth().maxHealth) {
+        case 50:
+            hero.setMoney(hero.getMoney()+200);
+            break;
+        case 100:
+            hero.setMoney(hero.getMoney() + 600); 
+            break;
+        }
         game->storyManager.completeCurrentStage();
         game->storyManager.startNextStage();
         return;

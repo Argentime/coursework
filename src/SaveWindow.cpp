@@ -202,6 +202,7 @@ void SaveWindow::on_pushButton_3_clicked() {
 void SaveWindow::on_pushButton_4_clicked() {
     saveSlotsToJson("saves/save_slots");
     hide();
+    menu->gWindow->setEnabled(true);
 }
 void SaveWindow::on_pushButton_5_clicked() {
     if (sv.size() > saveSlotCount[0]) sv.pop_back();

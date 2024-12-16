@@ -209,7 +209,10 @@ void  SecondWindow::makeAllButtonsInactive() {
 }
 
 void SecondWindow::on_saveButton_clicked() {
+    this->setEnabled(false);
     game->saveGame("saves/autoSave.json");
     SW = new SaveWindow(this,this->mainMenu, game->hero->getMoney(), currentPath.toStdString(), "saves/autoSave.json");
     SW->show();
+    
+    
 }

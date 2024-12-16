@@ -59,7 +59,7 @@ void Game::startNewGame() {
                 {"Вернуться в хижину", [this]() { storyManager.restartStage("Хижина Путника"); }}
                 });
         },
-        []() {
+        [this]() {
             qDebug() << "Вы покидаете Лесной Перекресток.";
         }
     ));
@@ -268,10 +268,13 @@ void Game::processPurchase(const QString& item, int cost, int itemType) {
             hero.get()->setFocus(hero.get()->getFocus() + 40);
             break;
         case 4:
-            hero.get()->setMana(static_cast<int>(Element::Spirit), hero.get()->getMana(Element::Spirit) + 10);
+            hero.get()->setMana(static_cast<int>(Element::Spirit), hero.get()->getMana(Element::Spirit) + 20);
+            hero.get()->setMana(static_cast<int>(Element::Air), hero.get()->getMana(Element::Air) + 20);
+            hero.get()->setMana(static_cast<int>(Element::Earth), hero.get()->getMana(Element::Earth) + 20);
             break;
         case 5:
-            hero.get()->setMana(static_cast<int>(Element::Spirit), hero.get()->getMana(Element::Spirit) + 10);
+            hero.get()->setMana(static_cast<int>(Element::Water), hero.get()->getMana(Element::Water) + 20);
+            hero.get()->setMana(static_cast<int>(Element::Fire), hero.get()->getMana(Element::Fire) + 20);
             break;
         }
     }
@@ -293,11 +296,17 @@ void Game::useAltarOfPower() {
     
     if (hero->getMoney() >= 1000) {
         hero->setMoney(hero->getMoney() - 1000);
-        hero->setMana(static_cast<int>(Element::Spirit), hero->getMana(Element::Spirit) + 10);
+        hero->setMana(static_cast<int>(Element::Spirit), hero->getMana(Element::Spirit) + 50);
+        hero->setMana(static_cast<int>(Element::Air), hero->getMana(Element::Air) + 50);
+        hero->setMana(static_cast<int>(Element::Earth), hero->getMana(Element::Earth) + 50);
+        hero->setMana(static_cast<int>(Element::Fire), hero->getMana(Element::Fire) + 50);
+        hero->setMana(static_cast<int>(Element::Water), hero->getMana(Element::Water) + 50);
         qDebug() << "Герой усилился у Алтаря Силы.";
+        storyManager.restartStage("Хижина Путника");
     }
     else {
         qDebug() << "Недостаточно денег для использования алтаря.";
+        storyManager.restartStage("Хижина Путника");
     }
 }
 void Game::initializeEnemies() {
