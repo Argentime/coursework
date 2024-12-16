@@ -56,9 +56,10 @@ SecondWindow::~SecondWindow() {
 }
 
 
-void SecondWindow::setImage(const QPixmap& pixmap) {
+void SecondWindow::setImage(QString Path) {
     try {
-        originalPixmap = pixmap;
+        currentPath = Path;
+        originalPixmap = QPixmap(currentPath);
         applyRoundedMask(ui.label_2, originalPixmap);
     }
     catch (const std::exception& e) {
@@ -209,6 +210,6 @@ void  SecondWindow::makeAllButtonsInactive() {
 
 void SecondWindow::on_saveButton_clicked() {
     game->saveGame("saves/autoSave.json");
-    SW = new SaveWindow(this,this->mainMenu, game->hero->getMoney(), ":/rec/resources/background_images/Racer.png", "saves/autoSave.json");
+    SW = new SaveWindow(this,this->mainMenu, game->hero->getMoney(), currentPath.toStdString(), "saves/autoSave.json");
     SW->show();
 }

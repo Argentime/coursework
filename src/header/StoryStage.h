@@ -7,6 +7,7 @@ private:
     std::string description;             
     std::function<void()> onStart;
     std::function<void()> onComplete;
+    std::vector<std::pair<std::string, std::function<void()>>> actions;
     bool isCompleted = false;
 
 public:

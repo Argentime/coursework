@@ -2,7 +2,7 @@
 
 Game::Game(SecondWindow* window)
     : hero(std::make_unique<Hero>("Игрок", 100, 50, 100)),
-    currentState(GameState::MainMenu), enemies(nullptr), enemyCount(0),
+     enemies(nullptr), enemyCount(0),
     gameWindow(window), currentBattle(nullptr)
 {}
 
@@ -14,23 +14,22 @@ void Game::startNewGame() {
     hero = std::make_unique<Hero>("Игрок", 100, 100, 1000);
     loadHeroSpellBookFromJson("resources/DefaultSave.json", &(hero.get()->getSpellBook()));
     initializeEnemies();
-    currentState = GameState::InGame;
 
     storyManager.addStage(std::make_shared<StoryStage>(
         "Хижина Путника",
         [this]() {
             loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/lobby.html");
-            gameWindow->setImage(QPixmap(":/rec/resources/background_images/Moi_18.png"));
+            gameWindow->setImage(":/rec/resources/background_images/Moi_18.png");
             gameWindow->updateButtons({
                 {"Посетить торговца талисманами", [this]() { 
                     showMerchantOptions();
                     loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/merchant.html");
-                    gameWindow->setImage(QPixmap(":/rec/resources/background_images/Park_03.png"));
+                    gameWindow->setImage(":/rec/resources/background_images/Park_03.png");
                 }},
                 {"Открыть карту мира", [this]() {
                     displayWorldMap();
                     loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/map.html");
-                    gameWindow->setImage(QPixmap(":/rec/resources/background_images/van_45_fix.png"));
+                    gameWindow->setImage(":/rec/resources/background_images/van_45_fix.png");
                 }},
                 {"Использовать алтарь силы", [this]() {
                     gameWindow->updateButtons({
@@ -38,7 +37,7 @@ void Game::startNewGame() {
                     {"Вернуться", [this]() { storyManager.restartStage("Хижина Путника"); }}
                     }); 
                     loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/altar.html");
-                    gameWindow->setImage(QPixmap(":/rec/resources/background_images/Moi_05.png"));
+                    gameWindow->setImage(":/rec/resources/background_images/Moi_05.png");
                 }}
                 });
         },
@@ -51,7 +50,7 @@ void Game::startNewGame() {
         "Лесной Перекресток",
         [this]() {
             loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/forest_crossroad.html");
-            gameWindow->setImage(QPixmap(":/rec/resources/background_images/Moi_01.png"));
+            gameWindow->setImage(":/rec/resources/background_images/Moi_01.png");
             gameWindow->updateButtons({
                 {"Сразиться с бродячими волками", [this]() { 
                     initializeEnemies();
@@ -69,7 +68,7 @@ void Game::startNewGame() {
         "Тёмный Лес",
         [this]() {
             loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/dark_forest.html");
-            gameWindow->setImage(QPixmap(":/rec/resources/background_images/Borzukhan_01.png"));
+            gameWindow->setImage(":/rec/resources/background_images/Borzukhan_01.png");
             gameWindow->updateButtons({
                 {"Искать сокровища", [this]() { 
                     loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/found_amulet.html");
@@ -87,7 +86,7 @@ void Game::startNewGame() {
         "Пещера Призраков",
         [this]() {
             loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/ghost_cave.html");
-            gameWindow->setImage(QPixmap(":/rec/resources/background_images/Moi_03.png"));
+            gameWindow->setImage(":/rec/resources/background_images/Moi_03.png");
             gameWindow->updateButtons({
                 {"Сразиться с Призрачным Стражем", [this]() { initializeEnemies(); startBattle(enemies[1]); }},
                 {"Вернуться в хижину", [this]() { storyManager.restartStage("Хижина Путника"); }}
@@ -104,7 +103,7 @@ void Game::startNewGame() {
         [this]() {
             if (isAmuletFounded&& isBarierDestroyed) {
                 loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/boss_lair.html");
-                gameWindow->setImage(QPixmap(":/rec/resources/background_images/Menzols_04.png"));
+                gameWindow->setImage(":/rec/resources/background_images/Menzols_04.png");
                 gameWindow->updateButtons({
                     {"Сразиться с Смертоносцем", [this]() { startBattle(enemies[2]); }},
                     {"Вернуться в хижину", [this]() { storyManager.restartStage("Хижина Путника"); }}
@@ -112,7 +111,7 @@ void Game::startNewGame() {
             }
             else {
                 loadHtmlToLabel(gameWindow->ui.label, "resources/quest_html/boss_locked.html");
-                gameWindow->setImage(QPixmap(":/rec/resources/background_images/Menzols_04.png"));
+                gameWindow->setImage(":/rec/resources/background_images/Menzols_04.png");
                 gameWindow->updateButtons({
                     {"Вернуться в хижину", [this]() { storyManager.restartStage("Хижина Путника"); }}
                     });
@@ -136,12 +135,13 @@ void Game::loadGame(const std::string& filename) {
         file >> saveData;
         file.close();
 
-        std::string name = saveData["hero"]["name"];
+        
         int health = saveData["hero"]["health"];
         int maxHealth = saveData["hero"]["maxHealth"];
         float defense = saveData["hero"]["defense"];
         int focus = saveData["hero"]["focus"];
         int money = saveData["hero"]["money"];
+        std::string name = saveData["hero"]["name"];
 
         std::vector<int> mana(5);
         for (int i = 0; i < 5; ++i) {
@@ -155,11 +155,12 @@ void Game::loadGame(const std::string& filename) {
 
         SpellBook& spellBook = hero->getSpellBook();
         for (const auto& spellData : saveData["hero"]["spellBook"]) {
-            Spell spell = deserializeSpell(saveData);
-            spellBook.addSpell(spell);
+            for (const auto& spelld : spellData.at("spells")) {
+                Spell spell = deserializeSpell(spelld);
+                spellBook.addSpell(spell.name, spell.element1, spell.element2, spell.damage, spell.type);
+            }
         }
 
-        currentState = static_cast<GameState>(saveData["gameState"]);
         storyManager.restartStage(saveData["currentStageName"]);
         isBarierDestroyed = saveData["isBarierDestroyed"];
         isAmuletFounded = saveData["isAmuletFounded"];
@@ -168,7 +169,7 @@ void Game::loadGame(const std::string& filename) {
 
     }
     catch (const std::exception& e) {
-        qInfo() << "Ошибка загрузки: " << e.what();
+        qInfo() << "Ошибка загрузки game: " << e.what();
     }
 }
 
@@ -194,16 +195,15 @@ void Game::saveGame(const std::string& filename) {
 
 
         for (int i = 0; i < spellBook.getSpellCount(); ++i) {
-            Spell* spell = spellBook.getSpells()[i];
+            Spell* spell = spellBook.getSpell(i);
             json spellData;
-            spellData["spells"].push_back(serializeSpell(*hero->getSpellBook().getSpell(i)));
-
+            spellData["spells"].push_back(serializeSpell(*spell));
+            spellBookArray.push_back(spellData);
         }
 
 
         saveData["hero"]["spellBook"] = spellBookArray;
 
-        saveData["gameState"] = static_cast<int>(currentState);
         saveData["isAmuletFounded"] = static_cast<bool>(isAmuletFounded);
         saveData["isBarierDestroyed"] = static_cast<bool>(isBarierDestroyed);
         saveData["currentStageName"] = storyManager.getCurrentStage().get()->getDescription();
@@ -236,9 +236,6 @@ void Game::startBattle(Enemy& enemy) {
     currentBattle->processBattle();
 }
 
-void Game::exitGame() {
-    currentState = GameState::Exit;
-}
 
 void Game::showMerchantOptions() {
     gameWindow->updateButtons({

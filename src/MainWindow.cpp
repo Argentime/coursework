@@ -42,8 +42,6 @@ void MainWindow::on_pushButton_4_clicked() {
 
 void MainWindow::openSecondWindow() {
     gWindow = new SecondWindow(this, nullptr);
-    QPixmap originalPixmap(":/rec/resources/background_images/Racer.png");
-    gWindow->setImage(originalPixmap);
     gWindow->setStyleSheet(
         "QMainWindow {"
         "background-image: url(:/rec/resources/background_images/2BG.png);"

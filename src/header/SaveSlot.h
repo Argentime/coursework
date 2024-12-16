@@ -11,11 +11,10 @@ class SaveSlot : public QWidget
 public:
 	SaveSlot(QWidget *parent = nullptr);
 	SaveSlot(const SaveSlot& other);
-	void updateSlot(const QString& lineEditText, const QPixmap& pixmap, const std::string& path, int money);
+	void updateSlot(const QString& lineEditText, const std::string& pixmap, const std::string& path, int money);
 	~SaveSlot();
 	bool isButtonActive=false;
 	QPushButton* floatingButton;
-	QPixmap originalPixmap;
 	void setUi(Ui::SaveSlotClass ui);
 	SaveSlot& operator=(const SaveSlot& other);
 	void setActive(bool isActive);
@@ -30,6 +29,7 @@ private:
 	Ui::SaveSlotClass ui;
 	void resizeEvent(QResizeEvent* event) override;
 	std::string path;
+	std::string pixmapPath;
 	friend class SaveWindow;
 
 };

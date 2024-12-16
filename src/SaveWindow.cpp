@@ -16,6 +16,7 @@ SaveWindow::SaveWindow(QWidget* parent, MainWindow* menu, const int heroMoney, c
     loadSaveSlotsFromJson("saves/save_slots.json");
     connectSlots();
     makeButtonsInactive();
+    ui.label->setPixmap(QPixmap(":/rec/resources/background_images/NA.png"));
     if (heroMoney == -1) {
         delete ui.pushButton_5;
     }
@@ -40,7 +41,8 @@ void SaveWindow::loadSaveSlotsFromJson(const std::string& filename) {
         for (int i = 0; i < slotCount; i++) {
             auto slotInfo = saveSlotsJson["slots"][i];
             auto slot = std::make_unique<SaveSlot>();
-            slot->updateSlot(QString::fromStdString(slotInfo["name"].get<std::string>()),QPixmap(), slotInfo["path"].get<std::string>(), slotInfo["money"].get<int>());
+            std::string pathToPixmap = slotInfo["pathToPixmap"].get<std::string>();
+            slot->updateSlot(QString::fromStdString(slotInfo["name"].get<std::string>()),pathToPixmap, slotInfo["path"].get<std::string>(), slotInfo["money"].get<int>());
             slot->ui.label_2->setText(QString::fromStdString(slotInfo["time"].get<std::string>()));
             sv.push_back(std::move(slot));
             ui.scrollAreaWidgetContents->layout()->addWidget(sv.back().get());
@@ -77,6 +79,7 @@ void SaveWindow::saveSlotsToJson(const std::string& filename) {
 
         destinationFile << jsonData.dump(4);
         sv[saveSlotCount[1]]->setPath(filename + std::to_string(saveSlotCount[1]) + ".json");
+        sv[saveSlotCount[1]]->pixmapPath = pixmapPath;
         destinationFile.close();
     }
         std::ofstream file(filename + ".json");
@@ -92,6 +95,7 @@ void SaveWindow::saveSlotsToJson(const std::string& filename) {
             json slotInfo;
             slotInfo["name"] = sv[i]->getUiLabel();
             slotInfo["path"] = sv[i]->getPath();
+            slotInfo["pathToPixmap"] = sv[i]->pixmapPath;
             slotInfo["money"] = sv[i]->ui.label_3->text().toInt();
             slotInfo["time"] = sv[i]->ui.label_2->text().toStdString();
             saveSlotsJson["slots"].push_back(slotInfo);
@@ -127,7 +131,6 @@ void SaveWindow::reconnectSlots() {
 void SaveWindow::on_slot_clicked(int numb) {
     sv[numb]->floatingButton->setEnabled(false);
     sv[numb].get()->setActive(false);
-    ui.label->setPixmap(sv[numb].get()->originalPixmap);
     makeButtonsActive();
     if (!ui.verticalLayoutWidget->layout()->isEmpty()) {
         ui.verticalLayoutWidget->layout()->removeWidget(tsv.get());
@@ -138,7 +141,6 @@ void SaveWindow::on_slot_clicked(int numb) {
             oldSlot->floatingButton->raise();
             oldSlot->floatingButton->setEnabled(true);
             oldSlot->setActive(false);
-            saveSlotsToJson("saves/save_slots");
             tsv.reset();
         }
     }
@@ -147,6 +149,7 @@ void SaveWindow::on_slot_clicked(int numb) {
     tsv->floatingButton->setEnabled(true);
     tsv->floatingButton->lower();
     tsv->setActive(true);
+    ui.label->setPixmap(QPixmap(QString::fromStdString(sv[numb]->pixmapPath)));
 
     ui.verticalLayoutWidget->layout()->addWidget(tsv.get());
 
@@ -197,6 +200,7 @@ void SaveWindow::on_pushButton_3_clicked() {
     
 }
 void SaveWindow::on_pushButton_4_clicked() {
+    saveSlotsToJson("saves/save_slots");
     hide();
 }
 void SaveWindow::on_pushButton_5_clicked() {
@@ -209,6 +213,8 @@ void SaveWindow::on_pushButton_5_clicked() {
     sv[saveSlotCount[0]].get()->hide();
     ui.scrollAreaWidgetContents->layout()->removeWidget(ui.pushButton_5);
     ui.scrollAreaWidgetContents->layout()->addWidget(ui.pushButton_5);
+    ui.scrollAreaWidgetContents->layout()->removeItem(ui.verticalSpacer);
+    ui.scrollAreaWidgetContents->layout()->addItem(ui.verticalSpacer);
 }
 
 void SaveWindow::makeButtonsActive() {

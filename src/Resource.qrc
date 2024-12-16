@@ -15,6 +15,7 @@
         <file>resources/background_images/Borzukhan_01.png</file>
         <file>resources/background_images/Moi_01.png</file>
         <file>resources/background_images/Moi_05.png</file>
+        <file>resources/background_images/NA.png</file>
     </qresource>
     <qresource prefix="/prefix2">
         <file>resources/styles/style1.css</file>

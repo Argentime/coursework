@@ -16,8 +16,6 @@ private:
     bool isBarierDestroyed = false;
     friend class Battle;
     Battle *currentBattle;
-    enum class GameState { MainMenu, InGame, InBattle, Settings, Exit };
-    GameState currentState;
     bool isBookPickUp = false;
     bool spellChoose = false;
     

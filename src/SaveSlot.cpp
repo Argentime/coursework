@@ -52,9 +52,9 @@ SaveSlot& SaveSlot::operator=(const SaveSlot& other) {
 	return *this;
 }
 
-void SaveSlot::updateSlot(const QString& lineEditText, const QPixmap& pixmap, const std::string& path, int money) {
+void SaveSlot::updateSlot(const QString& lineEditText, const std::string& pixmap, const std::string& path, int money) {
 	ui.lineEdit->setText(lineEditText);
-	originalPixmap = pixmap;
+	pixmapPath = pixmap;
 	this->path = path;
 	ui.label_3->setText(QString::number(money));
 }

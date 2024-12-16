@@ -29,17 +29,19 @@ public:
 	~SecondWindow();
 	
 
-	void setImage(const QPixmap& pixmap);
+	void setImage(QString Path);
 
 	void startGame(std::string path);
 
 	QString heroStatus();
 	
+	
 
 private:
-	
 	SaveWindow *SW;
 	QPixmap originalPixmap;
+	QString currentPath;
+	
 	MainWindow* mainMenu;
 	friend class Game;
 	friend class Battle;

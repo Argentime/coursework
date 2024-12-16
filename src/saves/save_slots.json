@@ -1,23 +1,33 @@
 {
-    "slot_count": 3,
+    "slot_count": 4,
     "slots": [
         {
             "money": 1000,
-            "name": "Тестовое сохранение",
+            "name": "Сохранение перед битвой",
             "path": "saves/save_slots0.json",
-            "time": "12.15 22:29"
-        },
-        {
-            "money": 500,
-            "name": "Another",
-            "path": "saves/save_slots1.json",
-            "time": "12.15 22:30"
+            "pathToPixmap": ":/rec/resources/background_images/Moi_01.png",
+            "time": "12.16 03:54"
         },
         {
             "money": 1000,
-            "name": "Пещера призрак",
+            "name": "Проверка конца игры",
+            "path": "saves/save_slots1.json",
+            "pathToPixmap": ":/rec/resources/background_images/Park_03.png",
+            "time": "12.16 02:45"
+        },
+        {
+            "money": 1000,
+            "name": "выбор локации",
             "path": "saves/save_slots2.json",
-            "time": "12.15 22:12"
+            "pathToPixmap": ":/rec/resources/background_images/Moi_18.png",
+            "time": "12.16 03:41"
+        },
+        {
+            "money": 1000,
+            "name": "После битвы",
+            "path": "saves/save_slots3.json",
+            "pathToPixmap": ":/rec/resources/background_images/Moi_18.png",
+            "time": "12.16 04:06"
         }
     ]
 }

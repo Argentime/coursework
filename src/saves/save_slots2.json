@@ -1,6 +1,5 @@
 {
-    "currentStageName": "Пещера Призраков",
-    "gameState": 1,
+    "currentStageName": "Хижина Путника",
     "hero": {
         "defense": 1.0,
         "focus": 100,
@@ -15,6 +14,129 @@
         "maxHealth": 100,
         "money": 1000,
         "name": "Игрок",
-        "spellBook": []
-    }
+        "spellBook": [
+            {
+                "spells": [
+                    {
+                        "damage": 3,
+                        "element1": 3,
+                        "element2": 4,
+                        "name": "Вампиризм",
+                        "type": 2,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 5,
+                        "element1": 2,
+                        "element2": 1,
+                        "name": "Гейзер",
+                        "type": 0,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 2,
+                        "element1": 3,
+                        "element2": 2,
+                        "name": "Заморозка",
+                        "type": 0,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 7,
+                        "element1": 4,
+                        "element2": 2,
+                        "name": "Исцеление",
+                        "type": 2,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 15,
+                        "element1": 1,
+                        "element2": 4,
+                        "name": "Концентрация",
+                        "type": 3,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 5,
+                        "element1": 0,
+                        "element2": 1,
+                        "name": "Метеор",
+                        "type": 0,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 8,
+                        "element1": 0,
+                        "element2": 4,
+                        "name": "Огненное Лезвие",
+                        "type": 0,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 5,
+                        "element1": 0,
+                        "element2": 3,
+                        "name": "Огненный Шар",
+                        "type": 0,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 1,
+                        "element1": 3,
+                        "element2": 1,
+                        "name": "Щит",
+                        "type": 1,
+                        "uses": 0
+                    }
+                ]
+            },
+            {
+                "spells": [
+                    {
+                        "damage": 8,
+                        "element1": 4,
+                        "element2": 4,
+                        "name": "Ледяная Пчела",
+                        "type": 0,
+                        "uses": 0
+                    }
+                ]
+            }
+        ]
+    },
+    "isAmuletFounded": false,
+    "isBarierDestroyed": false
 }

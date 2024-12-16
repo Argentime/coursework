@@ -23,8 +23,9 @@ json serializeSpell(const Spell& spell) {
 
 
 Spell deserializeSpell(const json& j) {
-    string name = j.at("name").get<string>();
+    
     auto el1 = static_cast<Element>(j.at("element1").get<int>());
+    string name = j.at("name").get<string>();
     auto el2 = static_cast<Element>(j.at("element2").get<int>());
     int damage = j.at("damage").get<int>();
     int uses = j.at("uses").get<int>();
