@@ -1,9 +1,9 @@
 {
-    "currentStageName": "Хижина Путника",
+    "currentStageName": "Лесной Перекресток",
     "hero": {
         "defense": 1.0,
-        "focus": 98,
-        "health": 90,
+        "focus": 88,
+        "health": 75,
         "mana": [
             100,
             100,
@@ -23,7 +23,7 @@
                         "element2": 4,
                         "name": "Вампиризм",
                         "type": 2,
-                        "uses": 0
+                        "uses": 1
                     }
                 ]
             },
@@ -95,7 +95,7 @@
                         "element2": 4,
                         "name": "Огненное Лезвие",
                         "type": 0,
-                        "uses": 0
+                        "uses": 2
                     }
                 ]
             },
@@ -107,7 +107,7 @@
                         "element2": 3,
                         "name": "Огненный Шар",
                         "type": 0,
-                        "uses": 1
+                        "uses": 0
                     }
                 ]
             },
